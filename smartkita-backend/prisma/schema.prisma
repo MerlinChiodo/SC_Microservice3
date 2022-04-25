@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Antrag {
+  id_antrag  Int      @id @default(autoincrement())
+  datum      DateTime @default(now()) @db.DateTime(0)
+  prioritaet Int
+  status     String
+}
