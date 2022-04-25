@@ -7,9 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Schwerpunkt {
+  OFFENES_KONZEPT
+  TEILOFFENES_KONZEPT
+  REGGIO
+  MONTESSORI
+  WALDORF
+  BEWEGUNG
+  TIERGESTUETZT
+}
+
+enum Traeger {
+  EVANGELISCH
+  KATHOLISCH
+  DRK
+  KOMMUNAL
+  PRIVAT
+}
+
 model Antrag {
   id_antrag  Int      @id @default(autoincrement())
   datum      DateTime @default(now()) @db.DateTime(0)
   prioritaet Int
   status     String
+}
+
+model Einrichtung {
+  id_einrichtung       Int     @id @default(autoincrement())
+  smartcity_teilnehmer Boolean 
+  name String 
+  traeger String
+  traeger_kategorie Traeger
+  strasse String
+  hausnr Int
+  email String?
+  url_website String?
+  betreuungsplaetze Int?
+  kindalter_von Int?
+  kindalter_bis Int?
+  schwerpunkt Schwerpunkt?
+  kurzbeschreibung String @db.VarChar(500)
+  beschreibung String? @db.VarChar(5000)
+  termine String? @db.VarChar(2000)
 }
