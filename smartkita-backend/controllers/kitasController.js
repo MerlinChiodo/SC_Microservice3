@@ -1,17 +1,32 @@
 const prisma = require('../lib/prisma.js');
 
-exports.kitasList = (req, res) => {
-    res.send('NOT IMPLEMENTED: kitas list')
+exports.kitasList = async (req, res) => {
+    const allKitas = await prisma.einrichtung.findMany()
+    res.json(allKitas)
 };
 
-exports.getKitaById = (req, res) => {
-    res.send('NOT IMPLEMENTED: get a single kita')
+exports.getKitaById = async (req, res, next) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.status(400).send({ error : true, msg : "invalid id"});
+        next();
+    }
+    const kita = await prisma.einrichtung.findUnique({
+        where: {
+            id_einrichtung: id,
+        },
+    })
+    res.json(kita)
 };
 
 exports.createKita = async (req, res) => {
-    // TODO: error handling
     const { smartcity_teilnehmer, name, traeger, strasse, hausnr, plz, traeger_kategorie, kurzbeschreibung } = req.body
-    const post = await prisma.einrichtung.create({
+    // return 400 if required attributes are missing
+    if (smartcity_teilnehmer == null || name == null || traeger == null || strasse == null || hausnr == null
+    || plz == null || traeger_kategorie == null || kurzbeschreibung == null) {
+        return res.status(400).send({ error : true, msg : 'missing Kita data'})
+    }
+    const kita = await prisma.einrichtung.create({
         data: {
             smartcity_teilnehmer,
             name,
@@ -23,5 +38,5 @@ exports.createKita = async (req, res) => {
             kurzbeschreibung
         },
     })
-    res.json(post)
+    res.json(kita)
 }
