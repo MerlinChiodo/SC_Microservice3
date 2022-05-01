@@ -27,19 +27,45 @@ enum Traeger {
 
 model Antrag {
   id_antrag  Int      @id @default(autoincrement())
+  // 1-n relation
+  id_einrichtung Int 
+  einrichtung Einrichtung @relation(fields: [id_einrichtung], references: [id_einrichtung])
+  id_kind Int
+  kind Kind @relation(fields: [id_kind], references: [id_kind])
+  id_ezb Int
+  erziehungsberechtigte Erziehungsberechtigte @relation(fields: [id_ezb], references: [id_ezb])
+  // Attributes
   datum      DateTime @default(now()) @db.DateTime(0)
   prioritaet Int
   status     String
 }
 
+model Vertrag {
+  id_vertrag Int @id @default(autoincrement())
+  id_einrichtung Int
+  einrichtung Einrichtung @relation(fields: [id_einrichtung], references: [id_einrichtung])
+  id_kind Int
+  kind Kind @relation(fields: [id_kind], references: [id_kind])
+  id_ezb Int
+  erziehungsberechtigte Erziehungsberechtigte @relation(fields: [id_ezb], references: [id_ezb])
+  // Attributes
+  beginn DateTime @db.Date
+  ende DateTime @db.Date
+  betreuungsstunden Int
+}
+
 model Einrichtung {
   id_einrichtung       Int     @id @default(autoincrement())
-  smartcity_teilnehmer Boolean 
-  name String 
+  bilder Bild[]
+  antrag Antrag[]
+  vertrag Vertrag[]
+  smartcity_teilnehmer Boolean
+  name String
   traeger String
   traeger_kategorie Traeger
   strasse String
   hausnr Int
+  plz Int
   email String?
   url_website String?
   betreuungsplaetze Int?
@@ -49,4 +75,41 @@ model Einrichtung {
   kurzbeschreibung String @db.VarChar(500)
   beschreibung String? @db.VarChar(5000)
   termine String? @db.VarChar(2000)
+}
+
+model Kind {
+  id_kind Int @id @default(autoincrement())
+  id_einrichtung Int?
+  vertrag Vertrag[]
+  antrag Antrag[]
+  // Attributes
+  smartcity_id String?
+  vorname String?
+  nachname String?
+  geburtsdatum DateTime? @db.Date()
+  strasse String?
+  hausnr String?
+}
+
+model Erziehungsberechtigte {
+  id_ezb Int @id @default(autoincrement())
+  vertrag Vertrag[]
+  antrag Antrag[]
+  // Attributes
+  smartcity_id String? // registered users store *only* smartcity_id
+  vorname String? // unregistered users store this and all following attributes
+  nachname String?
+  geburtsdatum DateTime? @db.Date()
+  strasse String?
+  hausnr String?
+  email String?
+  telefonnr Int?
+}
+
+model Bild {
+  id_bild Int @id @default(autoincrement())
+  // 1-n relation
+  id_einrichtung Int?
+  einrichtung Einrichtung? @relation(fields: [id_einrichtung], references: [id_einrichtung])
+  path String
 }
