@@ -83,7 +83,7 @@ model Kind {
   vertrag Vertrag[]
   antrag Antrag[]
   // Attributes
-  smartcity_id String?
+  smartcity_id Int?
   vorname String?
   nachname String?
   geburtsdatum DateTime? @db.Date()
@@ -96,7 +96,7 @@ model Erziehungsberechtigte {
   vertrag Vertrag[]
   antrag Antrag[]
   // Attributes
-  smartcity_id String? // registered users store *only* smartcity_id
+  smartcity_id Int? // registered users store *only* smartcity_id
   vorname String? // unregistered users store this and all following attributes
   nachname String?
   geburtsdatum DateTime? @db.Date()

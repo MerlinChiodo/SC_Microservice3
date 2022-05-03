@@ -25,6 +25,7 @@ exports.createKita = async (req, res) => {
         || plz == null || traeger_kategorie == null || kurzbeschreibung == null) {
         return res.status(400).send({error: true, msg: 'missing Kita data'})
     }
+    // promise oder try catch um prisma-Block
     const kita = await prisma.einrichtung.create({
         data: {
             smartcity_teilnehmer,
