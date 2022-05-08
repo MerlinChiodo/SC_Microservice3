@@ -16,7 +16,7 @@ exports.sendTicketInquiry = async (req, res) => {
             }
 
             // schema validation
-            const validate = ajv.getSchema('stadtbus_event')
+            const validate = ajv.getSchema('stadtbus_sendTicketInquiry')
             if (validate(req.body)) {
 
                 // shouldn't this event be private?
