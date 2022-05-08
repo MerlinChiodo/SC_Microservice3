@@ -1,4 +1,5 @@
-const amqp = require('amqplib/callback_api')
+const amqp = require('amqplib/callback_api');
+const {ajv} = require('../validation'); // destructuring: call specific variable (including functions) exported from the required module
 
 const rabbitMQUsername = process.env.rabbitMQUsername
 const rabbitMQPassword = process.env.rabbitMQPassword
@@ -6,8 +7,6 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
 
 exports.sendTicketInquiry = async (req, res) => {
     amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, function(connectError, connection){
-    //     amqp.connect('amqp://' + rabbitMQUsername + ':' + rabbitMQPassword + '@' + rabbitMQserverURL, function(connectError, connection){
-    // amqp.connect('amqp://guest:guest@localhost:5672', function(connectError, connection){
         if (connectError) {
             throw connectError
         }
@@ -15,11 +14,19 @@ exports.sendTicketInquiry = async (req, res) => {
             if (channelError) {
                 throw channelError
             }
-            // insert schema validation here
 
-            channel.publish('events', "public.kita", Buffer.from(JSON.stringify((req.body))))
-            console.log('RabbitMQ: sent event ${req.body}')
+            // schema validation
+            const validate = ajv.getSchema('stadtbus_event')
+            if (validate(req.body)) {
 
-            })
+                // shouldn't this event be private?
+                channel.publish('events', "public.kita", Buffer.from(JSON.stringify((req.body))))
+                console.log(`RabbitMQ: sent event ${req.body.event_id}`)
+                return res.status(200).send({error: false, msg: 'event successfully sent'})
+            } else {
+                // report error
+                return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
+            }
+         })
         })
     }
