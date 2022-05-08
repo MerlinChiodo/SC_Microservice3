@@ -13,6 +13,9 @@ const contractsRouter = require('./routes/contracts');
 const guardiansRouter = require('./routes/guardians');
 const imagesRouter = require('./routes/images');
 
+// test router
+const eventTestRouter = require('./routes/eventTest');
+
 const app = express();
 
 // view engine setup
@@ -37,6 +40,9 @@ app.use('/children', childrenRouter);
 app.use('/contracts', contractsRouter);
 app.use('/guardians', guardiansRouter);
 app.use('/images', imagesRouter);
+
+// test routes
+app.use('/eventtest', eventTestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
