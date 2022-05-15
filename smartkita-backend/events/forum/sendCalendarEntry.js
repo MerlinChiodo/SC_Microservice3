@@ -5,7 +5,7 @@ const rabbitMQUsername = process.env.rabbitMQUsername
 const rabbitMQPassword = process.env.rabbitMQPassword
 const rabbitMQserverURL = process.env.rabbitMQserverURL
 
-exports.sendTicketInquiry = async (req, res) => {
+exports.sendCalendarEntry = async (req, res) => {
     amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, function(connectError, connection){
         if (connectError) {
             throw connectError
@@ -16,16 +16,16 @@ exports.sendTicketInquiry = async (req, res) => {
             }
 
             // schema validation
-            const validate = ajv.getSchema('stadtbus_sendTicketInquiry')
+            const validate = ajv.getSchema('forum_sendCalendarEntry')
             if (validate(req.body)) {
-
+                // shouldn't this event be private?
                 channel.publish('events', "private.kita", Buffer.from(JSON.stringify((req.body))))
                 console.log(`RabbitMQ: sent event ${req.body.event_id}`)
                 return res.status(200).send({error: false, msg: 'event successfully sent'})
             } else {
                 // report error
-                return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
+                return res.status(400).send({error: true, msg: 'invalid calendar entry data'})
             }
-         })
         })
-    }
+    })
+}

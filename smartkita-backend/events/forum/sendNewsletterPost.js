@@ -16,7 +16,7 @@ exports.sendTicketInquiry = async (req, res) => {
             }
 
             // schema validation
-            const validate = ajv.getSchema('stadtbus_sendTicketInquiry')
+            const validate = ajv.getSchema('forum_sendNewsletterPost')
             if (validate(req.body)) {
 
                 channel.publish('events', "private.kita", Buffer.from(JSON.stringify((req.body))))
@@ -24,8 +24,8 @@ exports.sendTicketInquiry = async (req, res) => {
                 return res.status(200).send({error: false, msg: 'event successfully sent'})
             } else {
                 // report error
-                return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
+                return res.status(400).send({error: true, msg: 'invalid newsletter post data'})
             }
-         })
         })
-    }
+    })
+}
