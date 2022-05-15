@@ -5,9 +5,7 @@
   "properties": {
     "event_id" : {
       "const" : 3001,
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 10000
+      "type": "integer"
     },
     "event_name": {
       "type": "string",
