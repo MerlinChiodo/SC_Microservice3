@@ -25,8 +25,26 @@ enum Traeger {
   PRIVAT
 }
 
+enum Dateiformat {
+  PDF
+}
+
+enum Dokumententyp {
+  BESCHAEFTIGUNGSNACHWEIS
+  VORSORGEHEFT
+  IMPFPASS
+}
+
+enum Rolle {
+  VERWALTUNG
+  ERZIEHUNG
+  ADMIN
+}
+
 model Antrag {
   id_antrag  Int      @id @default(autoincrement())
+  // m-n relation
+  dokument Dokument[]
   // 1-n relation
   id_einrichtung Int 
   einrichtung Einrichtung @relation(fields: [id_einrichtung], references: [id_einrichtung])
@@ -38,6 +56,7 @@ model Antrag {
   datum      DateTime @default(now()) @db.DateTime(0)
   prioritaet Int
   status     String
+  bemerkung String
 }
 
 model Vertrag {
@@ -52,6 +71,7 @@ model Vertrag {
   beginn DateTime @db.Date
   ende DateTime @db.Date
   betreuungsstunden Int
+  bemerkung String
 }
 
 model Einrichtung {
@@ -95,6 +115,7 @@ model Erziehungsberechtigte {
   id_ezb Int @id @default(autoincrement())
   vertrag Vertrag[]
   antrag Antrag[]
+  dokument Dokument[]
   // Attributes
   smartcity_id Int? // registered users store *only* smartcity_id
   vorname String? // unregistered users store this and all following attributes
@@ -112,4 +133,26 @@ model Bild {
   id_einrichtung Int?
   einrichtung Einrichtung? @relation(fields: [id_einrichtung], references: [id_einrichtung])
   path String
+}
+
+model Dokument {
+  id_dokument Int @id @default(autoincrement())
+  id_ezb Int
+  id_antrag Int?
+  erziehungsberechtigte Erziehungsberechtigte @relation(fields: [id_ezb], references: [id_ezb])
+  antrag Antrag[]
+  // Attributes
+  path_fileserver String
+  datum_upload DateTime @default(now()) @db.DateTime(0)
+  dateiformat Dateiformat
+  typ Dokumententyp?
+}
+
+model Mitarbeitende {
+  id_mitarbeitende Int @id @default(autoincrement())
+  vorname String
+  nachname String
+  email String
+  passwort String
+  rolle Rolle
 }
