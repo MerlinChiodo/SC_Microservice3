@@ -12,9 +12,8 @@ const childrenRouter = require('./routes/children');
 const contractsRouter = require('./routes/contracts');
 const guardiansRouter = require('./routes/guardians');
 const imagesRouter = require('./routes/images');
-
-// test router
-const eventTestRouter = require('./routes/eventTest');
+const documentsRouter = require('./routes/documents');
+const employeesRouter = require('./routes/employees');
 
 const app = express();
 
@@ -40,9 +39,9 @@ app.use('/children', childrenRouter);
 app.use('/contracts', contractsRouter);
 app.use('/guardians', guardiansRouter);
 app.use('/images', imagesRouter);
+app.use('/documents', documentsRouter);
+app.use('/employees', employeesRouter);
 
-// test routes
-app.use('/eventtest', eventTestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
