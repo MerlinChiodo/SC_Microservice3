@@ -5,6 +5,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header>
     <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/debugevents">Debug Events</RouterLink>
   </header>
   <RouterView />
 </template>

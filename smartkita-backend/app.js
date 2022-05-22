@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const kitasRouter = require('./routes/kitas');
@@ -24,6 +25,9 @@ app.set('view engine', 'ejs');
 
 // middleware functions (have access to req, res, next)
 app.use(logger('dev'));
+app.use(cors({
+  origin: 'http://localhost:3000'
+}))
 // ff: body-parser-like functions
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
