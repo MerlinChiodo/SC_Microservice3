@@ -32,6 +32,7 @@ exports.receiveRefugeeKitaApplication = async(req, res) => {
                     }
                 } else {
                     // report error
+                    console.log("integration event failed to validate")
                     return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
                 }
             }, {
