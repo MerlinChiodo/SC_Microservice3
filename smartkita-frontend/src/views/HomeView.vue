@@ -1,9 +1,5 @@
-<script setup>
-import TheWelcome from "@/components/TheWelcome.vue";
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>
+    Kita
+  </h1>
 </template>
