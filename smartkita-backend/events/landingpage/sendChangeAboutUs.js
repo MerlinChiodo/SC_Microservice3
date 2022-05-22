@@ -5,7 +5,7 @@ const rabbitMQUsername = process.env.rabbitMQUsername
 const rabbitMQPassword = process.env.rabbitMQPassword
 const rabbitMQserverURL = process.env.rabbitMQserverURL
 
-exports.sendTicketInquiry = async (req, res) => {
+exports.sendChangeAboutUs = async (req, res) => {
     amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, function(connectError, connection){
         if (connectError) {
             throw connectError

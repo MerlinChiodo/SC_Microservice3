@@ -14,6 +14,7 @@ const guardiansRouter = require('./routes/guardians');
 const imagesRouter = require('./routes/images');
 const documentsRouter = require('./routes/documents');
 const employeesRouter = require('./routes/employees');
+const eventRouter = require('./routes/events');
 
 const app = express();
 
@@ -41,6 +42,9 @@ app.use('/guardians', guardiansRouter);
 app.use('/images', imagesRouter);
 app.use('/documents', documentsRouter);
 app.use('/employees', employeesRouter);
+
+// event route
+app.use('/events', eventRouter);
 
 
 // catch 404 and forward to error handler
