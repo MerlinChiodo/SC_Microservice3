@@ -25,7 +25,7 @@ RUN npm run build
 WORKDIR /app/backend
 
 # Copy the backend package and package-lock.json file
-COPY backend/package*.json ./
+COPY smartkita-backend/package*.json ./
 
 # Install node packages
 RUN npm install
