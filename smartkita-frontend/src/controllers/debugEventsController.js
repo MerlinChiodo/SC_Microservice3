@@ -1,5 +1,5 @@
 // const backendurl = "http://localhost:3001/events/";
-const backendurl = "http://vps2290194.fastwebserver.de:9730/"
+const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
 
 
 //// STADTBUS
