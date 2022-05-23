@@ -1,4 +1,6 @@
-const localhosturl = "http://localhost:3001/events/";
+// const backendurl = "http://localhost:3001/events/";
+const backendurl = "http://vps2290194.fastwebserver.de:9730/"
+
 
 //// STADTBUS
 export async function stadtbusSendTicketInquiry() {
@@ -15,7 +17,7 @@ export async function stadtbusSendTicketInquiry() {
     }),
   };
   const response = await fetch(
-    localhosturl + "stadtbus/ticketinquiry",
+    backendurl + "stadtbus/ticketinquiry",
     requestOptions
   );
   const data = await response.json();
@@ -39,7 +41,7 @@ export async function forumSendCalendarEntry() {
     }),
   };
   const response = await fetch(
-    localhosturl + "forum/calendarentry",
+    backendurl + "forum/calendarentry",
     requestOptions
   );
   const data = await response.json();
@@ -62,7 +64,7 @@ export async function forumSendNewsletterPost() {
     }),
   };
   const response = await fetch(
-      localhosturl + "forum/newsletterpost",
+      backendurl + "forum/newsletterpost",
       requestOptions
   );
   const data = await response.json();
@@ -83,7 +85,7 @@ export async function landingpageSendChangeAboutUs() {
     }),
   };
   const response = await fetch(
-    localhosturl + "landingpage/aboutus",
+    backendurl + "landingpage/aboutus",
     requestOptions
   );
   const data = await response.json();
