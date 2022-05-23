@@ -32,8 +32,12 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// serves all static files in /public directory
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", async (req, res) =>{
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
+})
 
 app.use('/', indexRouter);
 app.use('/kitas', kitasRouter);
@@ -56,6 +60,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+
 // custom middleware (err argument) => must be defined last in order
 // error handler
 app.use(function(err, req, res, next) {
@@ -67,11 +72,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.use(express.static(path.join(__dirname, "../frontend",'dist')));
-
-app.get("*", async (req, res) =>{
-  res.sendFile(path.join(__dirname, "../frontend","dist","index.html"))
-})
 
 module.exports = app;
