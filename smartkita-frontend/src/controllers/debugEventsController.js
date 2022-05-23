@@ -1,6 +1,5 @@
-// const backendurl = "http://localhost:3001/events/";
-const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
-
+const backendurl = "http://localhost:3001/events/";
+//const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
 
 //// STADTBUS
 export async function stadtbusSendTicketInquiry() {
@@ -58,14 +57,13 @@ export async function forumSendNewsletterPost() {
       service_name: "kita",
       title: "Noch Kitaplätze frei",
       text_short: "Jetzt zugreifen! Kitaplätze für alle",
-      text_long:
-          "Ihr sucht einen Kitaplatz? Kommt in die SmartCity!",
+      text_long: "Ihr sucht einen Kitaplatz? Kommt in die SmartCity!",
       date: "22.05.2022",
     }),
   };
   const response = await fetch(
-      backendurl + "forum/newsletterpost",
-      requestOptions
+    backendurl + "forum/newsletterpost",
+    requestOptions
   );
   const data = await response.json();
   this.newsletterResponse = data;
