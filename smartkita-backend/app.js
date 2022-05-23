@@ -69,6 +69,6 @@ app.use(function(err, req, res, next) {
 });
 
 // Deliver static files from directory 'public'
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 module.exports = app;
