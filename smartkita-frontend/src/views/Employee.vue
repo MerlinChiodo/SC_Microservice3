@@ -43,7 +43,7 @@ import {
   forumSendCalendarEntry,
   forumSendNewsletterPost,
   landingpageSendChangeAboutUs,
-} from "../controllers/debugEventsController";
+} from "../controllers/eventsController";
 
 export default {
   name: "DebugEvents",
