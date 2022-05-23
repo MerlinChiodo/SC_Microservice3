@@ -1,0 +1,34 @@
+{
+  "title": "Change About Us",
+  "description": "Schema for the event to change the about us",
+  "type": "object",
+  "properties": {
+    "event_id" : {
+      "const" : 3002,
+      "type": "integer"
+    },
+    "event_name": {
+      "type": "string",
+      "const": "Updated About US"
+    },
+    "service_name": {
+      "type": "string",
+      "const": "kita"
+    },
+    "date": {
+      "type": "string"
+    },
+    "about_us":{
+      "type": "string"
+    },
+    "picture": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "event_name",
+    "service_name",
+    "date"
+  ]
+}

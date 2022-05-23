@@ -1,0 +1,38 @@
+{
+  "title" : "new refugee kita application",
+  "type" : "object",
+  "description" : "Schema for the event to receive a new refugee kita application",
+  "properties" : {
+    "event_id" : {
+      "type" : "integer",
+      "const" : 9002
+    },
+    "event_name" : {
+      "type" : "string",
+      "const" : "Refugee Kita Application"
+    },
+    "service_name" : {
+      "type" : "string",
+      "const" : "integration"
+    },
+    "care_time" : {
+      "type" : "integer",
+      "minimum" : 25,
+      "maximum" : 45
+    },
+    "child": {
+      "citizen_id" : {
+        "type" : "integer",
+        "minimum" : 0,
+        "maximum" : 999999999
+      }
+    },
+    "parent" : {
+      "citizen_id" : {
+        "type" : "integer",
+        "minimum" : 0,
+        "maximum" : 999999999
+      }
+    }
+  }
+}
