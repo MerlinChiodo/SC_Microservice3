@@ -68,4 +68,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Deliver static files from directory 'public'
+app.use(express.static('public'));
+
 module.exports = app;
