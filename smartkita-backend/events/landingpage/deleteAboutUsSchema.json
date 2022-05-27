@@ -1,30 +1,21 @@
 {
-  "title": "Change About Us",
-  "description": "Schema for the event to change the about us",
+  "title": "Delete My Service",
+  "description": "Schema for the event to delete an existing service",
   "type": "object",
   "properties": {
-    "event_id" : {
-      "const" : 3002,
+    "event_id": {
+      "const" : 3005,
       "type": "integer"
     },
     "event_name": {
       "type": "string",
-      "const": "Updated About US"
+      "const": "Delete My Service"
     },
     "service_name": {
       "const": "kita",
       "type": "string"
     },
     "date": {
-      "type": "string"
-    },
-    "about_us":{
-      "type": "string"
-    },
-    "picture": {
-      "type": "string"
-    },
-    "url": {
       "type": "string"
     }
   },
