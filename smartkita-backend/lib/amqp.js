@@ -8,7 +8,6 @@ const amqp = require('amqplib/callback_api.js')
     static #connectionString = `amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`;
 
     static async publish(routingKey, body) {
-        console.log(body);
         console.log(`RabbitMQ: attempting to send event ${body.event_name}`);
         amqp.connect(RabbitMQWrapper.#connectionString, { keepAlive: true }, (connectError, connection) => {
             if (connectError) { throw connectError; }
