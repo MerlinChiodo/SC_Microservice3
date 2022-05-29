@@ -80,7 +80,7 @@ export async function landingpageSendChangeAboutUs() {
       event_name: "Updated About US",
       service_name: "kita",
       about_us: "Kita-Service der SmartCity",
-      date: "22.05.2022",
+      date: "1999-06-10T11:11-11",
     }),
   };
   const response = await fetch(
