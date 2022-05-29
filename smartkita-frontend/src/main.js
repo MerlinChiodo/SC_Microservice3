@@ -14,6 +14,8 @@ import Sidebar from 'primevue/sidebar';
 import Card from 'primevue/card';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import Menubar from 'primevue/menubar';
+
 
 
 
@@ -30,5 +32,6 @@ app.component('Sidebar', Sidebar);
 app.component('Card', Card);
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
+app.component('Menubar', Menubar);
 
 app.mount("#app");

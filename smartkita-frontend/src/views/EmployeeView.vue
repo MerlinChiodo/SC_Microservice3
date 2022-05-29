@@ -46,7 +46,7 @@ import {
 } from "../controllers/eventsController";
 
 export default {
-  name: "DebugEvents",
+  name: "EmployeeView",
   methods: {
     stadtbusSendTicketInquiry,
     forumSendCalendarEntry,

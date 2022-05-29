@@ -1,10 +1,9 @@
-<script setup>
-import { RouterView } from "vue-router";
-</script>
-
 <template>
-  <header class="nav">
-    <Button
+  <div>
+    <header class="nav">
+      <NavBar />
+
+      <!--    <Button
       class="p-button-outlined p-button-rounded"
       label="Home"
       @click="$router.push('/')"
@@ -15,10 +14,22 @@ import { RouterView } from "vue-router";
       label="Mitarbeitende"
       @click="$router.push('/employee')"
     >
-    </Button>
-  </header>
+    </Button>-->
+    </header>
+  </div>
   <RouterView />
 </template>
+
+<script>
+// import { RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
+
+export default {
+  components: {
+    NavBar,
+  },
+};
+</script>
 
 <style>
 #app {
