@@ -4,8 +4,9 @@
 
     <Accordion :multiple="true">
       <AccordionTab header="Stadtbus">
+        <div>
         <EventFormStadtbus></EventFormStadtbus>
-
+        </div>
       </AccordionTab>
 
       <AccordionTab header="Forum">

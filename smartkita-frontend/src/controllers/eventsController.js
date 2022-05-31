@@ -4,7 +4,7 @@ const backendurl = "http://localhost:3001/events/";
 // const backendurl = "http://" + location.host + "/events/"
 
 //// STADTBUS
-export async function stadtbusSendTicketInquiry() {
+export async function stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -12,10 +12,10 @@ export async function stadtbusSendTicketInquiry() {
       event_id: 3001,
       event_name: "New Kita Inquiry",
       service_name: "kita",
-      number_of_passengers: 999,
-      person_responsible: "Hans Merkel",
-      kita_responsible: "Kita #1",
-      date: "08.05.2022",
+      number_of_passengers: number_of_passengers,
+      person_responsible: person_responsible,
+      kita_responsible: kita_responsible,
+      date: date,
     }),
   };
   const response = await fetch(

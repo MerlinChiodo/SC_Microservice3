@@ -1,6 +1,6 @@
 <template>
   <h3>Gruppenticket anfordern</h3>
-  <div>
+
     <span class="p-float-label">
       <label for="kita_responsible">Kita</label>
       <InputText
@@ -11,19 +11,14 @@
     </span>
     <span class="p-float-label">
       <label for="person_responsible">Verantwortliche*r</label>
-      <InputText
-        v-model="person_responsible"
-        type="text"
-      ></InputText>
+      <InputText v-model="person_responsible" type="text"></InputText>
     </span>
-  </div>
-  <div>
+
     <span class="p-float-label">
       <label for="date">Datum</label>
       <Calendar v-model="date" id="date"></Calendar>
     </span>
-  </div>
-  <div class="flex">
+
     <span class="p-float-label">
       <label for="number_of_passengers">Passagiere</label>
 
@@ -35,11 +30,10 @@
       ></InputNumber>
     </span>
     <Knob v-model="number_of_passengers" :min="1" :max="100" :size="85"></Knob>
-  </div>
 
   <Button
     class="p-button-raised p-button-rounded"
-    @click="stadtbusSendTicketInquiry"
+    @click="stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date)"
   >
     send Ticket Inquiry
   </Button>
