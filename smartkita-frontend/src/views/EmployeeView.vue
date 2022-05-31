@@ -4,12 +4,8 @@
 
     <Accordion :multiple="true">
       <AccordionTab header="Stadtbus">
-        <Button
-          class="p-button-raised p-button-rounded"
-          @click="stadtbusSendTicketInquiry"
-        >
-          send Ticket Inquiry
-        </Button>
+        <EventFormStadtbus></EventFormStadtbus>
+
       </AccordionTab>
 
       <AccordionTab header="Forum">
@@ -39,16 +35,16 @@
 
 <script>
 import {
-  stadtbusSendTicketInquiry,
   forumSendCalendarEntry,
   forumSendNewsletterPost,
   landingpageSendChangeAboutUs,
 } from "../controllers/eventsController";
+import EventFormStadtbus from "../components/EventFormStadtbus.vue";
 
 export default {
   name: "EmployeeView",
+  components: {EventFormStadtbus},
   methods: {
-    stadtbusSendTicketInquiry,
     forumSendCalendarEntry,
     forumSendNewsletterPost,
     landingpageSendChangeAboutUs,
@@ -61,7 +57,7 @@ export default {
   margin: auto;
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
+  max-width: 50rem;
   text-align: center;
 }
 </style>

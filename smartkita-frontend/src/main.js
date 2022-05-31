@@ -15,9 +15,10 @@ import Card from 'primevue/card';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import Menubar from 'primevue/menubar';
-
-
-
+import Calendar from 'primevue/calendar';
+import Knob from 'primevue/knob';
+import InputNumber from 'primevue/inputnumber'
+import InputText from 'primevue/inputtext'
 
 const app = createApp(App);
 
@@ -33,5 +34,9 @@ app.component('Card', Card);
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
 app.component('Menubar', Menubar);
+app.component('Calendar', Calendar);
+app.component('Knob', Knob);
+app.component('InputNumber', InputNumber);
+app.component('InputText', InputText);
 
 app.mount("#app");

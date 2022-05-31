@@ -14,6 +14,7 @@ export async function stadtbusSendTicketInquiry() {
       service_name: "kita",
       number_of_passengers: 999,
       person_responsible: "Hans Merkel",
+      kita_responsible: "Kita #1",
       date: "08.05.2022",
     }),
   };
