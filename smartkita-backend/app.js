@@ -5,6 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const history = require('connect-history-api-fallback');
+
 
 const indexRouter = require('./routes/index');
 const kitasRouter = require('./routes/kitas');
@@ -33,6 +35,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+// serve Vue frontend
+app.use(history());
 app.use(express.static(path.join(__dirname, "../smartkita-frontend/dist")));
 
 // app.get("*", async (req, res) =>{
