@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 // serve Vue frontend
 app.use(history());
-app.use(express.static(path.join(__dirname, "../smartkita-frontend/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // app.get("*", async (req, res) =>{
   // res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
