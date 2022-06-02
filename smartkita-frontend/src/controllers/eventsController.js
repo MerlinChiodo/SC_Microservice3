@@ -1,7 +1,7 @@
 // location.host doesn't work in local environment so I'm using the comment strat until I find a better solution
-// const backendurl = "http://localhost:3001/events/";
+const backendurl = "http://localhost:3001/events/";
 // const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
- const backendurl = "http://" + location.host + "/events/"
+// const backendurl = "http://" + location.host + "/events/"
 
 //// STADTBUS
 export async function stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date) {
@@ -39,7 +39,7 @@ export async function forumSendCalendarEntry() {
       text_short: "Smarte Events in der Kita",
       text_long:
         "Taucht ein in die digitale Welt der SmartCity! Euch erwarten exklusive Einblicke in eine Reihe von Front- und Backends.",
-      date: "01.01.2025",
+      date: "1999-06-10T11:11:11",
     }),
   };
   const response = await fetch(
@@ -82,7 +82,7 @@ export async function landingpageSendChangeAboutUs() {
       event_name: "Updated About US",
       service_name: "kita",
       about_us: "Kita-Service der SmartCity",
-      date: "1999-06-10T11:11-11",
+      date: "1999-06-10T11:11:11",
     }),
   };
   const response = await fetch(
