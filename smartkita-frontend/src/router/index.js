@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import DebugEvents from "../views/DebugEvents.vue";
+import EmployeeView from "../views/EmployeeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +11,9 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/debugevents",
-      name: "debugevents",
-      component: DebugEvents
+      path: "/employee",
+      name: "employee",
+      component: EmployeeView
     },
     {
       path: "/about",
