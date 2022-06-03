@@ -24,11 +24,9 @@
       </AccordionTab>
 
       <AccordionTab header="Landing Page">
-        <Button
-          class="p-button-raised p-button-rounded"
-          @click="landingpageSendChangeAboutUs"
-          >change About Us</Button
-        >
+        <div>
+          <EventFormLandingPage></EventFormLandingPage>
+        </div>
       </AccordionTab>
     </Accordion>
   </div>
@@ -38,17 +36,17 @@
 import {
   forumSendCalendarEntry,
   forumSendNewsletterPost,
-  landingpageSendChangeAboutUs,
 } from "../controllers/eventsController";
 import EventFormStadtbus from "../components/EventFormStadtbus.vue";
+import EventFormLandingPage from "../components/EventFormLandingPage.vue";
+
 
 export default {
   name: "EmployeeView",
-  components: {EventFormStadtbus},
+  components: {EventFormStadtbus, EventFormLandingPage},
   methods: {
     forumSendCalendarEntry,
-    forumSendNewsletterPost,
-    landingpageSendChangeAboutUs,
+    forumSendNewsletterPost
   },
 };
 </script>

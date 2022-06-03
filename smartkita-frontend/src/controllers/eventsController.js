@@ -73,7 +73,7 @@ export async function forumSendNewsletterPost() {
 }
 
 //// LANDINGPAGE
-export async function landingpageSendChangeAboutUs() {
+export async function landingpageSendChangeAboutUs(about_us, url, picture, date) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -81,8 +81,10 @@ export async function landingpageSendChangeAboutUs() {
       event_id: 3002,
       event_name: "Updated About US",
       service_name: "kita",
-      about_us: "Kita-Service der SmartCity",
-      date: "1999-06-10T11:11:11",
+      about_us: about_us,
+      url: url,
+      picture: picture,
+      date: date,
     }),
   };
   const response = await fetch(
@@ -90,5 +92,5 @@ export async function landingpageSendChangeAboutUs() {
     requestOptions
   );
   const data = await response.json();
-  this.aboutUsResponse = data;
+  console.log(data);
 }

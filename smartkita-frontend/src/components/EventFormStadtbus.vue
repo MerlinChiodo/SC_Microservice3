@@ -11,7 +11,7 @@
     </span>
     <span class="p-float-label">
       <label for="person_responsible">Verantwortliche*r</label>
-      <InputText v-model="person_responsible" type="text"></InputText>
+      <InputText v-model="person_responsible" type="text" id="person_responsible"></InputText>
     </span>
 
     <span class="p-float-label">
