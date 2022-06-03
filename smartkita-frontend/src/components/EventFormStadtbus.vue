@@ -33,9 +33,9 @@
 
   <Button
     class="p-button-raised p-button-rounded"
-    @click="stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date)"
+    @click="stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date.toISOString())"
   >
-    send Ticket Inquiry
+    Senden
   </Button>
 </template>
 
@@ -53,7 +53,7 @@ export default {
       number_of_passengers: 1 /* form */,
       person_responsible: "" /* form/grab id from login */,
       kita_responsible: "" /* form/grab id from login */,
-      date: null /* form */,
+      date: new Date() /* form */,
     };
   },
   methods: {

@@ -1,40 +1,45 @@
 {
-  "title": "new calendar entry",
+  "title": "event_Calendar",
+  "description": "Schema for the events that are appointed",
   "type": "object",
-  "description": "Schema for the event to send a calendar entry",
   "properties": {
     "event_id" : {
-      "const" : 3003,
-      "type": "integer"
+      "type": "integer",
+      "const": 3003
     },
     "event_name": {
       "type": "string",
-      "const": "New Calendar Entry"
+      "const": "newServicePost"
     },
-    "service_name": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "string"
+    },
+    "long_description": {
+      "type": "string"
+    },
+    "service": {
       "type": "string",
       "const": "kita"
     },
-    "title": {
+    "event_on": {
       "type": "string",
-      "minLength": 1
-    },
-    "text_short": {
-      "type": "string",
-      "minLength": 1
-    },
-    "text_long": {
-      "type": "string",
-      "minLength": 1
+      "format": "date-time"
     },
     "picture_url": {
       "type": "string",
       "minLength": 1
-    },
-    "date": {
-      "type": "string"
     }
   },
-  "required": ["event_id", "event_name", "service_name", "title", "text_long", "date"],
+  "required": [
+    "event_id",
+    "event_name",
+    "title",
+    "short_description",
+    "service",
+    "event_on"
+  ],
   "additionalProperties": false
 }

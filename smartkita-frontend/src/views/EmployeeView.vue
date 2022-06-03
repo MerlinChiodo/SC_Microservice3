@@ -10,17 +10,9 @@
       </AccordionTab>
 
       <AccordionTab header="Forum">
-        <Button
-          class="p-button-raised p-button-rounded"
-          @click="forumSendCalendarEntry"
-          >send Calendar Entry</Button
-        >
-        <br /><br />
-        <Button
-          class="p-button-raised p-button-rounded"
-          @click="forumSendNewsletterPost"
-          >send Newsletter Post</Button
-        >
+        <div>
+        <EventFormForum></EventFormForum>
+        </div>
       </AccordionTab>
 
       <AccordionTab header="Landing Page">
@@ -33,21 +25,14 @@
 </template>
 
 <script>
-import {
-  forumSendCalendarEntry,
-  forumSendNewsletterPost,
-} from "../controllers/eventsController";
 import EventFormStadtbus from "../components/EventFormStadtbus.vue";
 import EventFormLandingPage from "../components/EventFormLandingPage.vue";
+import EventFormForum from "../components/EventFormForum.vue";
 
 
 export default {
   name: "EmployeeView",
-  components: {EventFormStadtbus, EventFormLandingPage},
-  methods: {
-    forumSendCalendarEntry,
-    forumSendNewsletterPost
-  },
+  components: {EventFormStadtbus, EventFormLandingPage, EventFormForum},
 };
 </script>
 

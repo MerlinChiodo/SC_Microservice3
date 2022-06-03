@@ -33,15 +33,14 @@ import { landingpageSendChangeAboutUs } from "../controllers/eventsController";
 export default {
   data() {
     return {
-      /* "required": ["event_id", "event_name","service_name","number_of_passengers", "person_responsible","date"] */
       title: "Change About Us",
       description: "Schema for the event to change the about us",
       event_id: 3002,
       event_name: "Updated About US",
       service_name: "kita",
-      picture: "" /* form */,
-      url: "" /* form/grab id from login */,
-      about_us: "" /* form/grab id from login */,
+      picture: "",
+      url: "" ,
+      about_us: "",
     };
   },
   methods: {
