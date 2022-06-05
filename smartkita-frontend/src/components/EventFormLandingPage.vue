@@ -3,11 +3,26 @@
   <div class="grid p-fluid">
     <div class="col-12 md:col-4">
       <div class="p-inputgroup">
-          <InputText v-model="about_us" type="text" id="aboutus" placeholder='"About-Us"-Text'></InputText>
+        <InputText
+          v-model="about_us"
+          type="text"
+          id="aboutus"
+          placeholder='"About-Us"-Text'
+        ></InputText>
       </div>
       <div class="p-inputgroup">
-            <InputText v-model="url" type="text" id="url" placeholder="Service-URL"></InputText>
-          <InputText v-model="picture" type="text" id="picture" placeholder="Bild-URL"></InputText>
+        <InputText
+          v-model="url"
+          type="text"
+          id="url"
+          placeholder="Service-URL"
+        ></InputText>
+        <InputText
+          v-model="picture"
+          type="text"
+          id="picture"
+          placeholder="Bild-URL"
+        ></InputText>
       </div>
     </div>
   </div>

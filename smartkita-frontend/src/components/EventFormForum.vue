@@ -4,26 +4,36 @@
     <div class="grid p-fluid">
       <div class="col-12 md:col-4">
         <div class="p-inputgroup">
-      <InputText v-model="title" type="text" id="title" placeholder="Titel"></InputText>
-    <InputText v-model="picture_url" type="text" id="picture" placeholder="Bild-URL"></InputText>
-          </div>
-      <Textarea
-        v-model="short_description"
-        id="short_description"
-        rows="2"
-        cols="40"
-        placeholder="Kurzbeschreibung"
-      ></Textarea>
-      <Textarea
-        v-model="long_description"
-        id="long_description"
-        rows="5"
-        cols="40"
-        placeholder="Langbeschreibung"
-      ></Textarea>
-      <Calendar v-model="date" id="date"></Calendar>
-          </div>
-</div>
+          <InputText
+            v-model="title"
+            type="text"
+            id="title"
+            placeholder="Titel"
+          ></InputText>
+          <InputText
+            v-model="picture_url"
+            type="text"
+            id="picture"
+            placeholder="Bild-URL"
+          ></InputText>
+        </div>
+        <Textarea
+          v-model="short_description"
+          id="short_description"
+          rows="2"
+          cols="40"
+          placeholder="Kurzbeschreibung"
+        ></Textarea>
+        <Textarea
+          v-model="long_description"
+          id="long_description"
+          rows="5"
+          cols="40"
+          placeholder="Langbeschreibung"
+        ></Textarea>
+        <Calendar v-model="date" id="date"></Calendar>
+      </div>
+    </div>
     <Button
       class="p-button-raised"
       @click="

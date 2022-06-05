@@ -5,13 +5,13 @@
     <Accordion :multiple="true">
       <AccordionTab header="Stadtbus">
         <div>
-        <EventFormStadtbus></EventFormStadtbus>
+          <EventFormStadtbus></EventFormStadtbus>
         </div>
       </AccordionTab>
 
       <AccordionTab header="Forum">
         <div>
-        <EventFormForum></EventFormForum>
+          <EventFormForum></EventFormForum>
         </div>
       </AccordionTab>
 
@@ -29,10 +29,9 @@ import EventFormStadtbus from "../components/EventFormStadtbus.vue";
 import EventFormLandingPage from "../components/EventFormLandingPage.vue";
 import EventFormForum from "../components/EventFormForum.vue";
 
-
 export default {
   name: "EmployeeView",
-  components: {EventFormStadtbus, EventFormLandingPage, EventFormForum},
+  components: { EventFormStadtbus, EventFormLandingPage, EventFormForum },
 };
 </script>
 
@@ -46,18 +45,18 @@ export default {
 }
 
 /* How to get into Primevue component styles */
-.employeecontainer :deep(.p-accordion-content){
+.employeecontainer :deep(.p-accordion-content) {
 }
-.employeecontainer :deep(.p-accordion-content) label{
+.employeecontainer :deep(.p-accordion-content) label {
   font-size: 0.9rem;
   text-align: left;
 }
 
-.employeecontainer :deep(.p-accordion-content) .p-button{
+.employeecontainer :deep(.p-accordion-content) .p-button {
   background-color: var(--buttonColor);
 }
 
-.employeecontainer :deep(.p-accordion-content) .p-button:hover{
+.employeecontainer :deep(.p-accordion-content) .p-button:hover {
   background-color: var(--buttonHoverColor);
 }
 </style>

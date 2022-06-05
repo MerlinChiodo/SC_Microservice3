@@ -6,7 +6,13 @@
       </template>
       <template #end>
         <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
-        <img src="../assets/smartcity_logo_icon_50x50.png" alt="To landing page" width="50" height="50" style="margin-top: 5px">
+          <img
+            src="../assets/smartcity_logo_icon_50x50.png"
+            alt="To landing page"
+            width="50"
+            height="50"
+            style="margin-top: 5px"
+          />
         </a>
       </template>
     </Menubar>
