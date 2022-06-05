@@ -35,20 +35,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
 // serve Vue frontend
 app.use(history());
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use(express.static(path.join(__dirname, "../smartkita-frontend/dist")));
+/*app.get('/', function (req,res) {
+  res.sendFile(path.join(__dirname, "../smartkita-frontend/dist/index.html"));
+});*/
+/*app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../smartkita-frontend/dist/index.html'));
+});*/
 
-// app.get("*", async (req, res) =>{
-  // res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
-// })
-
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/kitas', kitasRouter);
+app.use('/applications', applicationsRouter);
 
 // the following routes currently only contain dummy methods:
-app.use('/applications', applicationsRouter);
 app.use('/children', childrenRouter);
 app.use('/contracts', contractsRouter);
 app.use('/guardians', guardiansRouter);
@@ -64,6 +65,7 @@ app.use('/events', eventRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // custom middleware (err argument) => must be defined last in order
 // error handler

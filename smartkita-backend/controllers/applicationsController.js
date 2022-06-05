@@ -1,8 +1,14 @@
 const prisma = require('../lib/prisma.js');
 
+// APPLICATION = Antrag
 exports.applicationsList = async (req, res) => {
-    return res.send('not implemented yet')
-}
+    try {
+        const allApplications = await prisma.antrag.findMany()
+        return res.json(allApplications)
+    } catch (e) {
+        console.log(e)
+    }
+};
 
 exports.getApplicationById = async (req, res) => {
     return res.send('not implemented yet')
