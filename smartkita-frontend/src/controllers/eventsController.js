@@ -1,7 +1,7 @@
 // location.host doesn't work in local environment so I'm using the comment strat until I find a better solution
- const backendurl = "http://localhost:3001/events/";
+// const backendurl = "http://localhost:3001/events/";
 // const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
-// const backendurl = "http://" + location.host + "/events/"
+ const backendurl = "http://" + location.host + "/events/"
 
 //// STADTBUS
 export async function stadtbusSendTicketInquiry(
