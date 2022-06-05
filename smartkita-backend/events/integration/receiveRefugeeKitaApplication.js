@@ -6,7 +6,6 @@ const rabbitMQUsername = process.env.rabbitMQUsername
 const rabbitMQPassword = process.env.rabbitMQPassword
 const rabbitMQserverURL = process.env.rabbitMQserverURL
 
-exports.receiveRefugeeKitaApplication = async(req, res) => {
     amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, function (connectError, connection) {
         if (connectError) {
             throw connectError
@@ -16,23 +15,41 @@ exports.receiveRefugeeKitaApplication = async(req, res) => {
                 throw channelError
             }
 
-            channel.consume('kita', function (msg) {
-                console.log(msg.content.toString())
+            channel.consume('kita', async function (msg) {
                 let integrationInquiry = JSON.parse(msg.content.toString())
 
                 // schema validation
                 const validate = ajv.getSchema('integration_receiveRefugeeKitaApplication')
 
-                if (validate(req.body)) {
+                if (validate(integrationInquiry)) {
+                    console.log("integration inquiry validated")
+
+                    const id_einrichtung = null;
+                    const status = "Eingegangen"
+                    const prioritaet = "Integration"
+                    const id_kind = integrationInquiry.child.citizen_id
+                    const id_ezb = integrationInquiry.parent.citizen_id
+                    const betreuungsstunden = integrationInquiry.care_time
+
+                    // PRISMA write
                     try {
-                        console.log(integrationInquiry)
-                        // TODO: validate data, write integration application to database (high priority etc., see specification)
+                        const Antrag = await prisma.antrag.create({
+                            data: {
+                                id_einrichtung,
+                                status,
+                                prioritaet,
+                                id_kind,
+                                id_ezb,
+                                betreuungsstunden
+                            }
+                        })
                     } catch (e) {
                         return console.log(e)
                     }
                 } else {
                     // report error
-                    console.log("integration event failed to validate")
+                    console.log("integration inquiry failed to validate")
+                    console.log(integrationInquiry)
                     return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
                 }
             }, {
@@ -40,4 +57,4 @@ exports.receiveRefugeeKitaApplication = async(req, res) => {
             })
         })
     })
-}
+

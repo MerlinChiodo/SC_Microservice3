@@ -17,7 +17,7 @@
     },
     "care_time" : {
       "type" : "integer",
-      "minimum" : 25,
+      "minimum" : 20,
       "maximum" : 45
     },
     "child": {
@@ -34,5 +34,7 @@
         "maximum" : 999999999
       }
     }
-  }
+  },
+  "required": ["event_id", "event_name", "service_name", "care_time", "child", "parent"],
+  "additionalProperties": false
 }

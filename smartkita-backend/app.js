@@ -65,6 +65,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+receive
 
 // custom middleware (err argument) => must be defined last in order
 // error handler

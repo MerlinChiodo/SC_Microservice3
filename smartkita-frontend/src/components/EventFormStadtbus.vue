@@ -35,6 +35,7 @@
         :min="1"
         :max="100"
         :size="75"
+        value-color="var(--buttonColor)"
         :show-value="false"
       ></Knob>
     </div>

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www"
+    "devstart": "nodemon ./bin/www",
+    "eat": "node ./events/integration/receiveRefugeeKitaApplication.js"
   },
   "dependencies": {
     "@prisma/client": "^3.13.0",
