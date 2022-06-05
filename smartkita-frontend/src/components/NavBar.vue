@@ -49,6 +49,7 @@ export default {
         {
           label: "Anträge",
           icon: "pi pi-fw pi-copy",
+          to: "./applications"
         },
         {
           label: "Mitgliedschaften",

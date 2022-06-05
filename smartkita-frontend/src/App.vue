@@ -26,13 +26,12 @@ import NavBar from "./components/NavBar.vue";
 
 export default {
   components: {
-    NavBar,
+    NavBar
   },
 };
 </script>
 
 <style>
-
 :root {
   --buttonColor: var(--red-500);
   --buttonHoverColor: var(--red-400);
