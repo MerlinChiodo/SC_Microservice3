@@ -1,7 +1,7 @@
 // location.host doesn't work in local environment so I'm using the comment strat until I find a better solution
-// const backendurl = "http://localhost:3001/api/events/";
+const backendurl = "http://localhost:3001/api/events/";
 // const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
-  const backendurl = "http://" + location.host + "/api/events/"
+//const backendurl = "http://" + location.host + "/api/events/"
 
 //// STADTBUS
 export async function stadtbusSendTicketInquiry(
@@ -16,7 +16,7 @@ export async function stadtbusSendTicketInquiry(
     body: JSON.stringify({
       event_id: 3001,
       event_name: "New Kita Inquiry",
-      service_name: "kita",
+      service_name: "Kita",
       number_of_passengers: number_of_passengers,
       person_responsible: person_responsible,
       kita_responsible: kita_responsible,
