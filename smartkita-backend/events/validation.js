@@ -17,3 +17,5 @@ ajv.addSchema(schema_receiveRefugeeKitaApplication, 'integration_receiveRefugeeK
 ajv.addSchema(schema_sendCalendarEntry, 'forum_sendCalendarEntry');
 ajv.addSchema(schema_sendNewsletterPost, 'forum_sendNewsletterPost');
 ajv.addSchema(schema_sendChangeAboutUs, 'landingpage_sendChangeAboutUs');
+
+ajv.addKeyword("citizen_id")

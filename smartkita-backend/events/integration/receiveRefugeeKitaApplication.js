@@ -15,8 +15,11 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
                 throw channelError
             }
 
+            /* {"event_id":9002,"event_name":"Refugee Kita Application","service_name":"integration","care_time":30,"child":{"citizen_id":20 },"parent":{"citizen_id":20}} */
+
             channel.consume('kita', async function (msg) {
                 let integrationInquiry = JSON.parse(msg.content.toString())
+                console.log(integrationInquiry)
 
                 // schema validation
                 const validate = ajv.getSchema('integration_receiveRefugeeKitaApplication')
@@ -24,9 +27,10 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
                 if (validate(integrationInquiry)) {
                     console.log("integration inquiry validated")
 
-                    const id_einrichtung = null;
+                    const id_einrichtung = undefined;
                     const status = "Eingegangen"
-                    const prioritaet = "Integration"
+                    const prioritaet = 3
+                    const datum = new Date()
                     const id_kind = integrationInquiry.child.citizen_id
                     const id_ezb = integrationInquiry.parent.citizen_id
                     const betreuungsstunden = integrationInquiry.care_time
@@ -38,19 +42,21 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
                                 id_einrichtung,
                                 status,
                                 prioritaet,
+                                datum,
                                 id_kind,
                                 id_ezb,
                                 betreuungsstunden
                             }
                         })
+                        console.log("PRISMA write success")
                     } catch (e) {
-                        return console.log(e)
+                        console.log(e)
                     }
                 } else {
                     // report error
                     console.log("integration inquiry failed to validate")
                     console.log(integrationInquiry)
-                    return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
+                    // return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
                 }
             }, {
                 noAck: true,

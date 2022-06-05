@@ -21,20 +21,26 @@
       "maximum" : 45
     },
     "child": {
+      "type" : "object",
       "citizen_id" : {
         "type" : "integer",
         "minimum" : 0,
         "maximum" : 999999999
-      }
+      },
+      "required": ["citizen_id"]
     },
     "parent" : {
+      "type" : "object",
       "citizen_id" : {
         "type" : "integer",
         "minimum" : 0,
         "maximum" : 999999999
-      }
+      },
+      "required": ["citizen_id"]
     }
   },
-  "required": ["event_id", "event_name", "service_name", "care_time", "child", "parent"],
+  "required": [
+    "event_id", "event_name", "service_name", "care_time", "child", "parent"
+  ],
   "additionalProperties": false
 }

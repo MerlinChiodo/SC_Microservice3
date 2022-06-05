@@ -46,7 +46,7 @@ model Antrag {
   // m-n relation
   dokument Dokument[]
   // 1-n relation
-  id_einrichtung Int 
+  id_einrichtung Int? 
   einrichtung Einrichtung? @relation(fields: [id_einrichtung], references: [id_einrichtung])
   id_kind Int
   kind Kind @relation(fields: [id_kind], references: [id_kind])
