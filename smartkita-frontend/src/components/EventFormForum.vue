@@ -1,37 +1,29 @@
 <template>
   <div>
     <h3>Beitrag senden</h3>
-    <span class="p-float-label">
-      <label for="title">Titel</label>
-      <InputText v-model="title" type="text" id="title"></InputText>
-    </span>
-    <span class="p-float-label">
-      <label for="short_description">Kurzbeschreibung</label>
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-4">
+        <div class="p-inputgroup">
+      <InputText v-model="title" type="text" id="title" placeholder="Titel"></InputText>
+    <InputText v-model="picture_url" type="text" id="picture" placeholder="Bild-URL"></InputText>
+          </div>
       <Textarea
         v-model="short_description"
         id="short_description"
         rows="2"
         cols="40"
+        placeholder="Kurzbeschreibung"
       ></Textarea>
-    </span>
-    <span class="p-float-label">
-      <label for="long_description">Langbeschreibung</label>
       <Textarea
         v-model="long_description"
         id="long_description"
         rows="5"
         cols="40"
+        placeholder="Langbeschreibung"
       ></Textarea>
-    </span>
-    <span class="p-float-label">
-      <label for="date">Datum<br />(nur bei Kalender-Beitrag)</label>
       <Calendar v-model="date" id="date"></Calendar>
-    </span>
-    <span class="p-float-label">
-      <label for="pictureurl">Bild</label>
-      <InputText v-model="picture_url" type="text" id="picture"></InputText>
-    </span>
-
+          </div>
+</div>
     <Button
       class="p-button-raised"
       @click="
