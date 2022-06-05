@@ -44,4 +44,20 @@ export default {
   max-width: 50rem;
   text-align: center;
 }
+
+/* How to get into Primevue component styles */
+.employeecontainer :deep(.p-accordion-content){
+}
+.employeecontainer :deep(.p-accordion-content) label{
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.employeecontainer :deep(.p-accordion-content) .p-button{
+  background-color: var(--buttonColor);
+}
+
+.employeecontainer :deep(.p-accordion-content) .p-button:hover{
+  background-color: var(--buttonHoverColor);
+}
 </style>

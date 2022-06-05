@@ -73,6 +73,5 @@ export default {
   margin-left: 1rem;
   margin-right: 1rem;
   height: 4.5rem;
-  color: white !important;
 }
 </style>

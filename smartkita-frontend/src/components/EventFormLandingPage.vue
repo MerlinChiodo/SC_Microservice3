@@ -21,7 +21,7 @@
 
 
   <Button
-    class="p-button-raised p-button-rounded"
+    class="p-button-raised"
     @click="landingpageSendChangeAboutUs(about_us, url, picture, new Date().toISOString())"
   >
     Senden

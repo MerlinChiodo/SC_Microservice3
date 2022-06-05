@@ -33,7 +33,7 @@
     </span>
 
     <Button
-      class="p-button-raised p-button-rounded"
+      class="p-button-raised"
       @click="
         forumSendCalendarEntry(
           title,
@@ -47,7 +47,7 @@
       Kalender-Beitrag senden
     </Button>
     <Button
-      class="p-button-raised p-button-rounded"
+      class="p-button-raised"
       @click="
         forumSendNewsletterPost(
           title,

@@ -32,6 +32,11 @@ export default {
 </script>
 
 <style>
+
+:root {
+  --buttonColor: var(--red-500);
+  --buttonHoverColor: var(--red-400);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -41,6 +46,6 @@ export default {
   margin-top: 20px;
 }
 .nav {
-  text-align: center;
+  /*text-align: center;*/
 }
 </style>
