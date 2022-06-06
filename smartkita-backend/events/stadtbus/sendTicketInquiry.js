@@ -24,6 +24,7 @@ exports.sendTicketInquiry = async (req, res) => {
                 return res.status(200).send({error: false, msg: 'event successfully sent'})
             } else {
                 // report error
+                console.log(req.body)
                 return res.status(400).send({error: true, msg: 'invalid ticket inquiry data'})
             }
          })

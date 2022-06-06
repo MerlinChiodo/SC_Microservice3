@@ -16,7 +16,7 @@ export async function stadtbusSendTicketInquiry(
     body: JSON.stringify({
       event_id: 3001,
       event_name: "New Kita Inquiry",
-      service_name: "Kita",
+      service_name: "kita",
       number_of_passengers: number_of_passengers,
       person_responsible: person_responsible,
       kita_responsible: kita_responsible,
@@ -101,7 +101,7 @@ export async function landingpageSendChangeAboutUs(
     body: JSON.stringify({
       event_id: 3002,
       event_name: "Updated About US",
-      service_name: "kita",
+      service_name: "Kita",
       about_us: about_us,
       url: url,
       picture: picture,

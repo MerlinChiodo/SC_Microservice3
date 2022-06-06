@@ -1,6 +1,6 @@
 <template>
   <div class="applicationscontainer">
-    <p>{{ this.applicationsList }}</p>
+      <p v-for="application in this.applicationsList" :key="application.id">{{application}}</p>
   </div>
 </template>
 
@@ -16,11 +16,18 @@ export default {
       applicationsList: null,
     };
   },
+  computed: {
+    /* might delete later */
+    applicationsListFormatted() {
+      return JSON.stringify(this.applicationsList, null, 2)
+    }
+  },
   methods: {
     async getApplicationsList() {
       /* Hardcoding for now, will use pinia later */
-      /*"http://vps2290194.fastwebserver.de:9730/api/applications"*/
-      const response = await fetch("http://vps2290194.fastwebserver.de:9730/api/applications");
+      /*"http://vps2290194.fastwebserver.de:9730/api/applications/all"*/
+      /*"http://localhost:3001/api/applications/all*/
+      const response = await fetch("http://localhost:3001/api/applications/all");
       const data = await response.json();
       this.applicationsList = data;
 

@@ -2,21 +2,30 @@ const prisma = require('../lib/prisma.js');
 
 // KITA = Einrichtung
 exports.kitasList = async (req, res) => {
-    const allKitas = await prisma.einrichtung.findMany()
-    return res.json(allKitas)
+    try {
+        const allKitas = await prisma.einrichtung.findMany()
+        return res.json(allKitas)
+    } catch (e) {
+        console.log(e)
+    }
 };
 
 exports.getKitaById = async (req, res) => {
-    let id = Number(req.params.id)
+    let id = Number(req.query.id)
     if (isNaN(id)) {    // check for float
         return res.status(400).send({ error : true, msg : "invalid id"});
     }
-    const kita = await prisma.einrichtung.findUnique({
-        where: {
-            id_einrichtung: id,
-        },
-    })
-    return res.json(kita)
+    try {
+        const kita = await prisma.einrichtung.findUnique({
+            where: {
+                id_einrichtung: id,
+            },
+        })
+        return res.json(kita)
+    } catch(e) {
+        console.log(e)
+    }
+
 };
 
 exports.createKita = async (req, res) => {
