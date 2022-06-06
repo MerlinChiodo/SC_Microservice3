@@ -1,41 +1,41 @@
-
 {
-  "title": "new newsletter post",
+  "title": "event_noCalendar",
+  "description": "Schema for the events that are not appointed",
   "type": "object",
-  "description": "Schema for the event to send a newsletter post",
   "properties": {
     "event_id" : {
-      "const" : 3004,
-      "type": "integer"
+      "type": "integer",
+      "const": 3004
     },
     "event_name": {
       "type": "string",
-      "const": "New Newsletter Post"
-    },
-    "service_name": {
-      "type": "string",
-      "const": "kita"
+      "const": "newServicePost"
     },
     "title": {
-      "type": "string",
-      "minLength": 1
+      "type": "string"
     },
-    "text_short": {
-      "type": "string",
-      "minLength": 1
+    "short_description": {
+      "type": "string"
     },
-    "text_long": {
+    "long_description": {
+      "type": "string"
+    },
+    "service": {
       "type": "string",
-      "minLength": 1
+      "const": "kita"
     },
     "picture_url": {
       "type": "string",
       "minLength": 1
-    },
-    "date": {
-      "type": "string"
     }
+
   },
-  "required": ["event_id", "event_name","service_name", "title", "text_long", "date"],
+  "required": [
+    "event_id",
+    "event_name",
+    "title",
+    "short_description",
+    "service"
+  ],
   "additionalProperties": false
 }

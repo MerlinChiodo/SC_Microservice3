@@ -1,5 +1,6 @@
 const prisma = require('../lib/prisma.js');
 
+// KITA = Einrichtung
 exports.kitasList = async (req, res) => {
     const allKitas = await prisma.einrichtung.findMany()
     return res.json(allKitas)

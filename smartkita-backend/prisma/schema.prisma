@@ -46,8 +46,8 @@ model Antrag {
   // m-n relation
   dokument Dokument[]
   // 1-n relation
-  id_einrichtung Int 
-  einrichtung Einrichtung @relation(fields: [id_einrichtung], references: [id_einrichtung])
+  id_einrichtung Int? 
+  einrichtung Einrichtung? @relation(fields: [id_einrichtung], references: [id_einrichtung])
   id_kind Int
   kind Kind @relation(fields: [id_kind], references: [id_kind])
   id_ezb Int
@@ -56,7 +56,8 @@ model Antrag {
   datum      DateTime @default(now()) @db.DateTime(0)
   prioritaet Int
   status     String
-  bemerkung String
+  betreuungsstunden Int
+  bemerkung String?
 }
 
 model Vertrag {
@@ -71,7 +72,7 @@ model Vertrag {
   beginn DateTime @db.Date
   ende DateTime @db.Date
   betreuungsstunden Int
-  bemerkung String
+  bemerkung String?
 }
 
 model Einrichtung {

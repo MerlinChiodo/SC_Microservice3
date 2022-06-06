@@ -1,10 +1,15 @@
 // location.host doesn't work in local environment so I'm using the comment strat until I find a better solution
-// const backendurl = "http://localhost:3001/events/";
+// const backendurl = "http://localhost:3001/api/events/";
 // const backendurl = "http://vps2290194.fastwebserver.de:9730/events/"
- const backendurl = "http://" + location.host + "/events/"
+  const backendurl = "http://" + location.host + "/api/events/"
 
 //// STADTBUS
-export async function stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date) {
+export async function stadtbusSendTicketInquiry(
+  number_of_passengers,
+  person_responsible,
+  kita_responsible,
+  date
+) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -27,19 +32,25 @@ export async function stadtbusSendTicketInquiry(number_of_passengers, person_res
 }
 
 //// FORUM
-export async function forumSendCalendarEntry() {
+export async function forumSendCalendarEntry(
+  title,
+  short_description,
+  long_description,
+  date,
+  picture_url
+) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       event_id: 3003,
-      event_name: "New Calendar Entry",
-      service_name: "kita",
-      title: "Tag der offenen Tür",
-      text_short: "Smarte Events in der Kita",
-      text_long:
-        "Taucht ein in die digitale Welt der SmartCity! Euch erwarten exklusive Einblicke in eine Reihe von Front- und Backends.",
-      date: "01.01.2025",
+      event_name: "newServicePost",
+      service: "kita",
+      title: title,
+      short_description: short_description,
+      long_description: long_description,
+      event_on: date,
+      picture_url: picture_url,
     }),
   };
   const response = await fetch(
@@ -50,18 +61,23 @@ export async function forumSendCalendarEntry() {
   this.calendarResponse = data;
 }
 
-export async function forumSendNewsletterPost() {
+export async function forumSendNewsletterPost(
+  title,
+  short_description,
+  long_description,
+  picture_url
+) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       event_id: 3004,
-      event_name: "New Newsletter Post",
-      service_name: "kita",
-      title: "Noch Kitaplätze frei",
-      text_short: "Jetzt zugreifen! Kitaplätze für alle",
-      text_long: "Ihr sucht einen Kitaplatz? Kommt in die SmartCity!",
-      date: "22.05.2022",
+      event_name: "newServicePost",
+      service: "kita",
+      title: title,
+      short_description: short_description,
+      long_description: long_description,
+      picture_url: picture_url,
     }),
   };
   const response = await fetch(
@@ -73,7 +89,12 @@ export async function forumSendNewsletterPost() {
 }
 
 //// LANDINGPAGE
-export async function landingpageSendChangeAboutUs() {
+export async function landingpageSendChangeAboutUs(
+  about_us,
+  url,
+  picture,
+  date
+) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -81,8 +102,10 @@ export async function landingpageSendChangeAboutUs() {
       event_id: 3002,
       event_name: "Updated About US",
       service_name: "kita",
-      about_us: "Kita-Service der SmartCity",
-      date: "1999-06-10T11:11-11",
+      about_us: about_us,
+      url: url,
+      picture: picture,
+      date: date,
     }),
   };
   const response = await fetch(
@@ -90,5 +113,5 @@ export async function landingpageSendChangeAboutUs() {
     requestOptions
   );
   const data = await response.json();
-  this.aboutUsResponse = data;
+  console.log(data);
 }

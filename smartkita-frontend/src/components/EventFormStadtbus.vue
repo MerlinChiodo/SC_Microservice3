@@ -1,41 +1,57 @@
 <template>
   <h3>Gruppenticket anfordern</h3>
+  <div class="grid p-fluid">
+    <div class="col-12 md:col-4">
+      <div class="p-inputgroup">
+        <InputText
+          v-model="kita_responsible"
+          type="text"
+          id="kitaresponsible"
+          placeholder="Kita"
+        ></InputText>
+        <InputText
+          v-model="person_responsible"
+          type="text"
+          id="person_responsible"
+          placeholder="Verantwortlich*er"
+        ></InputText>
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-float-label">
+          <label for="date">Datum</label>
+          <Calendar v-model="date" id="date"></Calendar>
+        </span>
 
-    <span class="p-float-label">
-      <label for="kita_responsible">Kita</label>
-      <InputText
-        v-model="kita_responsible"
-        type="text"
-        id="kitaresponsible"
-      ></InputText>
-    </span>
-    <span class="p-float-label">
-      <label for="person_responsible">Verantwortliche*r</label>
-      <InputText v-model="person_responsible" type="text"></InputText>
-    </span>
-
-    <span class="p-float-label">
-      <label for="date">Datum</label>
-      <Calendar v-model="date" id="date"></Calendar>
-    </span>
-
-    <span class="p-float-label">
-      <label for="number_of_passengers">Passagiere</label>
-
-      <InputNumber
+        <InputNumber
+          v-model="number_of_passengers"
+          id="number_of_passengers"
+          :min="1"
+          :max="100"
+          placeholder="Passagiere"
+        ></InputNumber>
+      </div>
+      <Knob
         v-model="number_of_passengers"
-        id="number_of_passengers"
         :min="1"
         :max="100"
-      ></InputNumber>
-    </span>
-    <Knob v-model="number_of_passengers" :min="1" :max="100" :size="85"></Knob>
-
+        :size="75"
+        value-color="var(--buttonColor)"
+        :show-value="false"
+      ></Knob>
+    </div>
+  </div>
   <Button
-    class="p-button-raised p-button-rounded"
-    @click="stadtbusSendTicketInquiry(number_of_passengers, person_responsible, kita_responsible, date)"
+    class="p-button-raised"
+    @click="
+      stadtbusSendTicketInquiry(
+        number_of_passengers,
+        person_responsible,
+        kita_responsible,
+        date.toISOString()
+      )
+    "
   >
-    send Ticket Inquiry
+    Senden
   </Button>
 </template>
 
@@ -53,7 +69,7 @@ export default {
       number_of_passengers: 1 /* form */,
       person_responsible: "" /* form/grab id from login */,
       kita_responsible: "" /* form/grab id from login */,
-      date: null /* form */,
+      date: new Date() /* form */,
     };
   },
   methods: {

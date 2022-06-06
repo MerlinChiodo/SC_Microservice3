@@ -18,7 +18,6 @@ exports.sendNewsletterPost = async (req, res) => {
             // schema validation
             const validate = ajv.getSchema('forum_sendNewsletterPost')
             if (validate(req.body)) {
-
                 channel.publish('events', "private.kita", Buffer.from(JSON.stringify((req.body))))
                 console.log(`RabbitMQ: sent event ${req.body.event_id}`)
                 return res.status(200).send({error: false, msg: 'event successfully sent'})

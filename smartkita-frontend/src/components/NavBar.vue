@@ -5,7 +5,15 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
-        <InputText placeholder="Search" type="text" />
+        <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
+          <img
+            src="../assets/smartcity_logo_icon_50x50.png"
+            alt="To landing page"
+            width="50"
+            height="50"
+            style="margin-top: 5px"
+          />
+        </a>
       </template>
     </Menubar>
   </div>
@@ -71,6 +79,5 @@ export default {
   margin-left: 1rem;
   margin-right: 1rem;
   height: 4.5rem;
-  color: white !important;
 }
 </style>
