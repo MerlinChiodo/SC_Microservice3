@@ -6,7 +6,7 @@ const rabbitMQUsername = process.env.rabbitMQUsername
 const rabbitMQPassword = process.env.rabbitMQPassword
 const rabbitMQserverURL = process.env.rabbitMQserverURL
 
-    amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, function (connectError, connection) {
+    amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL}`, { keepAlive: true }, function (connectError, connection) {
         if (connectError) {
             throw connectError
         }
