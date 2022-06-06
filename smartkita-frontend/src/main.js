@@ -22,6 +22,7 @@ import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import DataTable from "primevue/datatable";
+import Column from "primevue/Column";
 
 const app = createApp(App);
 
@@ -43,6 +44,8 @@ app.component("InputNumber", InputNumber);
 app.component("InputText", InputText);
 app.component("Textarea", Textarea);
 app.component("DataTable", DataTable);
+app.component("Column", Column);
+
 
 
 app.mount("#app");
