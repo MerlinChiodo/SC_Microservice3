@@ -36,6 +36,7 @@ export default {
             {
               label: "Suchen",
               icon: "pi pi-fw pi-search",
+              to: "./searchkitas",
             },
             {
               label: "Merkliste",
@@ -49,7 +50,7 @@ export default {
         {
           label: "Anträge",
           icon: "pi pi-fw pi-copy",
-          to: "./applications"
+          to: "./applications",
         },
         {
           label: "Mitgliedschaften",
