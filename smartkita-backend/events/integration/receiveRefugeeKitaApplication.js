@@ -30,6 +30,7 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
                     const id_einrichtung = undefined;
                     const status = "Eingegangen"
                     const prioritaet = 3
+                    const bemerkung = "Amt für Integration"
                     const datum = new Date()
                     const id_kind = integrationInquiry.child.citizen_id
                     const id_ezb = integrationInquiry.parent.citizen_id
@@ -42,6 +43,7 @@ const rabbitMQserverURL = process.env.rabbitMQserverURL
                                 id_einrichtung,
                                 status,
                                 prioritaet,
+                                bemerkung,
                                 datum,
                                 id_kind,
                                 id_ezb,
