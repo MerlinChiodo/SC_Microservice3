@@ -45,10 +45,11 @@ export default {
   methods: {
     async getApplicationsList() {
       /* Hardcoding for now, will use pinia later */
-      /*"http://vps2290194.fastwebserver.de:9730/api/applications/all"*/
-      /*"http://localhost:3001/api/applications/all*/
+/*      const response = await fetch(
+          "http://localhost:3001/api/applications/all"
+      );*/
       const response = await fetch(
-        "http://localhost:3001/api/applications/all"
+        "http://vps2290194.fastwebserver.de:9730/api/applications/all"
       );
       const data = await response.json();
       this.applicationsList = data;
