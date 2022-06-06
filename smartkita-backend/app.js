@@ -7,8 +7,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
 
-
-const indexRouter = require('./routes/index');
 const kitasRouter = require('./routes/kitas');
 const applicationsRouter = require('./routes/applications');
 const childrenRouter = require('./routes/children');

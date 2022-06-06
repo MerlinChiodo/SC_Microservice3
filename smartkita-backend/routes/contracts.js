@@ -3,18 +3,18 @@ const router = express.Router();
 const contractsController = require('../controllers/contractsController.js');
 
 // GET all contracts' data
-router.get('/', contractsController.contractsList);
+router.get('/all', contractsController.contractsList);
 
 // GET a contract by id
-router.get('/:id', contractsController.getContractById);
+router.get('/', contractsController.getContractById);
 
 // POST a new contract
-router.post('/post', contractsController.createContract);
+router.post('/', contractsController.createContract);
 
 // UPDATE an existing application's data
-router.patch('/:id', contractsController.patchContract);
+router.patch('/', contractsController.patchContract);
 
 // DELETE an existing application
-router.delete('/:id', contractsController.deleteContract);
+router.delete('/', contractsController.deleteContract);
 
 module.exports = router;

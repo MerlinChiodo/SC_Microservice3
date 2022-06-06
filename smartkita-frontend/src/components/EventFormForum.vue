@@ -41,7 +41,7 @@
           title,
           short_description,
           long_description,
-          date,
+          date.toISOString(),
           picture_url
         )
       "

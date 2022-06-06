@@ -3,18 +3,18 @@ const router = express.Router();
 const imagesController = require('../controllers/imagesController.js');
 
 // GET all images' data
-router.get('/', imagesController.imagesList);
+router.get('/all', imagesController.imagesList);
 
 // GET an image by id
-router.get('/:id', imagesController.getImageById);
+router.get('/', imagesController.getImageById);
 
 // POST a new image
-router.post('/post', imagesController.createImage);
+router.post('/', imagesController.createImage);
 
 // UPDATE an existing image's data
-router.patch('/:id', imagesController.patchImage);
+router.patch('/', imagesController.patchImage);
 
 // DELETE an existing image
-router.delete('/:id', imagesController.deleteImage);
+router.delete('/', imagesController.deleteImage);
 
 module.exports = router;

@@ -3,18 +3,18 @@ const router = express.Router();
 const guardiansController = require('../controllers/guardiansController.js');
 
 // GET all guardians' data
-router.get('/', guardiansController.guardiansList);
+router.get('/all', guardiansController.guardiansList);
 
 // GET a guardian by id
-router.get('/:id', guardiansController.getGuardianById);
+router.get('/', guardiansController.getGuardianById);
 
 // POST a new guardian
-router.post('/post', guardiansController.createGuardian);
+router.post('/', guardiansController.createGuardian);
 
 // UPDATE an existing guardian's data
-router.patch('/:id', guardiansController.patchGuardian);
+router.patch('/', guardiansController.patchGuardian);
 
 // DELETE an existing guardian
-router.delete('/:id', guardiansController.deleteGuardian);
+router.delete('/', guardiansController.deleteGuardian);
 
 module.exports = router;

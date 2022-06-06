@@ -5,7 +5,6 @@ import App from "./App.vue";
 import router from "./router";
 import PrimeVue from "primevue/config";
 
-
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/md-light-deeppurple/theme.css";
@@ -21,6 +20,8 @@ import Knob from "primevue/knob";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
 
 const app = createApp(App);
 
@@ -41,5 +42,7 @@ app.component("Knob", Knob);
 app.component("InputNumber", InputNumber);
 app.component("InputText", InputText);
 app.component("Textarea", Textarea);
+app.component("Column", Column);
+app.component("DataTable", DataTable);
 
 app.mount("#app");

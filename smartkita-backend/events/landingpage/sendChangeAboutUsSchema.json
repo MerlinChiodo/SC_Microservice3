@@ -12,7 +12,6 @@
       "const": "Updated About US"
     },
     "service_name": {
-      "const": "kita",
       "type": "string"
     },
     "date": {
