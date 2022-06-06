@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start_old": "node ./bin/www",
-    "start": "concurrently npm:run-*",
-    "run-server": "node ./bin/www",
+    "start": "concurrently --restart-tries: 10 npm:run-*",
+    "run-server": " node ./bin/www",
     "run-eventdaemon": "node ./events/integration/receiveRefugeeKitaApplication.js",
     "devstart": "nodemon ./bin/www",
     "eat": "node ./events/integration/receiveRefugeeKitaApplication.js"
