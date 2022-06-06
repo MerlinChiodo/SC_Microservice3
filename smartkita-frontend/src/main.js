@@ -22,7 +22,7 @@ import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import DataTable from "primevue/datatable";
-import Column from "primevue/Column";
+import Column from "primevue/column";
 
 const app = createApp(App);
 
