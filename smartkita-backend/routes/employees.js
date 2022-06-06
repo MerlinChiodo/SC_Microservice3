@@ -3,18 +3,18 @@ const router = express.Router();
 const employeesController = require('../controllers/employeesController');
 
 // GET all applications' data
-router.get('/', employeesController.employeesList);
+router.get('/all', employeesController.employeesList);
 
 // GET an application by id
-router.get('/:id', employeesController.getEmployeeById);
+router.get('/', employeesController.getEmployeeById);
 
 // POST a new application
-router.post('/post', employeesController.createEmployee);
+router.post('/', employeesController.createEmployee);
 
 // UPDATE an existing application's data
-router.patch('/:id', employeesController.patchEmployee);
+router.patch('/', employeesController.patchEmployee);
 
 // DELETE an existing application
-router.delete('/:id', employeesController.deleteEmployee);
+router.delete('/', employeesController.deleteEmployee);
 
 module.exports = router;

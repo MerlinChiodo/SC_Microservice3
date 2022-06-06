@@ -3,18 +3,18 @@ const router = express.Router();
 const childrenController = require('../controllers/childrenController.js');
 
 // GET all children's data
-router.get('/', childrenController.childrenList);
+router.get('/all', childrenController.childrenList);
 
 // GET a child by id
-router.get('/:id', childrenController.getChildById);
+router.get('/', childrenController.getChildById);
 
 // POST a new child
-router.post('/post', childrenController.createChild);
+router.post('/', childrenController.createChild);
 
 // UPDATE an existing child's data
-router.patch('/:id', childrenController.patchChild);
+router.patch('/', childrenController.patchChild);
 
 // DELETE an existing child
-router.delete('/:id', childrenController.deleteChild);
+router.delete('/', childrenController.deleteChild);
 
 module.exports = router;
