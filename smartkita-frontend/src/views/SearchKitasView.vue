@@ -31,6 +31,7 @@ export default {
     console.log(this.kitasList);
   },
   name: "SearchKitasView",
+  inject: ["apiUrl"],
   data() {
     return {
       kitasList: null,
@@ -38,12 +39,8 @@ export default {
   },
   methods: {
     async getKitasList() {
-      /* Hardcoding for now, will use pinia later */
-/*      const response = await fetch(
-        "http://localhost:3001/api/kitas/all"
-      );*/
-            const response = await fetch(
-        "http://vps2290194.fastwebserver.de:9730/api/kitas/all"
+      const response = await fetch(
+        this.apiUrl + "kitas/all"
       );
       const data = await response.json();
       this.kitasList = data;

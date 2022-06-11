@@ -2,19 +2,6 @@
   <div>
     <header class="nav">
       <NavBar />
-
-      <!--    <Button
-      class="p-button-outlined p-button-rounded"
-      label="Home"
-      @click="$router.push('/')"
-    >
-    </Button>
-    <Button
-      class="p-button-outlined p-button-rounded"
-      label="Mitarbeitende"
-      @click="$router.push('/employee')"
-    >
-    </Button>-->
     </header>
   </div>
   <RouterView />
@@ -26,7 +13,7 @@ import NavBar from "./components/NavBar.vue";
 
 export default {
   components: {
-    NavBar
+    NavBar,
   },
 };
 </script>

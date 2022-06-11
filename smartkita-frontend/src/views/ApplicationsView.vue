@@ -26,6 +26,7 @@
 
 <script>
 export default {
+  inject: ["apiUrl"],
   beforeMount() {
     this.getApplicationsList();
     console.log(this.applicationsList);
@@ -44,12 +45,8 @@ export default {
   },
   methods: {
     async getApplicationsList() {
-      /* Hardcoding for now, will use pinia later */
-/*      const response = await fetch(
-          "http://localhost:3001/api/applications/all"
-      );*/
       const response = await fetch(
-        "http://vps2290194.fastwebserver.de:9730/api/applications/all"
+        this.apiUrl + "applications/all"
       );
       const data = await response.json();
       this.applicationsList = data;

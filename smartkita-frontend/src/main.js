@@ -30,6 +30,10 @@ app.use(createPinia());
 app.use(router);
 app.use(PrimeVue);
 
+// constants
+app.provide("apiUrl", "http://localhost:3001/api/");
+// app.provide("apiUrl", "http://vps2290194.fastwebserver.de:9730/api/");
+
 // PrimeVue components
 app.component("Button", Button);
 app.component("Sidebar", Sidebar);
