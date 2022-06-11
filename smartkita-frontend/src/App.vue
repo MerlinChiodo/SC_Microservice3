@@ -22,6 +22,7 @@ export default {
 :root {
   --buttonColor: var(--red-500);
   --buttonHoverColor: var(--red-400);
+  --buttonDarkerColor: var(--red-600);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
