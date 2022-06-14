@@ -46,6 +46,7 @@ enum Antragstatus {
   ANGENOMMEN
   AKZEPTIERT
   ABGELEHNT
+  UNVOLLSTAENDIG
 }
 
 model Antrag {
