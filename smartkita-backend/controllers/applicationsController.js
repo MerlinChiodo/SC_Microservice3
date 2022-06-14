@@ -1,5 +1,4 @@
 const prisma = require('../lib/prisma.js');
-const {getApplicationById} = require("./applicationsController");
 
 // APPLICATION = Antrag
 exports.applicationsList = async (req, res) => {
