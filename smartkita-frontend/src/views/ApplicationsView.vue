@@ -92,6 +92,7 @@ export default {
       });
       const res = await response.json();
       console.log(res);
+      this.getApplicationsList()
     },
     onRowContextMenu(event) {
       this.$refs.cm.show(event.originalEvent);
