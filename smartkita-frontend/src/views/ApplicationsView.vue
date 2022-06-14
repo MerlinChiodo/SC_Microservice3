@@ -34,7 +34,6 @@ export default {
   inject: ["apiUrl"],
   beforeMount() {
     this.getApplicationsList();
-    console.log(this.applicationsList);
   },
   name: "ApplicationsView",
   data() {
@@ -50,17 +49,24 @@ export default {
             {
               label: "Annehmen",
               icon: "pi pi-check-circle",
-              command: () => this.acceptApplication(this.selectedApplication)
+              command: () => this.acceptApplication(this.selectedApplication),
             },
             {
               label: "Unvollständig",
               icon: "pi pi-exclamation-circle",
-              command: () => this.incompleteApplication(this.selectedApplication)
-            },            {
+              command: () =>
+                this.incompleteApplication(this.selectedApplication),
+            },
+            {
               label: "Ablehnen",
               icon: "pi pi-times-circle",
-              command: () => this.denyApplication(this.selectedApplication)
-            }
+              command: () => this.denyApplication(this.selectedApplication),
+            },
+            {
+              label: "Eingegangen",
+              icon: "pi pi-undo",
+              command: () => this.resetApplication(this.selectedApplication),
+            },
           ],
         },
       ],
@@ -78,21 +84,35 @@ export default {
       const data = await response.json();
       this.applicationsList = data;
     },
+    async updateApplication(application) {
+      const response = await fetch(this.apiUrl + "applications/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(application),
+      });
+      const res = await response.json();
+      console.log(res);
+    },
     onRowContextMenu(event) {
       this.$refs.cm.show(event.originalEvent);
     },
     acceptApplication(application) {
-      application.status = "ANGENOMMEN"
-      console.log(application, "akzeptiert")
+      application.status = "ANGENOMMEN";
+      // TODO: add toasts
+      this.updateApplication(application);
     },
     incompleteApplication(application) {
-      application.status = "UNVOLLSTAENDIG"
-      console.log(application, "als unvollständig markiert")
+      application.status = "UNVOLLSTAENDIG";
+      this.updateApplication(application);
     },
     denyApplication(application) {
-      application.status = "ABGELEHNT"
-      console.log(application, "abgelehnt")
-    }
+      application.status = "ABGELEHNT";
+      this.updateApplication(application);
+    },
+    resetApplication(application) {
+      application.status = "EINGEGANGEN";
+      this.updateApplication(application);
+    },
   },
 };
 </script>
