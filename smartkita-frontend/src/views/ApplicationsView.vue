@@ -61,9 +61,6 @@ export default {
               icon: "pi pi-times-circle",
               command: () => this.denyApplication(this.selectedApplication)
             }
-            /*            {
-              separator:true
-            },*/
           ],
         },
       ],

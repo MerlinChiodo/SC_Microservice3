@@ -50,7 +50,14 @@ export default {
         {
           label: "Anträge",
           icon: "pi pi-fw pi-copy",
-          to: "./applications",
+          items: [
+            { label: "Eingang", icon: "pi pi-inbox", to: "./applications" },
+            {
+              label: "Verträge",
+              icon: "pi pi-file",
+              // to: VERTRAGSVERWALTUNG
+            },
+          ],
         },
         {
           label: "Mitgliedschaften",
