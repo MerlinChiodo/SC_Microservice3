@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <header class="nav">
+  <div class="nav">
+    <header >
       <NavBar />
     </header>
   </div>
@@ -30,9 +30,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
 }
 .nav {
   /*text-align: center;*/
-}
+  margin-top: -10px;
+  margin-left: -9px;
+  margin-right: -9px;
+  position: sticky;
+  top: 0;
+  z-index:100;
+  }
 </style>

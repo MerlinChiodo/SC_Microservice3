@@ -83,10 +83,12 @@ export default {
 </script>
 
 <style scoped>
+
 .p-menubar {
   background-color: var(--red-500);
-  margin-left: 1rem;
-  margin-right: 1rem;
   height: 4.5rem;
+  padding: 0px;
+
+
 }
 </style>
