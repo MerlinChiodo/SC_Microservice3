@@ -57,6 +57,7 @@ export default {
   },
   name: "SearchKitasView",
   inject: ["apiUrl"],
+  props: [],
   data() {
     return {
       kitasList: null,

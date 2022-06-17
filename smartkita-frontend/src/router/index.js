@@ -3,6 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import EmployeeView from "../views/EmployeeView.vue";
 import ApplicationsView from "../views/ApplicationsView.vue";
 import SearchKitasView from "../views/SearchKitasView.vue";
+import KitaView from "../views/KitaView.vue";
+
 
 
 const router = createRouter({
@@ -27,6 +29,11 @@ const router = createRouter({
       path: "/searchkitas",
       name: "searchkitas",
       component: SearchKitasView,
+    },
+    {
+      path: "/kita",
+      name: "kita",
+      component: KitaView
     },
     {
       path: "/about",
