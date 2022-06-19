@@ -7,10 +7,7 @@
       {{ this.kitaData }}
     </div>
 
-    <div
-      class="surface-card p-4 shadow-2 border-round"
-      v-if="this.kitaData != null"
-    >
+    <div class="surface-card p-4 shadow-2 border-round" v-if="this.kitaData">
       <div class="text-3xl font-medium text-900 mb-3">
         {{ this.kitaData.name }}
       </div>
@@ -23,10 +20,24 @@
         <div>Content 2</div>
         <br /><br /><br />
       </div>
-      <div
-        style="height: 150px"
-        class="border-2 border-dashed surface-border"
-      ></div>
+      <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+          <div
+            style="min-height: 150px"
+            class="border-2 border-round surface-border flex align-items-center justify-content-center"
+          >
+            {{ this.kitaData.kurzbeschreibung }}
+          </div>
+        </div>
+        <div class="col-12 md:col-8">
+          <div
+            style="min-height: 150px"
+            class="border-2 border-round surface-border flex align-items-center justify-content-center"
+          >
+            {{ this.kitaData.beschreibung }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
