@@ -1,7 +1,9 @@
 <template>
   <div class="grid p-fluid">
     <div class="grid p-fluid">
-      <div class="col-12 md:col-4">
+      <div
+        class="col-12 md:col-4 flex flex-wrap align-items-center justify-content-center"
+      >
         <h1>
           Beitrag <br />
           senden
@@ -37,36 +39,38 @@
           placeholder="Langbeschreibung"
         ></Textarea>
         <Calendar v-model="date" id="date"></Calendar>
+        <Button
+          style="width: auto"
+          class="p-button-raised"
+          @click="
+            forumSendCalendarEntry(
+              title,
+              short_description,
+              long_description,
+              date.toISOString(),
+              picture_url
+            )
+          "
+        >
+          Kalender-Beitrag senden
+        </Button>
+        <Button
+          style="width: auto"
+          class="p-button-raised"
+          @click="
+            forumSendNewsletterPost(
+              title,
+              short_description,
+              long_description,
+              picture_url
+            )
+          "
+        >
+          Forum-Beitrag senden
+        </Button>
       </div>
     </div>
   </div>
-  <Button
-    class="p-button-raised"
-    @click="
-      forumSendCalendarEntry(
-        title,
-        short_description,
-        long_description,
-        date.toISOString(),
-        picture_url
-      )
-    "
-  >
-    Kalender-Beitrag senden
-  </Button>
-  <Button
-    class="p-button-raised"
-    @click="
-      forumSendNewsletterPost(
-        title,
-        short_description,
-        long_description,
-        picture_url
-      )
-    "
-  >
-    Forum-Beitrag senden
-  </Button>
 </template>
 
 <script>

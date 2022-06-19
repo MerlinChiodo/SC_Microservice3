@@ -1,6 +1,8 @@
 <template>
   <div class="grid p-fluid">
-    <div class="col-12 md:col-4">
+    <div
+      class="col-12 md:col-4 flex flex-wrap align-items-center justify-content-center"
+    >
       <h1>
         Gruppenticket <br />
         anfordern
@@ -35,30 +37,31 @@
           placeholder="Passagiere"
         ></InputNumber>
       </div>
+      <Knob
+        v-model="number_of_passengers"
+        :min="1"
+        :max="100"
+        :size="75"
+        value-color="var(--buttonColor)"
+        :show-value="false"
+      ></Knob>
+
+      <Button
+        style="width: auto"
+        class="p-button-raised"
+        @click="
+          stadtbusSendTicketInquiry(
+            number_of_passengers,
+            person_responsible,
+            kita_responsible,
+            date.toISOString()
+          )
+        "
+      >
+        Senden
+      </Button>
     </div>
   </div>
-  <Knob
-    v-model="number_of_passengers"
-    :min="1"
-    :max="100"
-    :size="75"
-    value-color="var(--buttonColor)"
-    :show-value="false"
-  ></Knob>
-
-  <Button
-    class="p-button-raised"
-    @click="
-      stadtbusSendTicketInquiry(
-        number_of_passengers,
-        person_responsible,
-        kita_responsible,
-        date.toISOString()
-      )
-    "
-  >
-    Senden
-  </Button>
 </template>
 
 <script>
