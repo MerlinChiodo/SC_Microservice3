@@ -4,7 +4,7 @@
       <h1>KitaView</h1>
       {{ this.$route.query.id }}
       <h3>Daten</h3>
-      {{ this.kitaData }}
+      {{ this.kitaData }}<br /><br />
     </div>
 
     <div class="surface-card p-4 shadow-2 border-round" v-if="this.kitaData">
@@ -12,14 +12,17 @@
         {{ this.kitaData.name }}
       </div>
       <div class="font-medium text-500 mb-3">
-        {{ this.kitaData.kurzbeschreibung }}
+        {{ this.kitaData.traeger }} |
+        {{
+          toLowerCaseExceptFirstChar(kitaData.traeger_kategorie) /* enum is sent as uppercase */
+        }}
       </div>
-      <div class="flex justify-content-center">
+      <!--      <div class="flex justify-content-center">
         <div>{{ this.kitaData.kurzbeschreibung }}</div>
         <Divider layout="vertical" />
         <div>Content 2</div>
         <br /><br /><br />
-      </div>
+      </div>-->
       <div class="grid p-fluid">
         <div class="col-12 md:col-4">
           <div
@@ -56,6 +59,9 @@ export default {
     };
   },
   methods: {
+    toLowerCaseExceptFirstChar(str) {
+      return str[0].toUpperCase() + str.substring(1).toLowerCase()
+    },
     async getKitaData(id_einrichtung) {
       const response = await fetch(
         this.apiUrl + "kitas/?id=" + id_einrichtung,
