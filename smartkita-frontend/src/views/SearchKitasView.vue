@@ -13,7 +13,7 @@
       @rowContextmenu="onRowContextMenu"
     >
       <template #header>
-        <div class="flex justify-content-center align-items-center">
+        <div class="flex justify-content-evenly align-items-center">
           <h2 class="m-0">Einrichtungen</h2>
           <span class="p-input-icon-left">
             <i class="pi pi-search" />

@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <h3>Beitrag senden</h3>
     <div class="grid p-fluid">
-      <div class="col-12 md:col-4">
+      <div class="grid p-fluid">
+        <div class ="col-12 md:col-4">
+          <h1>Beitrag <br> senden</h1>
+        </div>
+        <div class="col-12 md:col-8">
+
         <div class="p-inputgroup">
           <InputText
             v-model="title"
@@ -33,6 +36,7 @@
         ></Textarea>
         <Calendar v-model="date" id="date"></Calendar>
       </div>
+</div>
     </div>
     <Button
       class="p-button-raised"
@@ -61,7 +65,7 @@
     >
       Forum-Beitrag senden
     </Button>
-  </div>
+
 </template>
 
 <script>

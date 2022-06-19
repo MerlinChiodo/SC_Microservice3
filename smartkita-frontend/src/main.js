@@ -8,6 +8,8 @@ import PrimeVue from "primevue/config";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/md-light-deeppurple/theme.css";
+import "primeflex/primeflex.css";
+
 
 import Button from "primevue/button";
 import Sidebar from "primevue/sidebar";
