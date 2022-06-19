@@ -1,5 +1,5 @@
 <template>
-  <div class="applicationscontainer">
+  <div class="applicationscontainer" v-if="applicationsList">
     <!--  json dump for debugging  -->
     <!--    <p v-for="application in this.applicationsList" :key="application.id">
       {{ application }}

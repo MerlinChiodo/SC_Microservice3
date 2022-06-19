@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <header >
+    <header>
       <NavBar />
     </header>
   </div>
@@ -38,6 +38,6 @@ export default {
   margin-right: -9px;
   position: sticky;
   top: 0;
-  z-index:100;
-  }
+  z-index: 100;
+}
 </style>

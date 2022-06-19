@@ -5,8 +5,6 @@ import ApplicationsView from "../views/ApplicationsView.vue";
 import SearchKitasView from "../views/SearchKitasView.vue";
 import KitaView from "../views/KitaView.vue";
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -33,7 +31,7 @@ const router = createRouter({
     {
       path: "/kita",
       name: "kita",
-      component: KitaView
+      component: KitaView,
     },
     {
       path: "/about",

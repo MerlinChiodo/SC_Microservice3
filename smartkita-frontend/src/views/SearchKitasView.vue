@@ -1,5 +1,5 @@
 <template>
-  <div class="searchkitascontainer">
+  <div class="searchkitascontainer" v-if="kitasList">
     <DataTable
       :value="kitasList"
       showGridlines

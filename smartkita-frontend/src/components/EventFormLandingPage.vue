@@ -1,8 +1,10 @@
 <template>
-
   <div class="grid p-fluid">
-    <div class ="col-12 md:col-4">
-      <h1>"About Us" <br> ändern</h1>
+    <div class="col-12 md:col-4">
+      <h1>
+        "About Us" <br />
+        ändern
+      </h1>
     </div>
     <div class="col-12 md:col-8">
       <div class="p-inputgroup">

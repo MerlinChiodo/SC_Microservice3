@@ -10,7 +10,6 @@ import "primeicons/primeicons.css";
 import "primevue/resources/themes/md-light-deeppurple/theme.css";
 import "primeflex/primeflex.css";
 
-
 import Button from "primevue/button";
 import Sidebar from "primevue/sidebar";
 import Card from "primevue/card";
@@ -23,8 +22,9 @@ import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import DataTable from "primevue/datatable";
-import Column from "primevue/column"
+import Column from "primevue/column";
 import ContextMenu from "primevue/contextmenu";
+import Divider from "primevue/divider";
 
 const app = createApp(App);
 
@@ -52,5 +52,6 @@ app.component("Textarea", Textarea);
 app.component("Column", Column);
 app.component("DataTable", DataTable);
 app.component("ContextMenu", ContextMenu);
+app.component("Divider", Divider);
 
 app.mount("#app");

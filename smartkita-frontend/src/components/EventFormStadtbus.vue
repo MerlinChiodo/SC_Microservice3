@@ -1,38 +1,41 @@
 <template>
   <div class="grid p-fluid">
-    <div class ="col-12 md:col-4">
-      <h1>Gruppenticket <br> anfordern</h1>
+    <div class="col-12 md:col-4">
+      <h1>
+        Gruppenticket <br />
+        anfordern
+      </h1>
     </div>
     <div class="col-12 md:col-8">
-    <div class="p-inputgroup">
-      <InputText
-        v-model="kita_responsible"
-        type="text"
-        id="kitaresponsible"
-        placeholder="Kita"
-      ></InputText>
-      <InputText
-        v-model="person_responsible"
-        type="text"
-        id="person_responsible"
-        placeholder="Verantwortlich*er"
-      ></InputText>
-    </div>
-    <div class="p-inputgroup">
-      <span class="p-float-label">
-        <label for="date">Datum</label>
-        <Calendar v-model="date" id="date"></Calendar>
-      </span>
+      <div class="p-inputgroup">
+        <InputText
+          v-model="kita_responsible"
+          type="text"
+          id="kitaresponsible"
+          placeholder="Kita"
+        ></InputText>
+        <InputText
+          v-model="person_responsible"
+          type="text"
+          id="person_responsible"
+          placeholder="Verantwortlich*er"
+        ></InputText>
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-float-label">
+          <label for="date">Datum</label>
+          <Calendar v-model="date" id="date"></Calendar>
+        </span>
 
-      <InputNumber
-        v-model="number_of_passengers"
-        id="number_of_passengers"
-        :min="1"
-        :max="100"
-        placeholder="Passagiere"
-      ></InputNumber>
+        <InputNumber
+          v-model="number_of_passengers"
+          id="number_of_passengers"
+          :min="1"
+          :max="100"
+          placeholder="Passagiere"
+        ></InputNumber>
+      </div>
     </div>
-  </div>
   </div>
   <Knob
     v-model="number_of_passengers"
@@ -56,7 +59,6 @@
   >
     Senden
   </Button>
-
 </template>
 
 <script>
