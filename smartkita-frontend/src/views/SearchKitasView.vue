@@ -69,7 +69,7 @@ export default {
         {
           label: "Vormerken",
           icon: "pi pi-bookmark",
-          command: () => this.resetApplication(this.selectedKita),
+          command: () => this.bookmarkKita(this.selectedKita),
         },
         {
           label: "Detailansicht",
@@ -93,7 +93,7 @@ export default {
     },
     toKitaView(kitaId) {
       console.log(kitaId);
-      this.$router.push({ name: "kita", params: { kitaId } });
+      this.$router.push({ path: "/kita", query: { id: kitaId } });
     },
   },
 };

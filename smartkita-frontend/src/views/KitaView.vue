@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <h1>KitaView</h1>
-    {{ this.$route.params }}
+    {{ this.$route.query.id }}
     <h3>Daten</h3>
     {{ this.kitaData }}
   </div>
@@ -10,7 +10,7 @@
 <script>
 export default {
   beforeMount() {
-    this.getKitaData(this.$route.params.kitaId);
+    this.getKitaData(this.$route.query.id);
   },
   name: "KitaView",
   inject: ["apiUrl"],
