@@ -83,9 +83,10 @@
       <div class="grid p-fluid" style="min-height: 150px">
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Termine</h4>
+            <p v-if="!kitaData.termine">Aktuell stehen keine Termine an.</p>
             {{ kitaData.termine }}
           </div>
         </div>
@@ -99,12 +100,12 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <!--  <div>
     <h4>Debug data</h4>
     $route.query.id = {{ this.$route.query.id }}
     <h3>Daten</h3>
     {{ this.kitaData }}<br /><br />
-  </div>
+  </div>-->
 </template>
 
 <script>

@@ -25,6 +25,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ContextMenu from "primevue/contextmenu";
 import Divider from "primevue/divider";
+import Dropdown from "primevue/dropdown";
 
 const app = createApp(App);
 
@@ -55,5 +56,6 @@ app.component("Column", Column);
 app.component("DataTable", DataTable);
 app.component("ContextMenu", ContextMenu);
 app.component("Divider", Divider);
+app.component("Dropdown", Dropdown);
 
 app.mount("#app");

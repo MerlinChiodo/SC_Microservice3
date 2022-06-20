@@ -1,5 +1,5 @@
 <template>
-  <div class="applicationFormContainer">
+  <div class="applicationFormContainer" v-if="this.userData">
     <div class="surface-card p-4 shadow-2 border-round">
       <div class="flex justify-content-between flex-wrap">
         <div class="flex align-items-center justify-content-start w-8rem"></div>
@@ -52,18 +52,54 @@
 
         <div class="col-12 md:col-5">
           <div
+            v-if="userChildrenData"
             class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Kind</h4>
+            <span v-if="!selectedChild">
+              Für welches Ihrer Kinder möchten Sie einen Kita-Antrag stellen?
+            </span>
+            <Dropdown
+              v-if="userChildrenData"
+              v-model="selectedChild"
+              :options="userChildrenData"
+              optionLabel="firstname"
+              placeholder="Kind auswählen"
+              style="margin: 18px"
+            />
+            <div v-if="selectedChild">
+              <span>{{
+                selectedChild.firstname + " " + selectedChild.lastname
+              }}</span
+              ><br />
+              <span>{{
+                "geb. " +
+                new Date(selectedChild.birthdate).toISOString().split("T")[0]
+              }}</span>
+              <h5>Wohnort</h5>
+              <span>{{
+                selectedChild.address.street +
+                " " +
+                selectedChild.address.housenumber
+              }}</span
+              ><br />
+              <span>{{
+                selectedChild.address.city_code +
+                " " +
+                selectedChild.address.city
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <h5>Debug data (ApplicationForm)</h5>
-  {{ this.userData }}
-  <h5>Children</h5>
-  {{ this.userChildrenData }}
+  <!--  <div>
+    <h5>Debug data (ApplicationForm)</h5>
+    {{ this.userData }}
+    <h5>Children</h5>
+    <div v-if="userChildrenData">{{ this.userChildrenData }}</div>
+  </div>-->
 </template>
 
 <script>
@@ -84,6 +120,7 @@ export default {
       user: useUserStore(),
       userData: null,
       userChildrenData: null,
+      selectedChild: null,
     };
   },
   computed: {
