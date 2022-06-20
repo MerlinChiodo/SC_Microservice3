@@ -35,6 +35,7 @@
 export default {
   name: "ApplicationForm",
   props: ["kitaData"],
+  emits: ["applicationMode"],
   computed: {
     schwerpunktFormatted() {
       let schwerpunkt = this.kitaData.schwerpunkt.split("_");
