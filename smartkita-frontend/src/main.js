@@ -37,6 +37,8 @@ app.use(PrimeVue);
 app.provide("apiUrl", "http://localhost:3001/api/");
 // app.provide("apiUrl", "http://vps2290194.fastwebserver.de:9730/api/");
 
+app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
+
 // PrimeVue components
 app.component("Button", Button);
 app.component("Sidebar", Sidebar);
