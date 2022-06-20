@@ -62,19 +62,18 @@
         </div>
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             {{ kitaData.email }}
-            <br />
+            <p>
             <a
               :href="`${kitaData.url_website}`"
               target="_blank"
-              style="display: inline-block; float: start"
+              style="display: inline"
             >
-              <div style="display: inline-block">
                 {{ kitaData.url_website }}
-              </div>
             </a>
+            </p>
           </div>
         </div>
         <div class="col-12 md:col-4">
