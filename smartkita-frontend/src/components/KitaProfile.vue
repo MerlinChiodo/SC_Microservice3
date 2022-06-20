@@ -1,12 +1,5 @@
 <template>
   <div class="kitaviewcontainer">
-    <div class="card">
-      <h1>KitaView</h1>
-      {{ this.$route.query.id }}
-      <h3>Daten</h3>
-      {{ this.kitaData }}<br /><br />
-    </div>
-
     <div class="surface-card p-4 shadow-2 border-round">
       <div class="flex justify-content-between flex-wrap">
         <div class="flex align-items-center justify-content-start w-8rem"></div>
@@ -21,6 +14,7 @@
             type="button"
             icon="pi pi-file"
             style="margin-left: 3px"
+            @click="$emit('applicationMode', true)"
           ></Button>
         </div>
       </div>
@@ -105,12 +99,18 @@
       </div>
     </div>
   </div>
+  <div class="card">
+    <h4>Debug data</h4>
+    $route.query.id = {{ this.$route.query.id }}
+    <h3>Daten</h3>
+    {{ this.kitaData }}<br /><br />
+  </div>
 </template>
 
 <script>
 export default {
   name: "KitaProfile",
-  props: ["kitaData", "formatted"],
+  props: ["kitaData"],
   computed: {
     schwerpunktFormatted() {
       let schwerpunkt = this.kitaData.schwerpunkt.split("_");
