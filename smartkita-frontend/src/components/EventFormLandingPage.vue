@@ -1,7 +1,14 @@
 <template>
-  <h3>"About Us" ändern</h3>
   <div class="grid p-fluid">
-    <div class="col-12 md:col-4">
+    <div
+      class="col-12 md:col-4 flex flex-wrap align-items-center justify-content-center"
+    >
+      <h1>
+        "About Us" <br />
+        ändern
+      </h1>
+    </div>
+    <div class="col-12 md:col-8">
       <div class="p-inputgroup">
         <InputText
           v-model="about_us"
@@ -24,22 +31,22 @@
           placeholder="Bild-URL"
         ></InputText>
       </div>
+      <Button
+        style="width: auto"
+        class="p-button-raised"
+        @click="
+          landingpageSendChangeAboutUs(
+            about_us,
+            url,
+            picture,
+            new Date().toISOString()
+          )
+        "
+      >
+        Senden
+      </Button>
     </div>
   </div>
-
-  <Button
-    class="p-button-raised"
-    @click="
-      landingpageSendChangeAboutUs(
-        about_us,
-        url,
-        picture,
-        new Date().toISOString()
-      )
-    "
-  >
-    Senden
-  </Button>
 </template>
 
 <script>

@@ -8,6 +8,7 @@ import PrimeVue from "primevue/config";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/md-light-deeppurple/theme.css";
+import "primeflex/primeflex.css";
 
 import Button from "primevue/button";
 import Sidebar from "primevue/sidebar";
@@ -22,6 +23,9 @@ import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import ContextMenu from "primevue/contextmenu";
+import Divider from "primevue/divider";
+import Dropdown from "primevue/dropdown";
 
 const app = createApp(App);
 
@@ -29,6 +33,12 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(PrimeVue);
+
+// constants
+// app.provide("apiUrl", "http://localhost:3001/api/");
+app.provide("apiUrl", "http://vps2290194.fastwebserver.de:9730/api/");
+
+app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
 
 // PrimeVue components
 app.component("Button", Button);
@@ -44,5 +54,8 @@ app.component("InputText", InputText);
 app.component("Textarea", Textarea);
 app.component("Column", Column);
 app.component("DataTable", DataTable);
+app.component("ContextMenu", ContextMenu);
+app.component("Divider", Divider);
+app.component("Dropdown", Dropdown);
 
 app.mount("#app");

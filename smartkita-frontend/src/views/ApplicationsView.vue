@@ -1,5 +1,5 @@
 <template>
-  <div class="applicationscontainer">
+  <div class="applicationscontainer" v-if="applicationsList">
     <!--  json dump for debugging  -->
     <!--    <p v-for="application in this.applicationsList" :key="application.id">
       {{ application }}
@@ -11,6 +11,9 @@
       stripedRows
       :paginator="true"
       :rows="12"
+      contextMenu
+      v-model:contextMenuSelection="selectedApplication"
+      @rowContextmenu="onRowContextMenu"
     >
       <Column field="id_antrag" header="ID Antrag"></Column>
       <Column field="id_kind" header="ID Kind"></Column>
@@ -20,20 +23,53 @@
       <Column field="datum" header="Gestellt am"></Column>
       <Column field="prioritaet" header="Priorität"></Column>
       <Column field="status" header="Status"></Column>
+
+      <ContextMenu :model="menuModel" ref="cm" />
     </DataTable>
   </div>
 </template>
 
 <script>
 export default {
+  inject: ["apiUrl"],
   beforeMount() {
     this.getApplicationsList();
-    console.log(this.applicationsList);
   },
   name: "ApplicationsView",
   data() {
     return {
       applicationsList: null,
+      selectedApplication: null,
+      menuModel: [
+        { label: "Details", icon: "pi pi-fw pi-search" },
+        {
+          label: "Status",
+          icon: "pi pi-align-justify",
+          items: [
+            {
+              label: "Annehmen",
+              icon: "pi pi-check-circle",
+              command: () => this.acceptApplication(this.selectedApplication),
+            },
+            {
+              label: "Unvollständig",
+              icon: "pi pi-exclamation-circle",
+              command: () =>
+                this.incompleteApplication(this.selectedApplication),
+            },
+            {
+              label: "Ablehnen",
+              icon: "pi pi-times-circle",
+              command: () => this.denyApplication(this.selectedApplication),
+            },
+            {
+              label: "Eingegangen",
+              icon: "pi pi-undo",
+              command: () => this.resetApplication(this.selectedApplication),
+            },
+          ],
+        },
+      ],
     };
   },
   computed: {
@@ -44,15 +80,39 @@ export default {
   },
   methods: {
     async getApplicationsList() {
-      /* Hardcoding for now, will use pinia later */
-/*      const response = await fetch(
-          "http://localhost:3001/api/applications/all"
-      );*/
-      const response = await fetch(
-        "http://vps2290194.fastwebserver.de:9730/api/applications/all"
-      );
+      const response = await fetch(this.apiUrl + "applications/all");
       const data = await response.json();
       this.applicationsList = data;
+    },
+    async updateApplication(application) {
+      const response = await fetch(this.apiUrl + "applications/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(application),
+      });
+      const res = await response.json();
+      console.log(res);
+      this.getApplicationsList()
+    },
+    onRowContextMenu(event) {
+      this.$refs.cm.show(event.originalEvent);
+    },
+    acceptApplication(application) {
+      application.status = "ANGENOMMEN";
+      // TODO: add toasts
+      this.updateApplication(application);
+    },
+    incompleteApplication(application) {
+      application.status = "UNVOLLSTAENDIG";
+      this.updateApplication(application);
+    },
+    denyApplication(application) {
+      application.status = "ABGELEHNT";
+      this.updateApplication(application);
+    },
+    resetApplication(application) {
+      application.status = "EINGEGANGEN";
+      this.updateApplication(application);
     },
   },
 };

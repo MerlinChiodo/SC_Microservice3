@@ -41,6 +41,14 @@ enum Rolle {
   ADMIN
 }
 
+enum Antragstatus {
+  EINGEGANGEN
+  ANGENOMMEN
+  AKZEPTIERT
+  ABGELEHNT
+  UNVOLLSTAENDIG
+}
+
 model Antrag {
   id_antrag  Int      @id @default(autoincrement())
   // m-n relation
@@ -55,7 +63,7 @@ model Antrag {
   // Attributes
   datum      DateTime @default(now()) @db.DateTime(0)
   prioritaet Int
-  status     String
+  status     Antragstatus
   betreuungsstunden Int
   bemerkung String?
 }

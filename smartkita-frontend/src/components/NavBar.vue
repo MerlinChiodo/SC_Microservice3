@@ -50,7 +50,14 @@ export default {
         {
           label: "Anträge",
           icon: "pi pi-fw pi-copy",
-          to: "./applications",
+          items: [
+            { label: "Eingang", icon: "pi pi-inbox", to: "./applications" },
+            {
+              label: "Verträge",
+              icon: "pi pi-file",
+              // to: VERTRAGSVERWALTUNG
+            },
+          ],
         },
         {
           label: "Mitgliedschaften",
@@ -76,10 +83,12 @@ export default {
 </script>
 
 <style scoped>
+
 .p-menubar {
   background-color: var(--red-500);
-  margin-left: 1rem;
-  margin-right: 1rem;
   height: 4.5rem;
+  padding: 0px;
+
+
 }
 </style>

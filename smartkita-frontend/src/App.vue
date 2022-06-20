@@ -1,20 +1,7 @@
 <template>
-  <div>
-    <header class="nav">
+  <div class="nav">
+    <header>
       <NavBar />
-
-      <!--    <Button
-      class="p-button-outlined p-button-rounded"
-      label="Home"
-      @click="$router.push('/')"
-    >
-    </Button>
-    <Button
-      class="p-button-outlined p-button-rounded"
-      label="Mitarbeitende"
-      @click="$router.push('/employee')"
-    >
-    </Button>-->
     </header>
   </div>
   <RouterView />
@@ -26,7 +13,7 @@ import NavBar from "./components/NavBar.vue";
 
 export default {
   components: {
-    NavBar
+    NavBar,
   },
 };
 </script>
@@ -35,6 +22,7 @@ export default {
 :root {
   --buttonColor: var(--red-500);
   --buttonHoverColor: var(--red-400);
+  --buttonDarkerColor: var(--red-600);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -42,9 +30,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
 }
 .nav {
   /*text-align: center;*/
+  margin-top: -10px;
+  margin-left: -9px;
+  margin-right: -9px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 </style>
