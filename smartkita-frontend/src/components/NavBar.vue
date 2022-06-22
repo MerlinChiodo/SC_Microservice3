@@ -5,6 +5,7 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
+        <Button @click="login"> Einloggen </Button>
         <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
@@ -73,22 +74,32 @@ export default {
           to: "/employee",
         },
         {
-          label: "Ausloggen",
-          icon: "pi pi-fw pi-sign-out",
+          label: "Einloggen",
+          icon: "pi pi-fw pi-sign-in",
         },
       ],
+      itemLogin: {
+        url: this.authUrl + "external",
+        label: "Einloggen",
+      },
     };
+  },
+  inject: ["authUrl"],
+  methods: {
+    async login() {
+      window.location.href = this.authUrl + "external";
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .p-menubar {
   background-color: var(--red-500);
   height: 4.5rem;
   padding: 0px;
+}
 
-
+.customButton {
 }
 </style>
