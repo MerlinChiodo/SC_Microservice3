@@ -33,7 +33,7 @@ amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL
                 console.log("integration inquiry validated")
 
                 const id_einrichtung = undefined;
-                const status = "Eingegangen"
+                const status = "EINGEGANGEN"
                 const prioritaet = 3
                 const bemerkung = "Amt für Integration"
                 const datum = new Date()
