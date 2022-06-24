@@ -13,9 +13,14 @@
 <script>
 import { useUserStore } from "../stores/user";
 export default {
-  async mounted() {
+  async beforeMount() {
     // const token = this.$cookies.get("user_session_token");
-    const token = this.$route.query.token;
+    let token;
+    if (this.$route.query.token) {
+      token = this.$route.query.token;
+    } else if (this.user.token) {
+      token = this.user.token;
+    }
     console.log(token);
     if (token) {
       const response = await fetch(
@@ -26,14 +31,17 @@ export default {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         }
       );
-      this.loggedIn = response.status !== 404;
-      console.log("logged in: ", this.loggedIn);
+      const data = await response.json();
+      if (response.status == 200) {
+        this.user.token = data.user_session_token;
+        this.user.smartCityId = data.citizen_id;
+        this.user.userData = data.info;
+      }
     }
   },
   data() {
     return {
       user: useUserStore(),
-      loggedIn: false,
     };
   },
   inject: ["authUrl", "homeUrl"],
