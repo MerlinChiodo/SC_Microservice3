@@ -23,6 +23,7 @@
 <script>
 export default {
   name: "NavBar",
+
   data() {
     return {
       items: [
@@ -78,16 +79,18 @@ export default {
           icon: "pi pi-fw pi-sign-in",
         },
       ],
-      itemLogin: {
-        url: this.authUrl + "external",
-        label: "Einloggen",
-      },
     };
   },
-  inject: ["authUrl"],
+  inject: ["authUrl", "homeUrl"],
   methods: {
-    async login() {
-      window.location.href = this.authUrl + "external";
+    login() {
+      window.location.href =
+        this.authUrl +
+        `external?redirect_success=${this.homeUrl}&redirect_error=${this.homeUrl}`;
+    },
+    logout() {
+      this.$cookies.set("user_session_token", "");
+      location.reload();
     },
   },
 };

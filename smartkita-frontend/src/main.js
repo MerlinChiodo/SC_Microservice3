@@ -4,6 +4,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 import PrimeVue from "primevue/config";
+import VueCookies from "vue-cookies";
 
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
@@ -33,6 +34,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(PrimeVue);
+app.use(VueCookies);
 
 // Internal Kita URLs
 app.provide("apiUrl", "http://localhost:3001/api/");
