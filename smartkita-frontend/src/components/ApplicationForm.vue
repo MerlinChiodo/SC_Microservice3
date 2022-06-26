@@ -143,7 +143,15 @@
           <Button
             style="width: auto"
             class="p-button-raised"
-            @click="createApplication"
+            @click="
+              createApplication(
+                this.kitaData.id_einrichtung,
+                this.bemerkung,
+                this.selectedChild.citizen_id,
+                this.userData.citizen_id,
+                this.betreuungsstunden
+              )
+            "
             >Antrag einreichen</Button
           >
         </div>
@@ -164,7 +172,7 @@ import { useUserStore } from "../stores/user";
 export default {
   name: "ApplicationForm",
   props: ["kitaData"],
-  inject: ["bbUrl"],
+  inject: ["bbUrl", "apiUrl"],
   emits: ["applicationMode"],
   created() {
     this.getUserData(this.user.smartCityId).then(() =>
@@ -216,8 +224,30 @@ export default {
       });
       this.userChildrenData = childrenData;
     },
-    async createApplication() {
-      console.log("create application");
+    async createApplication(
+      id_einrichtung,
+      bemerkung,
+      id_kind,
+      id_ezb,
+      betreuungsstunden
+    ) {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id_einrichtung: id_einrichtung,
+          bemerkung: bemerkung,
+          id_kind: id_kind,
+          id_ezb: id_ezb,
+          betreuungsstunden: betreuungsstunden,
+        }),
+      };
+      const response = await fetch(
+        this.apiUrl + "applications",
+        requestOptions
+      );
+      const data = await response.json();
+      console.log(data);
     },
   },
 };
