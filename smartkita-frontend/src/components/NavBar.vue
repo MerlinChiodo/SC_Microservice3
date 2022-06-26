@@ -12,7 +12,7 @@
             alt="To landing page"
             width="50"
             height="50"
-            style="margin-top: 5px"
+            style="size: auto; margin-bottom: -8px"
           />
         </a>
       </template>
