@@ -33,6 +33,7 @@ export default {
       );
       const data = await response.json();
       if (response.status == 200) {
+        localStorage.setItem("token", JSON.stringify(data.user_session_token));
         this.user.token = data.user_session_token;
         this.user.smartCityId = data.citizen_id;
         this.user.userData = data.info;

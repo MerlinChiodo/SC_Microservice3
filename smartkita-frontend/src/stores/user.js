@@ -6,7 +6,7 @@ export const useUserStore = defineStore({
     id: 1,
     smartCityId: null,
     userData: null,
-    token: null,
+    token: localStorage.getItem("token"),
   }),
   getters: {},
   actions: {},
