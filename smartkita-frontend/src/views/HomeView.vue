@@ -6,7 +6,7 @@
       Wir befinden uns noch im Aufbau, voraussichtlich bis Ende Juni/Anfang
       Juli.
     </p>
-    User ID: {{ user.id }}
+    User ID: {{ user.smartCityId }}
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
       );
       const data = await response.json();
       if (response.status == 200) {
-        localStorage.setItem("token", JSON.stringify(data.user_session_token));
+        localStorage.setItem("token", data.user_session_token);
         this.user.token = data.user_session_token;
         this.user.smartCityId = data.citizen_id;
         this.user.userData = data.info;

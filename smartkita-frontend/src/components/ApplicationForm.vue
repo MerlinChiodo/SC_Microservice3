@@ -111,7 +111,7 @@ export default {
   inject: ["bbUrl"],
   emits: ["applicationMode"],
   created() {
-    this.getUserData(this.user.id).then(() =>
+    this.getUserData(this.user.smartCityId).then(() =>
       this.getChildrenData(this.userData.child_ids)
     );
   },
