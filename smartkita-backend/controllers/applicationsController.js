@@ -40,20 +40,49 @@ exports.createApplication = async (req, res) => {
     const id_ezb = req.body.id_ezb
     const betreuungsstunden = req.body.betreuungsstunden
 
+    // PRISMA WRITE
+    // using connect/connectOrCreate to ensure relational integrity
     try {
         const createApplication = await prisma.antrag.create({
             data: {
-                id_einrichtung,
+                einrichtung: {
+                    connect: {
+                        id_einrichtung: id_einrichtung
+                    }
+                },
                 status,
                 prioritaet,
                 bemerkung,
                 datum,
-                id_kind,
-                id_ezb,
-                betreuungsstunden
-            }
+                kind: {
+                    connectOrCreate: {
+                        where: {
+                            smartcity_id: id_kind
+                        },
+                        create: {
+                            smartcity_id: id_kind
+                            }
+                        }
+                    },
+                erziehungsberechtigte: {
+                        connectOrCreate: {
+                            where: {
+                                smartcity_id: id_ezb
+                            },
+                            create: {
+                                smartcity_id: id_ezb
+                            }
+                        }
+                    },
+                    betreuungsstunden
+                },
+            include: {
+                kind: true,
+                erziehungsberechtigte: true,
+                einrichtung: true
+            },
         })
-        return res.json(updateApplication)
+        return res.status(200).json(createApplication);
     } catch (e) {
         console.log(e)
         return res.status(400).send({msg: "invalid application data"})
