@@ -24,7 +24,7 @@ export default {
     console.log(token);
     if (token) {
       const response = await fetch(
-        "http://auth.smartcityproject.net:8080/verify",
+        "http://www.supersmartcity.de:9760/verify",
         {
           method: "POST",
           body: encodeURIComponent("code") + "=" + encodeURIComponent(token),
