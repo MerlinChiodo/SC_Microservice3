@@ -44,6 +44,8 @@ app.provide("homeUrl", "http://localhost:3000/");
 /*app.provide("apiUrl", "http://" + location.host + "/api/");
 app.provide("homeUrl", "http://vps2290194.fastwebserver.de:9730/");*/
 
+//app.provide("homeUrl", "http://localhost:3001/");
+
 // other service URLs
 app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
 app.provide("authUrl", "http://auth.smartcityproject.net:8080/");
