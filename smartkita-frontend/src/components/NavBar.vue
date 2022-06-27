@@ -50,18 +50,6 @@ export default {
           ],
         },
         {
-          label: "Anträge",
-          icon: "pi pi-fw pi-copy",
-          items: [
-            { label: "Eingang", icon: "pi pi-inbox", to: "./applications" },
-            {
-              label: "Verträge",
-              icon: "pi pi-file",
-              // to: VERTRAGSVERWALTUNG
-            },
-          ],
-        },
-        {
           label: "Mitgliedschaften",
           icon: "pi pi-fw pi-users",
         },
@@ -72,12 +60,28 @@ export default {
         {
           label: "Mitarbeitende",
           icon: "pi pi-fw pi-briefcase",
-          to: "/employee",
+          items: [
+            {
+              label: "Anträge",
+              icon: "pi pi-fw pi-inbox",
+              to: "./applications",
+            },
+            {
+              label: "Verträge",
+              icon: "pi pi-fw pi-file",
+              // to: VERTRAGSVERWALTUNG
+            },
+            {
+              label: "SmartCity",
+              icon: "pi pi-fw pi-building",
+              to: "/employee",
+            },
+          ],
         },
-        {
+        /*        {
           label: "Einloggen",
           icon: "pi pi-fw pi-sign-in",
-        },
+        },*/
       ],
     };
   },
@@ -103,6 +107,22 @@ export default {
   padding: 0px;
 }
 
-.customButton {
+.p-menubar :deep(.p-button) {
+  background-color: var(--buttonDarkerColor);
+}
+.p-button:hover {
+  background-color: var(--buttonHoverColor) !important;
+}
+.p-button:active,
+.p-button:focus {
+  background-color: var(--buttonColor) !important;
+}
+
+.p-menubar
+  .p-menubar-root-list
+  > .p-menuitem
+  > .p-menuitem-link
+  .p-menuitem-text {
+  color: white !important;
 }
 </style>
