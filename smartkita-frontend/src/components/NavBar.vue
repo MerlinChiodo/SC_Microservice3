@@ -21,11 +21,15 @@
 </template>
 
 <script>
+import { useUserStore } from "../stores/user";
 export default {
   name: "NavBar",
-
+  beforeCreate() {
+    this.user = useUserStore();
+  },
   data() {
     return {
+      user: useUserStore(),
       items: [
         {
           label: "SmartKita",
@@ -60,6 +64,7 @@ export default {
         {
           label: "Mitarbeitende",
           icon: "pi pi-fw pi-briefcase",
+          disabled: !this.user.isEmployee,
           items: [
             {
               label: "Anträge",
@@ -69,7 +74,7 @@ export default {
             {
               label: "Verträge",
               icon: "pi pi-fw pi-file",
-              // to: VERTRAGSVERWALTUNG
+              to: "./contracts",
             },
             {
               label: "SmartCity",

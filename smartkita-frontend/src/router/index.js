@@ -4,6 +4,7 @@ import EmployeeView from "../views/EmployeeView.vue";
 import ApplicationsView from "../views/ApplicationsView.vue";
 import SearchKitasView from "../views/SearchKitasView.vue";
 import KitaView from "../views/KitaView.vue";
+import ContractsView from "../views/ContractsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: "/kita",
       name: "kita",
       component: KitaView,
+    },
+    {
+      path: "/contracts",
+      name: "contracts",
+      component: ContractsView,
     },
     {
       path: "/about",
