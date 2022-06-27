@@ -17,7 +17,7 @@
     >
       <Column field="id_antrag" header="ID Antrag"></Column>
       <Column field="id_kind" header="ID Kind"></Column>
-      <Column field="id_ezb" header="ID Erziehungsberechtige*r"></Column>
+      <Column field="id_ezb" header="ID EZB"></Column>
       <Column field="betreuungsstunden" header="Betreuungsstunden"></Column>
       <Column field="bemerkung" header="Bemerkung"></Column>
       <Column field="datum" header="Gestellt am"></Column>
@@ -92,7 +92,7 @@ export default {
       });
       const res = await response.json();
       console.log(res);
-      this.getApplicationsList()
+      this.getApplicationsList();
     },
     onRowContextMenu(event) {
       this.$refs.cm.show(event.originalEvent);

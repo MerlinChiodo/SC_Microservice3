@@ -33,7 +33,7 @@ amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL
                 console.log("integration inquiry validated")
 
                 const id_einrichtung = undefined;
-                const status = "Eingegangen"
+                const status = "EINGEGANGEN"
                 const prioritaet = 3
                 const bemerkung = "Amt für Integration"
                 const datum = new Date()
@@ -44,17 +44,41 @@ amqp.connect(`amqp://${rabbitMQUsername}:${rabbitMQPassword}@${rabbitMQserverURL
                 // PRISMA write
                 try {
                     const Antrag = await prisma.antrag.create({
-                        data: {
-                            id_einrichtung,
-                            status,
-                            prioritaet,
-                            bemerkung,
-                            datum,
-                            id_kind,
-                            id_ezb,
-                            betreuungsstunden
-                        }
-                    })
+
+                    data: {
+                        id_einrichtung,
+                        status,
+                        prioritaet,
+                        bemerkung,
+                        datum,
+                        kind: {
+                            connectOrCreate: {
+                                where: {
+                                    smartcity_id: id_kind
+                                },
+                                create: {
+                                    smartcity_id: id_kind
+                                    }
+                                }
+                            },
+                        erziehungsberechtigte: {
+                            connectOrCreate: {
+                                where: {
+                                    smartcity_id: id_ezb
+                                },
+                                create: {
+                                    smartcity_id: id_ezb
+                                }
+                            }
+                        },
+                        betreuungsstunden
+                    },
+                    include: {
+                        kind: true,
+                        erziehungsberechtigte: true,
+                        einrichtung: true
+                    },
+                })
                     console.log("PRISMA write success")
                 } catch (e) {
                     console.log(e)

@@ -5,13 +5,14 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
+        <Button @click="login"> Einloggen </Button>
         <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
             alt="To landing page"
             width="50"
             height="50"
-            style="margin-top: 5px"
+            style="size: auto; margin-bottom: -8px"
           />
         </a>
       </template>
@@ -22,6 +23,7 @@
 <script>
 export default {
   name: "NavBar",
+
   data() {
     return {
       items: [
@@ -73,22 +75,34 @@ export default {
           to: "/employee",
         },
         {
-          label: "Ausloggen",
-          icon: "pi pi-fw pi-sign-out",
+          label: "Einloggen",
+          icon: "pi pi-fw pi-sign-in",
         },
       ],
     };
+  },
+  inject: ["authUrl", "homeUrl"],
+  methods: {
+    login() {
+      window.location.href =
+        this.authUrl +
+        `external?redirect_success=${this.homeUrl}&redirect_error=${this.homeUrl}`;
+    },
+    logout() {
+      this.$cookies.set("user_session_token", "");
+      location.reload();
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .p-menubar {
   background-color: var(--red-500);
   height: 4.5rem;
   padding: 0px;
+}
 
-
+.customButton {
 }
 </style>

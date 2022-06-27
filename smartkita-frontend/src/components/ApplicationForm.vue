@@ -1,6 +1,6 @@
 <template>
   <div class="applicationFormContainer" v-if="this.userData">
-    <div class="surface-card p-4 shadow-2 border-round">
+    <div class="surface-card p-4 shadow-2 border-round-md">
       <div class="flex justify-content-between flex-wrap">
         <div class="flex align-items-center justify-content-start w-8rem"></div>
         <div
@@ -33,7 +33,7 @@
         <div class="col-12 md:col-4">
           <div
             v-if="userData"
-            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Erziehungsberechtigte*r</h4>
             <span>{{ userData.firstname + " " + userData.lastname }}</span>
@@ -53,20 +53,29 @@
         <div class="col-12 md:col-5">
           <div
             v-if="userChildrenData"
-            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
-            <h4>Kind</h4>
             <span v-if="!selectedChild">
               Für welches Ihrer Kinder möchten Sie einen Kita-Antrag stellen?
             </span>
-            <Dropdown
-              v-if="userChildrenData"
-              v-model="selectedChild"
-              :options="userChildrenData"
-              optionLabel="firstname"
-              placeholder="Kind auswählen"
-              style="margin: 18px"
-            />
+            <div class="flex flex-wrap">
+              <div
+                class="flex align-items-center justify-content-center"
+                style="font-weight: bold"
+              >
+                Kind
+              </div>
+              <div class="flex align-items-center justify-content-center">
+                <Dropdown
+                  v-if="userChildrenData"
+                  v-model="selectedChild"
+                  :options="userChildrenData"
+                  optionLabel="firstname"
+                  placeholder="Kind auswählen"
+                  style="margin: 18px"
+                />
+              </div>
+            </div>
             <div v-if="selectedChild">
               <span>{{
                 selectedChild.firstname + " " + selectedChild.lastname
@@ -91,6 +100,61 @@
             </div>
           </div>
         </div>
+        <div class="col-12 md:col-3">
+          <div
+            v-if="userChildrenData"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4>Betreuungsstunden</h4>
+            <Knob
+              v-model="betreuungsstunden"
+              :min="20"
+              :max="45"
+              :step="5"
+              value-color="var(--buttonColor)"
+            />
+          </div>
+        </div>
+        <div class="col-12 md:col-8">
+          <div
+            v-if="userChildrenData"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4>Bemerkung</h4>
+            <Textarea
+              v-model="bemerkung"
+              :autoResize="true"
+              rows="12"
+              cols="30"
+              style="max-width: 90%; max-height: 50%"
+            />
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div
+            v-if="userChildrenData"
+            class="border-2 border-round-md border-dotted surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4>Dokumente anfügen</h4>
+            <FileUpload></FileUpload>
+          </div>
+        </div>
+        <div class="col-12 md:col-12">
+          <Button
+            style="width: auto"
+            class="p-button-raised"
+            @click="
+              createApplication(
+                this.kitaData.id_einrichtung,
+                this.bemerkung,
+                this.selectedChild.citizen_id,
+                this.userData.citizen_id,
+                this.betreuungsstunden
+              )
+            "
+            >Antrag einreichen</Button
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -108,10 +172,10 @@ import { useUserStore } from "../stores/user";
 export default {
   name: "ApplicationForm",
   props: ["kitaData"],
-  inject: ["bbUrl"],
+  inject: ["bbUrl", "apiUrl"],
   emits: ["applicationMode"],
   created() {
-    this.getUserData(this.user.id).then(() =>
+    this.getUserData(this.user.smartCityId).then(() =>
       this.getChildrenData(this.userData.child_ids)
     );
   },
@@ -121,6 +185,8 @@ export default {
       userData: null,
       userChildrenData: null,
       selectedChild: null,
+      betreuungsstunden: 20,
+      bemerkung: "",
     };
   },
   computed: {
@@ -157,6 +223,31 @@ export default {
         }
       });
       this.userChildrenData = childrenData;
+    },
+    async createApplication(
+      id_einrichtung,
+      bemerkung,
+      id_kind,
+      id_ezb,
+      betreuungsstunden
+    ) {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id_einrichtung: id_einrichtung,
+          bemerkung: bemerkung,
+          id_kind: id_kind,
+          id_ezb: id_ezb,
+          betreuungsstunden: betreuungsstunden,
+        }),
+      };
+      const response = await fetch(
+        this.apiUrl + "applications",
+        requestOptions
+      );
+      const data = await response.json();
+      console.log(data);
     },
   },
 };

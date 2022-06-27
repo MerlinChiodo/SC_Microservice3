@@ -1,6 +1,6 @@
 <template>
   <div class="kitaviewcontainer">
-    <div class="surface-card p-4 shadow-2 border-round">
+    <div class="surface-card p-4 shadow-2 border-round-md">
       <div class="flex justify-content-between flex-wrap">
         <div class="flex align-items-center justify-content-start w-8rem"></div>
         <div
@@ -30,14 +30,14 @@
       <div class="grid p-fluid" style="min-height: 150px">
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             {{ this.kitaData.kurzbeschreibung }}
           </div>
         </div>
         <div class="col-12 md:col-8">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             {{ this.kitaData.beschreibung }}
           </div>
@@ -48,7 +48,7 @@
       <div class="grid p-fluid" style="min-height: 150px">
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             {{ kitaData.strasse }} {{ kitaData.hausnr }}<br />
             {{ kitaData.plz }} M*nster
@@ -56,7 +56,7 @@
         </div>
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             {{ kitaData.email }}
             <p>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             Alter: {{ kitaData.kindalter_von }} bis
             {{ kitaData.kindalter_bis }} Jahre<br />
@@ -83,7 +83,7 @@
       <div class="grid p-fluid" style="min-height: 150px">
         <div class="col-12 md:col-4">
           <div
-            class="border-2 border-round surface-border flex flex-column align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Termine</h4>
             <p v-if="!kitaData.termine">Aktuell stehen keine Termine an.</p>
@@ -92,7 +92,7 @@
         </div>
         <div class="col-12 md:col-8">
           <div
-            class="border-2 border-round surface-border flex align-items-center justify-content-center h-full"
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             [ B I L D E R G A L E R I E]
           </div>

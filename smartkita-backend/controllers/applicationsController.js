@@ -30,7 +30,63 @@ exports.getApplicationById = async (req, res) => {
 }
 
 exports.createApplication = async (req, res) => {
-    return res.send('not implemented yet')
+
+    const id_einrichtung = req.body.id_einrichtung;
+    const status = "EINGEGANGEN"
+    const prioritaet = 1
+    const bemerkung = req.body.bemerkung
+    const datum = new Date()
+    const id_kind = req.body.id_kind
+    const id_ezb = req.body.id_ezb
+    const betreuungsstunden = req.body.betreuungsstunden
+
+    // PRISMA WRITE
+    // using connect/connectOrCreate to ensure relational integrity
+    try {
+        const createApplication = await prisma.antrag.create({
+            data: {
+                einrichtung: {
+                    connect: {
+                        id_einrichtung: id_einrichtung
+                    }
+                },
+                status,
+                prioritaet,
+                bemerkung,
+                datum,
+                kind: {
+                    connectOrCreate: {
+                        where: {
+                            smartcity_id: id_kind
+                        },
+                        create: {
+                            smartcity_id: id_kind
+                            }
+                        }
+                    },
+                erziehungsberechtigte: {
+                        connectOrCreate: {
+                            where: {
+                                smartcity_id: id_ezb
+                            },
+                            create: {
+                                smartcity_id: id_ezb
+                            }
+                        }
+                    },
+                    betreuungsstunden
+                },
+            include: {
+                kind: true,
+                erziehungsberechtigte: true,
+                einrichtung: true
+            },
+        })
+        return res.status(200).json(createApplication);
+    } catch (e) {
+        console.log(e)
+        return res.status(400).send({msg: "invalid application data"})
+    }
 }
 
 exports.patchApplication = async (req, res) => {

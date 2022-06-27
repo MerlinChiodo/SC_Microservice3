@@ -4,6 +4,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 import PrimeVue from "primevue/config";
+import VueCookies from "vue-cookies";
 
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
@@ -26,6 +27,7 @@ import Column from "primevue/column";
 import ContextMenu from "primevue/contextmenu";
 import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
+import FileUpload from "primevue/fileupload";
 
 const app = createApp(App);
 
@@ -33,12 +35,18 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(PrimeVue);
+app.use(VueCookies);
 
-// constants
-// app.provide("apiUrl", "http://localhost:3001/api/");
-app.provide("apiUrl", "http://vps2290194.fastwebserver.de:9730/api/");
+// Internal Kita URLs
+//app.provide("apiUrl", "http://localhost:3001/api/");
+//app.provide("homeUrl", "http://localhost:3000/");
 
+app.provide("apiUrl", "http://" + location.host + "/api/");
+app.provide("homeUrl", "http://vps2290194.fastwebserver.de:9730/");
+
+// other service URLs
 app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
+app.provide("authUrl", "http://www.supersmartcity.de:9760/");
 
 // PrimeVue components
 app.component("Button", Button);
@@ -57,5 +65,6 @@ app.component("DataTable", DataTable);
 app.component("ContextMenu", ContextMenu);
 app.component("Divider", Divider);
 app.component("Dropdown", Dropdown);
+app.component("FileUpload", FileUpload);
 
 app.mount("#app");
