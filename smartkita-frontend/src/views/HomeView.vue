@@ -23,14 +23,11 @@ export default {
     }
     console.log(token);
     if (token) {
-      const response = await fetch(
-        "http://auth.smartcityproject.net:8080/verify",
-        {
-          method: "POST",
-          body: encodeURIComponent("code") + "=" + encodeURIComponent(token),
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        }
-      );
+      const response = await fetch(this.authUrl + "verify", {
+        method: "POST",
+        body: encodeURIComponent("code") + "=" + encodeURIComponent(token),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
       const data = await response.json();
       if (response.status == 200) {
         localStorage.setItem("token", data.user_session_token);
