@@ -5,8 +5,22 @@ exports.childrenList = async (req, res) => {
 }
 
 exports.getChildById = async (req, res) => {
-    return res.send('not implemented yet')
-}
+        let id = req.query.id
+        try { Number(id)}
+        catch (e) {
+            return res.status(400).send({error: true, msg: "invalid id"})
+        }
+        try {
+            const child = await prisma.kind.findFirst({
+                where: {
+                    id_kind: Number(id)
+                }
+            })
+            return res.json(child)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
 exports.createChild = async (req, res) => {
     return res.send('not implemented yet')
