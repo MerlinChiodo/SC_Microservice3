@@ -47,6 +47,6 @@ app.use('/api/events', eventRouter);
 
 // serve Vue frontend
 app.use(history());
-app.use(express.static(path.join(__dirname, "../smartkita-frontend/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 module.exports = app;
