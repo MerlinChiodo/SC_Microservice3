@@ -7,7 +7,7 @@
     </p>-->
 
     <DataTable
-      v-if="!showDetails"
+      v-if="!showDetails && this.applicationsList"
       :value="applicationsList"
       showGridlines
       stripedRows
@@ -17,13 +17,21 @@
       v-model:contextMenuSelection="selectedApplication"
       @rowContextmenu="onRowContextMenu"
     >
-      <Column field="id_antrag" header="ID Antrag"></Column>
-      <Column field="einrichtung.name" header="Einrichtung"></Column>
-      <Column field="betreuungsstunden" header="Betreuungsstunden"></Column>
+      <Column field="id_antrag" header="ID Antrag" :sortable="true"></Column>
+      <Column
+        field="einrichtung.name"
+        header="Einrichtung"
+        :sortable="true"
+      ></Column>
+      <Column
+        field="betreuungsstunden"
+        header="Betreuungsstunden"
+        :sortable="true"
+      ></Column>
       <Column field="bemerkung" header="Bemerkung"></Column>
-      <Column field="datum" header="Gestellt am"></Column>
-      <Column field="prioritaet" header="Priorität"></Column>
-      <Column field="status" header="Status"></Column>
+      <Column field="datum" header="Gestellt am" :sortable="true"></Column>
+      <Column field="prioritaet" header="Priorität" :sortable="true"></Column>
+      <Column field="status" header="Status" :sortable="true"></Column>
 
       <ContextMenu :model="menuModel" ref="cm" />
     </DataTable>
@@ -43,8 +51,10 @@ import ApplicationDetailed from "../components/ApplicationDetailed.vue";
 export default {
   components: { ApplicationDetailed },
   inject: ["apiUrl"],
-  beforeMount() {
-    this.getApplicationsList();
+  async beforeMount() {
+    let applicationsList = await this.getApplicationsList();
+    applicationsList = this.prettifyDates(applicationsList);
+    this.applicationsList = applicationsList;
   },
   name: "ApplicationsView",
   data() {
@@ -100,7 +110,17 @@ export default {
     async getApplicationsList() {
       const response = await fetch(this.apiUrl + "applications/all");
       const data = await response.json();
-      this.applicationsList = data;
+      return data;
+    },
+    prettifyDates(applList) {
+      applList.forEach((application) => {
+        console.log(application);
+        let prettyDatum = new Date(application.datum)
+          .toISOString()
+          .split("T")[0];
+        application.datum = prettyDatum.toString();
+      });
+      return applList;
     },
     async updateApplication(application) {
       const response = await fetch(this.apiUrl + "applications/", {
