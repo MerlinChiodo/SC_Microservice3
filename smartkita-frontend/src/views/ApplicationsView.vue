@@ -45,6 +45,7 @@
         :applicationsList="this.applicationsList"
         @backToApplList="this.showDetails = false"
         @changeStatus="changeApplicationStatus"
+        @acceptApplication="acceptApplication"
       ></ApplicationDetailed>
     </div>
   </div>
@@ -78,11 +79,11 @@ export default {
           label: "Status",
           icon: "pi pi-align-justify",
           items: [
-            {
+            /*            {
               label: "Annehmen",
               icon: "pi pi-check-circle",
               command: () => this.acceptApplication(this.selectedApplication),
-            },
+            },*/
             {
               label: "Unvollständig",
               icon: "pi pi-exclamation-circle",
@@ -136,10 +137,39 @@ export default {
     onRowContextMenu(event) {
       this.$refs.cm.show(event.originalEvent);
     },
-    acceptApplication(application) {
+    async createContract(application, duration, comment) {
+      console.log(application);
+      const id_einrichtung = application.id_einrichtung;
+      const id_kind = application.id_kind;
+      const id_ezb = application.id_ezb;
+      const beginn = new Date();
+      let ende = new Date(beginn);
+      ende = new Date(ende.setMonth(ende.getMonth() + duration));
+      const betreuungsstunden = application.betreuungsstunden;
+      const bemerkung = comment;
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id_einrichtung: id_einrichtung,
+          id_kind: id_kind,
+          id_ezb: id_ezb,
+          beginn: beginn,
+          ende: ende,
+          betreuungsstunden: betreuungsstunden,
+          bemerkung: bemerkung,
+        }),
+      };
+      const response = await fetch(this.apiUrl + "contracts", requestOptions);
+      const data = await response.json();
+      console.log(data);
+    },
+    acceptApplication(application, duration, comment) {
       application.status = "ANGENOMMEN";
       // TODO: add toasts
       this.updateApplication(application);
+      this.createContract(application, duration, comment);
     },
     incompleteApplication(application) {
       application.status = "UNVOLLSTAENDIG";

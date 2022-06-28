@@ -118,7 +118,7 @@
             v-if="selectedApplicationData"
             class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
-            <h4>Bemerkung</h4>
+            <h4>Bemerkung (Antrag)</h4>
             <p>{{ this.selectedApplicationData.bemerkung }}</p>
           </div>
         </div>
@@ -131,6 +131,41 @@
             <p>(dem Antrag angehängte Dokumente)</p>
           </div>
         </div>
+
+        <div class="col-12 md:col-8">
+          <div
+            v-if="selectedApplicationData"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4 style="color: var(--red-600); font-weight: bold">
+              Bitte Bemerkung für den Vertrag eintragen
+            </h4>
+            <Textarea
+              v-model="contractComment"
+              :autoResize="true"
+              rows="12"
+              cols="30"
+              style="max-width: 90%; max-height: 50%"
+            />
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div
+            v-if="selectedApplicationData"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4 style="color: var(--red-600); font-weight: bold">
+              Bitte Vertragsdauer eintragen (in Monaten)
+            </h4>
+            <Knob
+              v-model="contractDuration"
+              :min="3"
+              :max="36"
+              :step="1"
+              value-color="var(--buttonColor)"
+            />
+          </div>
+        </div>
       </div>
 
       <div class="p-buttonset" style="margin-top: 16px">
@@ -138,7 +173,14 @@
           label="Annehmen"
           icon="pi pi-check-circle"
           iconPos="left"
-          @click="$emit('changeStatus', this.selectedApplication, 'ANGENOMMEN')"
+          @click="
+            $emit(
+              'acceptApplication',
+              this.selectedApplication,
+              this.contractDuration,
+              this.contractComment
+            )
+          "
         ></Button>
         <Button
           label="Unvollständig"
@@ -184,13 +226,15 @@ export default {
   },
   props: ["applicationsList", "selectedApplication"],
   inject: ["bbUrl", "apiUrl"],
-  emits: ["backToApplList", "changeStatus"],
+  emits: ["backToApplList", "changeStatus", "acceptApplication"],
   data() {
     return {
       debug: false,
       selectedApplicationData: null,
       parentData: null,
       childData: null,
+      contractComment: null,
+      contractDuration: 12,
     };
   },
   methods: {
