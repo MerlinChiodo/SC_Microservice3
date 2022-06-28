@@ -134,22 +134,26 @@
           label="Annehmen"
           icon="pi pi-check-circle"
           iconPos="left"
-          @click="$emit('changeStatus', this.selectedApplication, 'accept')"
+          @click="$emit('changeStatus', this.selectedApplication, 'ANGENOMMEN')"
         ></Button>
         <Button
           label="Unvollständig"
           icon="pi pi-exclamation-circle"
-          @click="$emit('changeStatus', this.selectedApplication, 'accept')"
+          @click="
+            $emit('changeStatus', this.selectedApplication, 'UNVOLLSTAENDIG')
+          "
         ></Button>
         <Button
           label="Ablehnen"
           icon="pi pi-times-circle"
-          @click="$emit('changeStatus', this.selectedApplication, 'accept')"
+          @click="$emit('changeStatus', this.selectedApplication, 'ABGELEHNT')"
         ></Button>
         <Button
           label="Eingegangen"
           icon="pi pi-undo"
-          @click="$emit('changeStatus', this.selectedApplication, 'accept')"
+          @click="
+            $emit('changeStatus', this.selectedApplication, 'EINGEGANGEN')
+          "
         ></Button>
       </div>
     </div>
@@ -176,7 +180,7 @@ export default {
   },
   props: ["applicationsList", "selectedApplication"],
   inject: ["bbUrl", "apiUrl"],
-  emits: ["backToApplList"],
+  emits: ["backToApplList", "changeStatus"],
   data() {
     return {
       debug: false,
@@ -205,6 +209,18 @@ export default {
         console.log(response.status);
       }
     },
+    /*    async updateApplication(newStatus) {
+      let updatedApplication = this.selectedApplicationData;
+      updatedApplication.status = newStatus;
+
+      const response = await fetch(this.apiUrl + "applications/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedApplication),
+      });
+      const res = await response.json();
+      console.log(res);
+    },*/
   },
 };
 </script>

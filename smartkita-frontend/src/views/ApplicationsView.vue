@@ -33,6 +33,7 @@
         :selectedApplication="this.selectedApplication"
         :applicationsList="this.applicationsList"
         @backToApplList="this.showDetails = false"
+        @changeStatus="changeApplicationStatus"
       ></ApplicationDetailed>
     </div>
   </div>
@@ -130,6 +131,10 @@ export default {
     },
     resetApplication(application) {
       application.status = "EINGEGANGEN";
+      this.updateApplication(application);
+    },
+    changeApplicationStatus(application, newStatus) {
+      application.status = newStatus;
       this.updateApplication(application);
     },
   },
