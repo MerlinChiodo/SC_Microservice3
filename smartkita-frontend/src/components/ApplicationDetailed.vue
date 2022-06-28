@@ -17,11 +17,13 @@ export default {
     this.selectedApplicationData = await this.applicationsList.find(
       (appl) => appl.id_antrag === this.selectedApplication.id_antrag
     );
-    this.parentData = await this.getApplGuardianData(
-      this.selectedApplicationData.id_ezb
+    this.parentData = await this.getPersonData(
+      this.selectedApplicationData.id_ezb,
+      "guardian"
     );
-    this.childData = await this.getApplCildData(
-      this.selectedApplicationData.id_kind
+    this.childData = await this.getPersonData(
+      this.selectedApplicationData.id_kind,
+      "child"
     );
   },
   props: ["applicationsList", "selectedApplication"],
@@ -36,30 +38,18 @@ export default {
     };
   },
   methods: {
-    async getApplGuardianData(internalId) {
-      const responseInternal = await fetch(
-        this.apiUrl + "guardians?id=" + internalId
-      );
+    async getPersonData(internalId, personType) {
+      let endpoint = null;
+      if (personType === "guardian") {
+        endpoint = "guardians?id=";
+      } else if (personType === "child") {
+        endpoint = "children?id=";
+      }
+      const responseInternal = await fetch(this.apiUrl + endpoint + internalId);
       const dataInternal = await responseInternal.json();
       const smartcity_id = dataInternal.smartcity_id;
 
       const response = await fetch(this.bbUrl + "/citizen/" + smartcity_id);
-      const data = await response.json();
-      if (response.status == 200) {
-        return data;
-      } else {
-        console.log(response.status);
-      }
-    },
-    async getApplCildData(internalId) {
-      const responseInternal = await fetch(
-        this.apiUrl + "children?id=" + internalId
-      );
-      const dataInternal = await responseInternal.json();
-
-      const response = await fetch(
-        this.bbUrl + "/citizen/" + dataInternal.smartcity_id
-      );
       const data = await response.json();
       if (response.status == 200) {
         return data;
