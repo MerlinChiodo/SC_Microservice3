@@ -1,6 +1,14 @@
 <template>
-  <KitaProfile v-if="this.kitaData && !this.applicationMode" :kitaData="this.kitaData" @applicationMode="this.setApplicationMode"></KitaProfile>
-  <ApplicationForm v-if="this.kitaData && this.applicationMode" :kitaData="this.kitaData" @applicationMode="this.setApplicationMode"></ApplicationForm>
+  <KitaProfile
+    v-if="this.kitaData && !this.applicationMode"
+    :kitaData="this.kitaData"
+    @applicationMode="this.setApplicationMode"
+  ></KitaProfile>
+  <ApplicationForm
+    v-if="this.kitaData && this.applicationMode"
+    :kitaData="this.kitaData"
+    @applicationMode="this.setApplicationMode"
+  ></ApplicationForm>
 </template>
 
 <script>
@@ -8,7 +16,7 @@ import KitaProfile from "../components/KitaProfile.vue";
 import ApplicationForm from "../components/ApplicationForm.vue";
 
 export default {
-  components: {ApplicationForm, KitaProfile },
+  components: { ApplicationForm, KitaProfile },
   created() {
     this.getKitaData(this.$route.query.id);
   },
@@ -18,7 +26,7 @@ export default {
   data() {
     return {
       kitaData: null,
-      applicationMode: false
+      applicationMode: false,
     };
   },
   computed: {
@@ -34,7 +42,7 @@ export default {
   },
   methods: {
     setApplicationMode(applMode) {
-      this.applicationMode = applMode
+      this.applicationMode = applMode;
     },
     toLowerCaseExceptFirstChar(str) {
       return str[0].toUpperCase() + str.substring(1).toLowerCase();

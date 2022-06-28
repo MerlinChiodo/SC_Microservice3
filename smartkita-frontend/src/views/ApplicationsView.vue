@@ -7,6 +7,7 @@
     </p>-->
 
     <DataTable
+      v-if="!showDetails"
       :value="applicationsList"
       showGridlines
       stripedRows
@@ -27,11 +28,20 @@
 
       <ContextMenu :model="menuModel" ref="cm" />
     </DataTable>
+    <div v-if="showDetails">
+      <ApplicationDetailed
+        :selectedApplication="this.selectedApplication"
+        :applicationsList="this.applicationsList"
+        @backToApplList="this.showDetails = false"
+      ></ApplicationDetailed>
+    </div>
   </div>
 </template>
 
 <script>
+import ApplicationDetailed from "../components/ApplicationDetailed.vue";
 export default {
+  components: { ApplicationDetailed },
   inject: ["apiUrl"],
   beforeMount() {
     this.getApplicationsList();
@@ -41,8 +51,15 @@ export default {
     return {
       applicationsList: null,
       selectedApplication: null,
+      showDetails: false,
       menuModel: [
-        { label: "Details", icon: "pi pi-fw pi-search" },
+        {
+          label: "Details",
+          icon: "pi pi-fw pi-search",
+          command: () => {
+            this.showDetails = true;
+          },
+        },
         {
           label: "Status",
           icon: "pi pi-align-justify",
