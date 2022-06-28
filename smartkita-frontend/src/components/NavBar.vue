@@ -5,7 +5,8 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
-        <Button @click="login"> Einloggen </Button>
+        <Button v-if="!this.user.isLoggedIn" @click="login"> Einloggen </Button>
+        <Button v-else @click="logout"> Ausloggen </Button>
         <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
@@ -99,7 +100,13 @@ export default {
     },
     logout() {
       this.$cookies.set("user_session_token", "");
-      location.reload();
+      localStorage.removeItem("token");
+      this.user.isLoggedIn = false;
+      (this.user.smartCityId = null),
+        (this.user.userData = null),
+        (this.user.token = null),
+        //this.user.isEmployee = false,
+        location.reload();
     },
   },
 };

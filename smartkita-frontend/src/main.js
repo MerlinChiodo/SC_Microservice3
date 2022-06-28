@@ -48,7 +48,9 @@ app.provide("homeUrl", "http://vps2290194.fastwebserver.de:9730/");*/
 
 // other service URLs
 app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
-app.provide("authUrl", "http://auth.smartcityproject.net:8080/");
+app.provide("authUrl", "http://www.supersmartcity.de:9760/");
+
+// app.provide("authUrl", "http://auth.smartcityproject.net:8080/");
 
 // PrimeVue components
 app.component("Button", Button);
