@@ -118,7 +118,6 @@ export default {
     },
     prettifyDates(applList) {
       applList.forEach((application) => {
-        console.log(application);
         let prettyDatum = application.datum.split("T")[0];
         application.datumPretty = prettyDatum.toString();
       });
