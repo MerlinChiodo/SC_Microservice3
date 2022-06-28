@@ -11,10 +11,18 @@
         <div class="flex align-items-center justify-content-end w-8rem">
           <Button type="button" icon="pi pi-bookmark"></Button>
           <Button
+            v-if="this.user.isLoggedIn"
             type="button"
             icon="pi pi-file"
             style="margin-left: 3px"
             @click="$emit('applicationMode', true)"
+          ></Button>
+          <Button
+            v-else
+            type="button"
+            icon="pi pi-file"
+            style="margin-left: 3px"
+            disabled="disabled"
           ></Button>
         </div>
       </div>
@@ -109,6 +117,7 @@
 </template>
 
 <script>
+import { useUserStore } from "../stores/user";
 export default {
   name: "KitaProfile",
   props: ["kitaData"],
@@ -123,6 +132,11 @@ export default {
       }
       return formatted;
     },
+  },
+  data() {
+    return {
+      user: useUserStore(),
+    };
   },
   methods: {
     toLowerCaseExceptFirstChar(str) {
