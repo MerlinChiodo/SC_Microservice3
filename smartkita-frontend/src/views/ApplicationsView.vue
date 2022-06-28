@@ -29,7 +29,11 @@
         :sortable="true"
       ></Column>
       <Column field="bemerkung" header="Bemerkung"></Column>
-      <Column field="datum" header="Gestellt am" :sortable="true"></Column>
+      <Column
+        field="datumPretty"
+        header="Gestellt am"
+        :sortable="true"
+      ></Column>
       <Column field="prioritaet" header="Priorität" :sortable="true"></Column>
       <Column field="status" header="Status" :sortable="true"></Column>
 
@@ -115,10 +119,8 @@ export default {
     prettifyDates(applList) {
       applList.forEach((application) => {
         console.log(application);
-        let prettyDatum = new Date(application.datum)
-          .toISOString()
-          .split("T")[0];
-        application.datum = prettyDatum.toString();
+        let prettyDatum = application.datum.split("T")[0];
+        application.datumPretty = prettyDatum.toString();
       });
       return applList;
     },

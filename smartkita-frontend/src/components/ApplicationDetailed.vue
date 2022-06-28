@@ -97,6 +97,10 @@
           >
             <h4>Antragsdetails</h4>
             <span
+              >Gestellt am:
+              {{ this.selectedApplicationData.datum.split("T")[0] }}</span
+            >
+            <span
               >Betreuungsstunden:
               {{ this.selectedApplicationData.betreuungsstunden }}</span
             >
