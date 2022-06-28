@@ -1,7 +1,18 @@
 const prisma = require('../lib/prisma.js');
 
 exports.contractsList = async (req, res) => {
-    return res.send('not implemented yet')
+    try {
+        const allContracts = await prisma.vertrag.findMany(
+        { include: {
+            einrichtung: true
+        },
+        })
+
+        allContracts
+        return res.json(allContracts)
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 exports.getContractById = async (req, res) => {

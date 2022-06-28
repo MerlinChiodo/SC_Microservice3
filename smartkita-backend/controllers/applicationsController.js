@@ -3,7 +3,11 @@ const prisma = require('../lib/prisma.js');
 // APPLICATION = Antrag
 exports.applicationsList = async (req, res) => {
     try {
-        const allApplications = await prisma.antrag.findMany()
+        const allApplications = await prisma.antrag.findMany({
+            include: {
+                einrichtung: true
+            }
+        })
         return res.json(allApplications)
     } catch (e) {
         console.log(e)

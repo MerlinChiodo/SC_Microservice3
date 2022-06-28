@@ -102,7 +102,7 @@
             >
             <span v-if="this.selectedApplicationData.id_einrichtung"
               >Einrichtung:
-              {{ this.selectedApplicationData.id_einrichtung }}</span
+              {{ this.selectedApplicationData.einrichtung.name }}</span
             >
             <div v-if="!this.selectedApplicationData.id_einrichtung">
               <p><ApplicationKitaSelector></ApplicationKitaSelector></p>
