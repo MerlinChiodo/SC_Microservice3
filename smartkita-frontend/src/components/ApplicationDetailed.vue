@@ -97,13 +97,16 @@
           >
             <h4>Antragsdetails</h4>
             <span
-              >Einrichtung:
-              {{ this.selectedApplicationData.id_einrichtung }}</span
-            >
-            <span
               >Betreuungsstunden:
               {{ this.selectedApplicationData.betreuungsstunden }}</span
             >
+            <span v-if="this.selectedApplicationData.id_einrichtung"
+              >Einrichtung:
+              {{ this.selectedApplicationData.id_einrichtung }}</span
+            >
+            <div v-if="!this.selectedApplicationData.id_einrichtung">
+              <p><ApplicationKitaSelector></ApplicationKitaSelector></p>
+            </div>
           </div>
         </div>
         <div class="col-12 md:col-8">
@@ -115,7 +118,17 @@
             <p>{{ this.selectedApplicationData.bemerkung }}</p>
           </div>
         </div>
+        <div class="col-12 md:col-4">
+          <div
+            v-if="selectedApplicationData"
+            class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+          >
+            <h4>Dokumente</h4>
+            <p>(dem Antrag angehängte Dokumente)</p>
+          </div>
+        </div>
       </div>
+
       <div class="p-buttonset" style="margin-top: 16px">
         <Button
           label="Annehmen"
@@ -144,8 +157,10 @@
 </template>
 
 <script>
+import ApplicationKitaSelector from "./ApplicationKitaSelector.vue";
 export default {
   name: "ApplicationDetailed",
+  components: { ApplicationKitaSelector },
   async beforeMount() {
     this.selectedApplicationData = await this.applicationsList.find(
       (appl) => appl.id_antrag === this.selectedApplication.id_antrag

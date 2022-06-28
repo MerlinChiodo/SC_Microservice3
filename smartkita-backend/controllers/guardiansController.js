@@ -17,7 +17,6 @@ exports.getGuardianById = async (req, res) => {
                 id_ezb: Number(id)
             }
         })
-        console.log(guardian)
         return res.json(guardian)
     } catch (e) {
         console.log(e)
