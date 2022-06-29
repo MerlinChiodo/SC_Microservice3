@@ -5,8 +5,9 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
-        <Button @click="login"> Einloggen </Button>
-        <a href="http://vps2290194.fastwebserver.de:9800" target="_blank">
+        <Button v-if="!this.user.isLoggedIn" @click="login"> Einloggen </Button>
+        <Button v-else @click="logout"> Ausloggen </Button>
+        <a href="http://supersmartcity.de" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
             alt="To landing page"
@@ -21,11 +22,15 @@
 </template>
 
 <script>
+import { useUserStore } from "../stores/user";
 export default {
   name: "NavBar",
-
+  beforeCreate() {
+    this.user = useUserStore();
+  },
   data() {
     return {
+      user: useUserStore(),
       items: [
         {
           label: "SmartKita",
@@ -50,18 +55,6 @@ export default {
           ],
         },
         {
-          label: "Anträge",
-          icon: "pi pi-fw pi-copy",
-          items: [
-            { label: "Eingang", icon: "pi pi-inbox", to: "./applications" },
-            {
-              label: "Verträge",
-              icon: "pi pi-file",
-              // to: VERTRAGSVERWALTUNG
-            },
-          ],
-        },
-        {
           label: "Mitgliedschaften",
           icon: "pi pi-fw pi-users",
         },
@@ -72,12 +65,29 @@ export default {
         {
           label: "Mitarbeitende",
           icon: "pi pi-fw pi-briefcase",
-          to: "/employee",
+          disabled: !this.user.isEmployee,
+          items: [
+            {
+              label: "Anträge",
+              icon: "pi pi-fw pi-inbox",
+              to: "./applications",
+            },
+            {
+              label: "Verträge",
+              icon: "pi pi-fw pi-file",
+              to: "./contracts",
+            },
+            {
+              label: "SmartCity",
+              icon: "pi pi-fw pi-building",
+              to: "/employee",
+            },
+          ],
         },
-        {
+        /*        {
           label: "Einloggen",
           icon: "pi pi-fw pi-sign-in",
-        },
+        },*/
       ],
     };
   },
@@ -90,7 +100,13 @@ export default {
     },
     logout() {
       this.$cookies.set("user_session_token", "");
-      location.reload();
+      localStorage.removeItem("token");
+      this.user.isLoggedIn = false;
+      (this.user.smartCityId = null),
+        (this.user.userData = null),
+        (this.user.token = null),
+        //this.user.isEmployee = false,
+        location.reload();
     },
   },
 };
@@ -103,6 +119,22 @@ export default {
   padding: 0px;
 }
 
-.customButton {
+.p-menubar :deep(.p-button) {
+  background-color: var(--buttonDarkerColor);
+}
+.p-button:hover {
+  background-color: var(--buttonHoverColor) !important;
+}
+.p-button:active,
+.p-button:focus {
+  background-color: var(--buttonColor) !important;
+}
+
+.p-menubar
+  .p-menubar-root-list
+  > .p-menuitem
+  > .p-menuitem-link
+  .p-menuitem-text {
+  color: white !important;
 }
 </style>

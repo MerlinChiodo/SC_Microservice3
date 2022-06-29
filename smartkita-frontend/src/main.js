@@ -38,15 +38,23 @@ app.use(PrimeVue);
 app.use(VueCookies);
 
 // Internal Kita URLs
-//app.provide("apiUrl", "http://localhost:3001/api/");
-//app.provide("homeUrl", "http://localhost:3000/");
+// local development
+/*app.provide("apiUrl", "http://localhost:3001/api/");
+app.provide("homeUrl", "http://localhost:3000/");*/
 
+// deployment
 app.provide("apiUrl", "http://" + location.host + "/api/");
-app.provide("homeUrl", "http://vps2290194.fastwebserver.de:9730/");
+app.provide("homeUrl", "http://supersmartcity.de:9730");
+
+// local test environment
+/*app.provide("apiUrl", "http://" + location.host + "/api/");
+app.provide("homeUrl", "http://localhost:3001/");*/
 
 // other service URLs
 app.provide("bbUrl", "http://vps2290194.fastwebserver.de:9710/api");
 app.provide("authUrl", "http://www.supersmartcity.de:9760/");
+
+// app.provide("authUrl", "http://auth.smartcityproject.net:8080/");
 
 // PrimeVue components
 app.component("Button", Button);

@@ -5,7 +5,22 @@ exports.guardiansList = async (req, res) => {
 }
 
 exports.getGuardianById = async (req, res) => {
-    return res.send('not implemented yet')
+    let id = req.query.id
+    try { Number(id)}
+    catch (e) {
+        console.log("invalid id")
+        return res.status(400).send({error: true, msg: "invalid id"})
+    }
+    try {
+        const guardian = await prisma.erziehungsberechtigte.findFirst({
+            where: {
+                id_ezb: Number(id)
+            }
+        })
+        return res.json(guardian)
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 exports.createGuardian = async (req, res) => {
