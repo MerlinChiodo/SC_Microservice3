@@ -84,7 +84,8 @@ export default {
         {
           label: "Mitarbeitende",
           icon: "pi pi-fw pi-briefcase",
-          disabled: !this.user.isLoggedInEmployee,
+          // disabled: !this.user.isLoggedInEmployee,
+          visible: () => this.user.isLoggedInEmployee,
           items: [
             {
               label: "Anträge",

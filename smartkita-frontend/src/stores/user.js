@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
@@ -15,5 +14,9 @@ export const useUserStore = defineStore({
     isLoggedInEmployee: false,
   }),
   getters: {},
-  actions: {},
+  actions: {
+    updateLoggedInEmployee(value) {
+      Object.assign(this.isLoggedInEmployee, value);
+    },
+  },
 });

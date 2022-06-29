@@ -48,11 +48,13 @@ export default {
       });
       const data = await response.json();
       if (response.status == 200) {
+        console.log(data);
         localStorage.setItem("employeeToken", data.employee_session_token);
         this.user.isLoggedInEmployee = true;
         this.user.employeeToken = data.employee_session_token;
         this.user.employeeId = data.id;
         this.user.employeeData = data.info;
+        this.user.updateLoggedInEmployee(true);
       } else {
         console.log("employee login failed");
         window.location.href = this.homeUrl;
