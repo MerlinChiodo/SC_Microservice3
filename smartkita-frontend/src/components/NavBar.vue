@@ -7,6 +7,11 @@
       <template #end>
         <Button v-if="!this.user.isLoggedIn" @click="login"> Einloggen </Button>
         <Button v-else @click="logout"> Ausloggen </Button>
+        <Button
+          @click="loginEmployee"
+          icon="pi pi-key"
+          style="margin-left: 6px"
+        ></Button>
         <a href="http://supersmartcity.de" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
@@ -98,15 +103,29 @@ export default {
         this.authUrl +
         `external?redirect_success=${this.homeUrl}&redirect_error=${this.homeUrl}`;
     },
+    loginEmployee() {
+      window.location.href =
+        this.authUrl +
+        `employee/external?redirect_success=${this.homeUrl}?employee=true&redirect_error=${this.homeUrl}`;
+    },
     logout() {
       this.$cookies.set("user_session_token", "");
       localStorage.removeItem("token");
       this.user.isLoggedIn = false;
-      (this.user.smartCityId = null),
-        (this.user.userData = null),
-        (this.user.token = null),
-        //this.user.isEmployee = false,
-        location.reload();
+      this.user.smartCityId = null;
+      this.user.userData = null;
+      this.user.token = null;
+      //this.user.isEmployee = false,
+      window.location.href = this.homeUrl;
+    },
+    logoutEmployee() {
+      this.$cookies.set("employee_session_token", "");
+      localStorage.removeItem("employeeToken");
+      this.user.isLoggedInEmployee = false;
+      this.user.smartCityId = null;
+      this.user.userData = null;
+      this.user.token = null;
+      window.location.href = this.homeUrl;
     },
   },
 };
