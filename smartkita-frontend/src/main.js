@@ -44,7 +44,7 @@ app.provide("homeUrl", "http://localhost:3000/");*/
 
 // deployment
 app.provide("apiUrl", "http://" + location.host + "/api/");
-app.provide("homeUrl", "http://supersmartcity.de:9730");
+app.provide("homeUrl", "http://supersmartcity.de:9730/");
 
 // local test environment
 /*app.provide("apiUrl", "http://" + location.host + "/api/");
