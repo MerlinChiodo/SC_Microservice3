@@ -28,9 +28,44 @@
 import EventFormStadtbus from "../components/EventFormStadtbus.vue";
 import EventFormLandingPage from "../components/EventFormLandingPage.vue";
 import EventFormForum from "../components/EventFormForum.vue";
+import { useUserStore } from "../stores/user";
 
 export default {
+  async beforeMount() {
+    // Employee login
+    let employeeToken;
+    if (this.$route.query.token) {
+      employeeToken = this.$route.query.token;
+    } else if (this.user.employeeToken) {
+      employeeToken = this.user.employeeToken;
+    }
+    if (employeeToken) {
+      const response = await fetch(this.authUrl + "employee/verify", {
+        method: "POST",
+        body:
+          encodeURIComponent("code") + "=" + encodeURIComponent(employeeToken),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      const data = await response.json();
+      if (response.status == 200) {
+        localStorage.setItem("employeeToken", data.employee_session_token);
+        this.user.isLoggedInEmployee = true;
+        this.user.employeeToken = data.employee_session_token;
+        this.user.employeeId = data.id;
+        this.user.employeeData = data.info;
+      } else {
+        console.log("employee login failed");
+        window.location.href = this.homeUrl;
+      }
+    }
+  },
+  data() {
+    return {
+      user: useUserStore(),
+    };
+  },
   name: "EmployeeView",
+  inject: ["homeUrl", "authUrl"],
   components: { EventFormStadtbus, EventFormLandingPage, EventFormForum },
 };
 </script>

@@ -5,13 +5,27 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
-        <Button v-if="!this.user.isLoggedIn" @click="login"> Einloggen </Button>
-        <Button v-else @click="logout"> Ausloggen </Button>
         <Button
+          v-if="!this.user.isLoggedIn && !this.user.isLoggedInEmployee"
+          @click="login"
+        >
+          Einloggen
+        </Button>
+        <Button v-if="this.user.isLoggedIn" @click="logout"> Ausloggen </Button>
+        <Button
+          v-if="!this.user.isLoggedInEmployee && !this.user.isLoggedIn"
           @click="loginEmployee"
           icon="pi pi-key"
           style="margin-left: 6px"
         ></Button>
+        <Button
+          v-if="this.user.isLoggedInEmployee"
+          @click="logoutEmployee"
+          icon="pi pi-sign-out"
+          style="margin-left: 6px"
+        >
+        </Button>
+
         <a href="http://supersmartcity.de" target="_blank">
           <img
             src="../assets/smartcity_logo_icon_50x50.png"
@@ -70,7 +84,7 @@ export default {
         {
           label: "Mitarbeitende",
           icon: "pi pi-fw pi-briefcase",
-          disabled: !this.user.isEmployee,
+          disabled: !this.user.isLoggedInEmployee,
           items: [
             {
               label: "Anträge",
@@ -106,7 +120,7 @@ export default {
     loginEmployee() {
       window.location.href =
         this.authUrl +
-        `employee/external?redirect_success=${this.homeUrl}?employee=true&redirect_error=${this.homeUrl}`;
+        `employee/external?redirect_success=${this.homeUrl}employee&redirect_error=${this.homeUrl}`;
     },
     logout() {
       this.$cookies.set("user_session_token", "");
@@ -124,7 +138,7 @@ export default {
       this.user.isLoggedInEmployee = false;
       this.user.smartCityId = null;
       this.user.userData = null;
-      this.user.token = null;
+      this.user.employeeToken = null;
       window.location.href = this.homeUrl;
     },
   },
