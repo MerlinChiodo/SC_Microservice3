@@ -14,14 +14,16 @@
 import { useUserStore } from "../stores/user";
 export default {
   async beforeMount() {
-    // const token = this.$cookies.get("user_session_token");
+    if (this.user.employeeToken) {
+      this.$router.push("employee");
+    }
     let token;
+    // user login
     if (this.$route.query.token) {
       token = this.$route.query.token;
     } else if (this.user.token) {
       token = this.user.token;
     }
-    console.log(token);
     if (token) {
       const response = await fetch(this.authUrl + "verify", {
         method: "POST",
@@ -30,6 +32,7 @@ export default {
       });
       const data = await response.json();
       if (response.status == 200) {
+        console.log(data);
         localStorage.setItem("token", data.user_session_token);
         this.user.isLoggedIn = true;
         this.user.token = data.user_session_token;
