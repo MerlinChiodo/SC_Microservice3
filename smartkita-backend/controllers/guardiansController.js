@@ -23,6 +23,25 @@ exports.getGuardianById = async (req, res) => {
     }
 }
 
+exports.getGuardianBySmartcityId = async (req, res) => {
+    let id = req.query.id
+    try { Number(id)}
+    catch (e) {
+        console.log("invalid id")
+        return res.status(400).send({error: true, msg: "invalid id"})
+    }
+    try {
+        const guardian = await prisma.erziehungsberechtigte.findFirst({
+            where: {
+                smartcity_id: Number(id)
+            }
+        })
+        return res.json(guardian)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 exports.createGuardian = async (req, res) => {
     return res.send('not implemented yet')
 }

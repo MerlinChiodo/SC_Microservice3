@@ -2,7 +2,7 @@
   <h4>Dokumente anfügen</h4>
   <FileUpload
     name="documents[]"
-    :url="this.uploadUrl"
+    :url="this.uploadUrl + '/' + this.user.internalId"
     :multiple="true"
     accept=".pdf"
   ></FileUpload>

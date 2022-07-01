@@ -32,7 +32,14 @@ export default {
       });
       const data = await response.json();
       if (response.status == 200) {
-        console.log(data);
+        const guardianResponse = await fetch(
+          this.apiUrl + "guardians/byScId/?id=" + data.citizen_id
+        );
+        const guardianData = await guardianResponse.json();
+        if (guardianResponse.status == 200) {
+          this.user.internalId = guardianData.id_ezb;
+        }
+
         localStorage.setItem("token", data.user_session_token);
         this.user.isLoggedIn = true;
         this.user.token = data.user_session_token;
@@ -46,6 +53,6 @@ export default {
       user: useUserStore(),
     };
   },
-  inject: ["authUrl", "homeUrl"],
+  inject: ["authUrl", "homeUrl", "apiUrl"],
 };
 </script>

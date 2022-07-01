@@ -146,10 +146,9 @@ model Bild {
 
 model Dokument {
   id_dokument Int @id @default(autoincrement())
-  id_ezb Int
-  id_antrag Int?
-  erziehungsberechtigte Erziehungsberechtigte @relation(fields: [id_ezb], references: [id_ezb])
   antrag Antrag[]
+  id_ezb Int
+  erziehungsberechtigte Erziehungsberechtigte @relation(fields: [id_ezb], references: [id_ezb])
   // Attributes
   path_fileserver String
   datum_upload DateTime @default(now()) @db.DateTime(0)
