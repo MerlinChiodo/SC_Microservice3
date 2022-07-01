@@ -139,7 +139,7 @@
             <FileUpload
               name="documents[]"
               :url=this.uploadUrl
-              :multiple="true"
+              :multiple="false"
               accept=".pdf"
             ></FileUpload>
           </div>

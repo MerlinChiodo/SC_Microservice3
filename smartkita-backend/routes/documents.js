@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const documentsController = require('../controllers/documentsController');
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' });
 
 // GET all applications' data
 router.get('/all', documentsController.documentsList);
@@ -9,7 +11,7 @@ router.get('/all', documentsController.documentsList);
 router.get('/', documentsController.getDocumentById);
 
 // POST a new application
-router.post('/', documentsController.createDocument);
+router.post('/', upload.single('document'), documentsController.createDocument);
 
 // UPDATE an existing application's data
 router.patch('/', documentsController.patchDocument);
