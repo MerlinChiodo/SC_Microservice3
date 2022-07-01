@@ -5,6 +5,7 @@ import ApplicationsView from "../views/ApplicationsView.vue";
 import SearchKitasView from "../views/SearchKitasView.vue";
 import KitaView from "../views/KitaView.vue";
 import ContractsView from "../views/ContractsView.vue";
+import DocumentsView from "../views/DocumentsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/contracts",
       name: "contracts",
       component: ContractsView,
+    },
+    {
+      path: "/documents",
+      name: "documents",
+      component: DocumentsView,
     },
     {
       path: "/about",

@@ -80,6 +80,7 @@ export default {
         {
           label: "Dokumente",
           icon: "pi pi-fw pi-paperclip",
+          to: "./documents",
         },
         {
           label: "Mitarbeitende",

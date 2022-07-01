@@ -10,8 +10,8 @@ exports.getDocumentById = async (req, res) => {
     return res.send('not implemented yet')
 }
 
-exports.createDocument = async (req, res, next) => {
-    console.log(req)
+exports.createDocument = async (req, res) => {
+    //console.log(req)
     return res.send('not implemented yet')
 }
 
