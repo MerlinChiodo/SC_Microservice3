@@ -136,7 +136,12 @@
             class="border-2 border-round-md border-dotted surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Dokumente anfügen</h4>
-            <FileUpload></FileUpload>
+            <FileUpload
+              name="documents[]"
+              :url=this.uploadUrl
+              :multiple="true"
+              accept=".pdf"
+            ></FileUpload>
           </div>
         </div>
         <div class="col-12 md:col-12">
@@ -181,6 +186,7 @@ export default {
   },
   data() {
     return {
+      uploadUrl: this.apiUrl + "documents",
       user: useUserStore(),
       userData: null,
       userChildrenData: null,

@@ -9,6 +9,7 @@ exports.getDocumentById = async (req, res) => {
 }
 
 exports.createDocument = async (req, res) => {
+    console.log(req)
     return res.send('not implemented yet')
 }
 
