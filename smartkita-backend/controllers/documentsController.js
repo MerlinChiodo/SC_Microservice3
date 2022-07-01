@@ -11,8 +11,34 @@ exports.getDocumentById = async (req, res) => {
 }
 
 exports.createDocument = async (req, res) => {
-    console.log(req.params.id)
-    return res.send('not implemented yet')
+    let id_ezb;
+    try { id_ezb = Number(req.params.id); } catch (e) {
+        console.log("invalid id");
+    }
+    let documents = [];
+
+    for (let i = 0; i < req.files.length; i++) {
+        const filename = req.files[i].filename;
+        const path_fileserver = "./upload/documents/" + filename;
+        const datum_upload = new Date();
+        const dateiformat = "PDF";
+
+        try {
+            const document = await prisma.dokument.create({
+                data: {
+                    id_ezb,
+                    path_fileserver,
+                    datum_upload,
+                    dateiformat
+                }
+            })
+            console.log(document);
+            documents.push(document);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    return res.status(200).json(documents);
 }
 
 exports.patchDocument = async (req, res) => {

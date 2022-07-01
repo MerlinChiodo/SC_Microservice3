@@ -32,7 +32,7 @@ router.get('/all', documentsController.documentsList);
 router.get('/', documentsController.getDocumentById);
 
 // POST a new application
-router.post('/:id', upload.array('documents[]'), documentsController.createDocument);
+router.post('/:id', upload.array('document'), documentsController.createDocument);
 
 // UPDATE an existing application's data
 router.patch('/', documentsController.patchDocument);
