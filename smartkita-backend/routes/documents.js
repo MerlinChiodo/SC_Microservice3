@@ -25,19 +25,25 @@ let upload = multer({
     }
 })
 
-// GET all applications' data
+// GET all documents' data
 router.get('/all', documentsController.documentsList);
 
-// GET an application by id
+// GET one citizen's documents' data
+router.get('/allById', documentsController.documentsListById);
+
+// GET a document by id
 router.get('/', documentsController.getDocumentById);
 
-// POST a new application
+// GET a document by Smartcity Id
+router.get('/byScId', documentsController.getDocumentByScId);
+
+// POST a new document
 router.post('/:id', upload.array('document'), documentsController.createDocument);
 
-// UPDATE an existing application's data
+// UPDATE an existing documents's data
 router.patch('/', documentsController.patchDocument);
 
-// DELETE an existing application
+// DELETE an existing document
 router.delete('/', documentsController.deleteDocument);
 
 module.exports = router;

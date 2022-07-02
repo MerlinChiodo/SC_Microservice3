@@ -81,6 +81,7 @@ export default {
           label: "Dokumente",
           icon: "pi pi-fw pi-paperclip",
           to: "./documents",
+          visible: () => this.user.isLoggedIn,
         },
         {
           label: "Mitarbeitende",
