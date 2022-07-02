@@ -46,6 +46,7 @@
         @backToApplList="this.showDetails = false"
         @changeStatus="changeApplicationStatus"
         @acceptApplication="acceptApplication"
+        @newKitaId="this.changeApplicationKitaId"
       ></ApplicationDetailed>
     </div>
   </div>
@@ -137,9 +138,9 @@ export default {
     onRowContextMenu(event) {
       this.$refs.cm.show(event.originalEvent);
     },
-    async createContract(application, duration, comment) {
+    async createContract(application, duration, comment, kitaid) {
       console.log(application);
-      const id_einrichtung = application.id_einrichtung;
+      const id_einrichtung = kitaid;
       const id_kind = application.id_kind;
       const id_ezb = application.id_ezb;
       const beginn = new Date();
@@ -165,11 +166,12 @@ export default {
       const data = await response.json();
       console.log(data);
     },
-    acceptApplication(application, duration, comment) {
+    acceptApplication(application, duration, comment, kitaid) {
       application.status = "ANGENOMMEN";
+
       // TODO: add toasts
       this.updateApplication(application);
-      this.createContract(application, duration, comment);
+      this.createContract(application, duration, comment, kitaid);
     },
     incompleteApplication(application) {
       application.status = "UNVOLLSTAENDIG";

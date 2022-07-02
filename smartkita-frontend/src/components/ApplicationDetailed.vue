@@ -231,7 +231,7 @@ export default {
   },
   props: ["applicationsList", "selectedApplication"],
   inject: ["bbUrl", "apiUrl"],
-  emits: ["backToApplList", "changeStatus", "acceptApplication"],
+  emits: ["backToApplList", "changeStatus", "acceptApplication", "newKitaId"],
   data() {
     return {
       debug: false,
@@ -264,6 +264,11 @@ export default {
     },
     async assignKita(kitaId) {
       console.log("assign kita", kitaId);
+      let updatedApplication = this.selectedApplicationData;
+
+      updatedApplication.id_einrichtung = kitaId;
+      console.log(updatedApplication);
+      this.$emit("newKitaId", updatedApplication);
     },
     /*    async updateApplication(newStatus) {
       let updatedApplication = this.selectedApplicationData;
