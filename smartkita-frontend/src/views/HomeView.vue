@@ -37,7 +37,9 @@ export default {
         );
         const guardianData = await guardianResponse.json();
         if (guardianResponse.status == 200) {
-          this.user.internalId = guardianData.id_ezb;
+          if (guardianData?.id_ezb !== null) {
+            this.user.internalId = guardianData.id_ezb;
+          }
         }
 
         localStorage.setItem("token", data.user_session_token);

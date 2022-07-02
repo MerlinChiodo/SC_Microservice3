@@ -14,6 +14,7 @@ exports.createDocument = async (req, res) => {
     let id_ezb;
     try { id_ezb = Number(req.params.id); } catch (e) {
         console.log("invalid id");
+        return res.status(400).json({ message: "invalid id_ezb"});
     }
     let documents = [];
 

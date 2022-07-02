@@ -36,9 +36,13 @@ exports.getGuardianBySmartcityId = async (req, res) => {
                 smartcity_id: Number(id)
             }
         })
-        return res.json(guardian)
+        if (guardian) {
+            return res.status(200).json(guardian)
+        }
+        else return res.status(400).send({ message: "guardian does not exist in Kita DB yet" })
     } catch (e) {
         console.log(e)
+        return res.status(400).send({ message: "guardian does not exist in Kita DB yet" })
     }
 }
 
