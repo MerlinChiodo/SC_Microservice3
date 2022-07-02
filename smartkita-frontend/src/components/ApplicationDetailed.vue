@@ -109,7 +109,12 @@
               {{ this.selectedApplicationData.einrichtung.name }}</span
             >
             <div v-if="!this.selectedApplicationData.id_einrichtung">
-              <p><ApplicationKitaSelector></ApplicationKitaSelector></p>
+              <p>
+                <ApplicationKitaSelector
+                  :selectedApplication="this.selectedApplication"
+                  @assignKita="assignKita"
+                ></ApplicationKitaSelector>
+              </p>
             </div>
           </div>
         </div>
@@ -256,6 +261,9 @@ export default {
       } else {
         console.log(response.status);
       }
+    },
+    async assignKita(kitaId) {
+      console.log("assign kita", kitaId);
     },
     /*    async updateApplication(newStatus) {
       let updatedApplication = this.selectedApplicationData;
