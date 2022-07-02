@@ -4,7 +4,7 @@
     :options="kitasList"
     optionLabel="name"
     placeholder="Einer Kita zuweisen"
-    @change="this.$emit('assignKita', this.selectedKita.id_einrichtung)"
+    @change="this.$emit('assignKita', this.selectedKita)"
   >
   </Dropdown>
 </template>

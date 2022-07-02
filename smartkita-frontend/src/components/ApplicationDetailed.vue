@@ -262,11 +262,11 @@ export default {
         console.log(response.status);
       }
     },
-    async assignKita(kitaId) {
-      console.log("assign kita", kitaId);
+    async assignKita(kita) {
+      console.log("assign kita", kita);
       let updatedApplication = this.selectedApplicationData;
-
-      updatedApplication.id_einrichtung = kitaId;
+      updatedApplication.einrichtung = kita;
+      updatedApplication.id_einrichtung = kita.id_einrichtung;
       console.log(updatedApplication);
       this.$emit("newKitaId", updatedApplication);
     },
