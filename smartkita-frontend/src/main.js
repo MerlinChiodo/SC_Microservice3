@@ -29,6 +29,7 @@ import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
 import FileUpload from "primevue/fileupload";
 import ToggleButton from "primevue/togglebutton";
+import Image from "primevue/image";
 
 const app = createApp(App);
 
@@ -76,5 +77,6 @@ app.component("Divider", Divider);
 app.component("Dropdown", Dropdown);
 app.component("FileUpload", FileUpload);
 app.component("ToggleButton", ToggleButton);
+app.component("Image", Image);
 
 app.mount("#app");

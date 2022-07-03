@@ -136,7 +136,6 @@
             <DocumentList
               v-if="this.selectedApplicationData.dokument[0]"
               :applicationDocuments="this.selectedApplicationData.dokument"
-              :employeeMode="false"
             ></DocumentList>
             <p v-else>
               {{ parentData.firstname + " " + parentData.lastname }} hat keine
