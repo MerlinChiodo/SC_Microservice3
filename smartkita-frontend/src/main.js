@@ -41,12 +41,12 @@ app.use(VueCookies);
 
 // Internal Kita URLs
 // local development
-/*app.provide("apiUrl", "http://localhost:3001/api/");
-app.provide("homeUrl", "http://localhost:3000/");*/
+app.provide("apiUrl", "http://localhost:3001/api/");
+app.provide("homeUrl", "http://localhost:3000/");
 
 // deployment
-app.provide("apiUrl", "http://" + location.host + "/api/");
-app.provide("homeUrl", "http://supersmartcity.de:9730/");
+/*app.provide("apiUrl", "http://" + location.host + "/api/");
+app.provide("homeUrl", "http://supersmartcity.de:9730/");*/
 
 // local test environment
 /*app.provide("apiUrl", "http://" + location.host + "/api/");

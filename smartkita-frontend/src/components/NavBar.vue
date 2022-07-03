@@ -76,6 +76,8 @@ export default {
         {
           label: "Mitgliedschaften",
           icon: "pi pi-fw pi-users",
+          to: "./memberships",
+          visible: () => this.user.isLoggedIn,
         },
         {
           label: "Dokumente",

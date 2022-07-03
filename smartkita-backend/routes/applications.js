@@ -8,6 +8,9 @@ router.get('/all', applicationsController.applicationsList);
 // GET an application by id
 router.get('/', applicationsController.getApplicationById);
 
+// GET all applcations by userId
+router.get('/all/byInternalId', applicationsController.applicationsListByInternalId)
+
 // POST a new application
 router.post('/', applicationsController.createApplication);
 

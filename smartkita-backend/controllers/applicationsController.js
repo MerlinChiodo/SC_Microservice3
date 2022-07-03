@@ -15,6 +15,29 @@ exports.applicationsList = async (req, res) => {
     }
 };
 
+exports.applicationsListByInternalId = async (req, res) => {
+    const id = req.query.id
+    try { Number(id) } catch (e) {
+        return res.status(400).send({message: "invalid user id"})
+    }
+    try {
+        const userApplications = await prisma.antrag.findMany({
+            where: {
+                id_ezb: Number(id)
+            },
+            include: {
+                dokument: true,
+                einrichtung: true,
+                kind: true
+            }
+        })
+        return res.status(200).json(userApplications)
+    } catch (e) {
+        console.log(e)
+        return res.status(400)
+    }
+}
+
 exports.getApplicationById = async (req, res) => {
     let id = req.query.id
     try {
