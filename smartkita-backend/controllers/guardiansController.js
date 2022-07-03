@@ -36,18 +36,34 @@ exports.getGuardianBySmartcityId = async (req, res) => {
                 smartcity_id: Number(id)
             }
         })
-        if (guardian) {
+        if (guardian !== null) {
             return res.status(200).json(guardian)
         }
-        else return res.status(400).send({ message: "guardian does not exist in Kita DB yet" })
+        else return res.status(204).send({ message: "guardian does not exist in Kita DB yet"})
     } catch (e) {
         console.log(e)
-        return res.status(400).send({ message: "guardian does not exist in Kita DB yet" })
+        return res.status(400).send({ message: "prisma error", error: e })
     }
 }
 
 exports.createGuardian = async (req, res) => {
-    return res.send('not implemented yet')
+    let id = req.query.id
+    try { Number(id)}
+    catch (e) {
+        console.log("invalid id")
+        return res.status(400).send({error: e, msg: "invalid id", id})
+    }
+    try {
+        const guardian = await prisma.erziehungsberechtigte.create({
+            data: {
+                smartcity_id: Number(id)
+            }
+        })
+        return res.status(200).json(guardian);
+    } catch (e) {
+        console.log(e)
+        return res.status(400).send({message: "guardian could not be created", error: e});
+    }
 }
 
 exports.patchGuardian = async (req, res) => {
