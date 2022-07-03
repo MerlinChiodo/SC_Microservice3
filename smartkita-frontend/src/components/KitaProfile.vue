@@ -98,11 +98,16 @@
             {{ kitaData.termine }}
           </div>
         </div>
+        <!--        Bildergalerie-->
         <div class="col-12 md:col-8">
           <div
             class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
-            <div class="grid p-fluid" style="margin: 4px">
+            <div
+              v-if="this.imageList[0]"
+              class="grid p-fluid"
+              style="margin: 4px"
+            >
               <div
                 class="col-12 md:col-4"
                 v-for="image in imageList"
@@ -116,14 +121,18 @@
                 ></Image>
               </div>
             </div>
+            <div v-else>
+              <h4>Schade!</h4>
+              {{ kitaData.name }} hat noch keine Bilder hochgeladen.
+            </div>
           </div>
         </div>
-        <!--        Bildergalerie-->
-        <div class="col-12 md:col-12">
+        <!--Bilderupload-->
+        <div class="col-12 md:col-12" v-if="this.user.isLoggedInEmployee">
           <div
             class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
-            <div v-if="this.user.isLoggedInEmployee">
+            <div style="margin-bottom: 2rem">
               <ImageUploadForm :kitaData="this.kitaData"></ImageUploadForm>
             </div>
           </div>

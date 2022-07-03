@@ -5,8 +5,11 @@
         <div class="col-12 md:col-8">
           <div
             class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
+            style="margin-bottom: 2rem"
           >
-            <DocumentUploadForm></DocumentUploadForm>
+            <DocumentUploadForm
+              @upload="this.updateDocuments()"
+            ></DocumentUploadForm>
           </div>
         </div>
         <div class="col-12 md:col-4">
@@ -15,6 +18,7 @@
           >
             <h4>Meine Dokumente</h4>
             <DocumentList
+              :key="this.docListKey"
               :internalId="this.user.internalId"
               :smartCityId="this.user.smartCityId"
               :employeeMode="false"
@@ -37,7 +41,14 @@ export default {
   data() {
     return {
       user: useUserStore(),
+      docListKey: "",
     };
+  },
+  methods: {
+    updateDocuments() {
+      console.log("document upload success");
+      this.docListKey += ".";
+    },
   },
   components: { DocumentUploadForm, DocumentList },
 };

@@ -5,6 +5,7 @@
     :url="this.uploadUrl + '/' + this.user.internalId"
     :multiple="true"
     accept=".pdf"
+    @upload="this.$emit('upload')"
   ></FileUpload>
 </template>
 
