@@ -1,5 +1,4 @@
 <template>
-  DocuementList
   <div v-if="documents[0]">
     <ul>
       <li v-for="document in documents" v-bind:key="document.id_dokument">
@@ -31,11 +30,6 @@ export default {
     };
   },
   methods: {
-    async test() {
-      const test = await this.getDocument(this.documents[0].id_dokument);
-      console.log(test);
-      return test;
-    },
     async getUserDocuments() {
       const response = await fetch(
         this.apiUrl + "documents/allById?id=" + this.internalId

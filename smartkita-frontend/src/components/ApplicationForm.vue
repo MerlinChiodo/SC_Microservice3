@@ -136,12 +136,7 @@
             class="border-2 border-round-md border-dotted surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Dokumente anfügen</h4>
-            <FileUpload
-              name="documents[]"
-              :url=this.uploadUrl
-              :multiple="false"
-              accept=".pdf"
-            ></FileUpload>
+            <DocumentPicker></DocumentPicker>
           </div>
         </div>
         <div class="col-12 md:col-12">
@@ -163,19 +158,15 @@
       </div>
     </div>
   </div>
-  <!--  <div>
-    <h5>Debug data (ApplicationForm)</h5>
-    {{ this.userData }}
-    <h5>Children</h5>
-    <div v-if="userChildrenData">{{ this.userChildrenData }}</div>
-  </div>-->
 </template>
 
 <script>
 import { useUserStore } from "../stores/user";
+import DocumentPicker from "./DocumentPicker.vue";
 
 export default {
   name: "ApplicationForm",
+  components: { DocumentPicker },
   props: ["kitaData"],
   inject: ["bbUrl", "apiUrl"],
   emits: ["applicationMode"],
