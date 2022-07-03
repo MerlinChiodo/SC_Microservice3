@@ -133,7 +133,15 @@
             class="border-2 border-round-md surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Dokumente</h4>
-            <p>(dem Antrag angehängte Dokumente)</p>
+            <DocumentList
+              v-if="this.selectedApplicationData.dokument[0]"
+              :applicationDocuments="this.selectedApplicationData.dokument"
+              :employeeMode="false"
+            ></DocumentList>
+            <p v-else>
+              {{ parentData.firstname + " " + parentData.lastname }} hat keine
+              Dokumente angehängt
+            </p>
           </div>
         </div>
 
@@ -213,9 +221,10 @@
 
 <script>
 import ApplicationKitaSelector from "./ApplicationKitaSelector.vue";
+import DocumentList from "./DocumentList.vue";
 export default {
   name: "ApplicationDetailed",
-  components: { ApplicationKitaSelector },
+  components: { DocumentList, ApplicationKitaSelector },
   async beforeMount() {
     this.selectedApplicationData = await this.applicationsList.find(
       (appl) => appl.id_antrag === this.selectedApplication.id_antrag

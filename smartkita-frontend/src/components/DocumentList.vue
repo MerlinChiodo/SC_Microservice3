@@ -19,11 +19,16 @@
 export default {
   name: "DocumentList",
   async beforeMount() {
-    this.documents = await this.getUserDocuments();
-    console.log(this.documents);
+    if (!this.applicationDocuments) {
+      this.documents = await this.getUserDocuments();
+      console.log("showing user's documents", this.documents);
+    } else {
+      this.documents = this.applicationDocuments;
+      console.log("showing application documents", this.documents);
+    }
   },
   inject: ["apiUrl"],
-  props: ["internalId", "smartCityId", "employeeMode"],
+  props: ["internalId", "smartCityId", "employeeMode", "applicationDocuments"],
   data() {
     return {
       documents: [],
