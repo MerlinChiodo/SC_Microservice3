@@ -133,7 +133,10 @@
             class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
             <div style="margin-bottom: 2rem">
-              <ImageUploadForm :kitaData="this.kitaData"></ImageUploadForm>
+              <ImageUploadForm
+                :kitaData="this.kitaData"
+                @imagesUploaded="this.refreshImages"
+              ></ImageUploadForm>
             </div>
           </div>
         </div>
@@ -181,6 +184,10 @@ export default {
       );
       const data = await response.json();
       return data;
+    },
+    async refreshImages() {
+      console.log("image successfully uploaded");
+      this.imageList = await this.getKitaImages();
     },
   },
 };

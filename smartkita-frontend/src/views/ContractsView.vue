@@ -7,8 +7,10 @@
       :value="contractsList"
       showGridlines
       stripedRows
-      :paginators="true"
+      :paginator="true"
       :rows="12"
+      sortField="id_vertrag"
+      sortOrder="-1"
     >
       <Column field="id_vertrag" header="ID Vertrag" :sortable="true"></Column>
       <Column

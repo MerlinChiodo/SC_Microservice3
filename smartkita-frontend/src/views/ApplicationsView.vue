@@ -16,6 +16,8 @@
       contextMenu
       v-model:contextMenuSelection="selectedApplication"
       @rowContextmenu="onRowContextMenu"
+      sortField="id_antrag"
+      sortOrder="-1"
     >
       <Column field="id_antrag" header="ID Antrag" :sortable="true"></Column>
       <Column

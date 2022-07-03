@@ -15,6 +15,7 @@ import { useUserStore } from "../stores/user";
 export default {
   name: "DocumentUploadForm",
   inject: ["apiUrl"],
+  emits: ["upload"],
   data() {
     return {
       uploadUrl: this.apiUrl + "documents",

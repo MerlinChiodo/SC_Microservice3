@@ -27,7 +27,9 @@
                       @click="this.deleteApplication(application.id_antrag)"
                     ></Button>
                     ID Antrag: {{ application.id_antrag }} | Einrichtung:
-                    {{ application.einrichtung.name }} | Kind:
+                    <span v-if="application.einrichtung">
+                      {{ application.einrichtung.name }}</span
+                    ><span v-else>---</span> | Kind:
                     {{
                       userApplicationsChildrenData.get(application.id_kind)
                         .firstname

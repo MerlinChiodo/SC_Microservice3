@@ -44,6 +44,7 @@ export default {
       docListKey: "",
     };
   },
+  emits: ["upload"],
   methods: {
     updateDocuments() {
       console.log("document upload success");
