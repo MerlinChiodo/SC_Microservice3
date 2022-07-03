@@ -177,5 +177,19 @@ exports.patchApplication = async (req, res) => {
 }
 
 exports.deleteApplication = async(req, res) => {
-    return res.send('not implemented yet')
+    {
+        const applId = req.query.id
+        try { Number(applId) } catch (e) { console.log(e); return res.status(400).send({ error : true, msg : "invalid id"}); }
+        try {
+            const application = await prisma.antrag.delete({
+                where: {
+                    id_antrag: Number(applId),
+                }
+            })
+            return res.json(application)
+        } catch (e) {
+            console.log(e)
+            return res.status(406).send({ msg: "could not delete application" })
+        }
+    }
 }

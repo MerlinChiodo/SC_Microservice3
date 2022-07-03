@@ -24,6 +24,7 @@
                     ><Button
                       icon="pi pi-times"
                       style="width: 8px; height: 8px"
+                      @click="this.deleteApplication(application.id_antrag)"
                     ></Button>
                     ID Antrag: {{ application.id_antrag }} | Einrichtung:
                     {{ application.einrichtung.name }} | Kind:
@@ -62,7 +63,10 @@
                     ></Button>
                     ID Vertrag: {{ contract.id_vertrag }} | Einrichtung:
                     {{ contract.einrichtung.name }} | Kind:
-                    {{ contract.kind.id_kind }}
+                    {{
+                      userApplicationsChildrenData.get(contract.kind.id_kind)
+                        .firstname
+                    }}
                   </span>
                 </li>
               </ul>
@@ -124,6 +128,7 @@ export default {
       }
       // MAP FOR EACH IS VALUE, KEY
       childMap.forEach(async function (smartcity_id, id_kind) {
+        // Have to hardcode bbUrl because inject is inexplicably not working here
         const response = await fetch(
           "http://vps2290194.fastwebserver.de:9710/api" +
             "/citizen/" +
@@ -136,6 +141,21 @@ export default {
       });
 
       return childMap;
+    },
+    async deleteApplication(applicationId) {
+      const response = await fetch(
+        this.apiUrl + "applications?id=" + applicationId,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log(data, "application successfully deleted");
+        this.userApplications = await this.getUserApplications();
+      } else {
+        console.log("could not delete application");
+      }
     },
   },
 };
