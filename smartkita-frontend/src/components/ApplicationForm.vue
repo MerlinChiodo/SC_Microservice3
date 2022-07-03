@@ -136,7 +136,9 @@
             class="border-2 border-round-md border-dotted surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Dokumente anfügen</h4>
-            <FileUpload></FileUpload>
+            <DocumentPicker
+              @updateSelectedDocuments="this.updateSelectedDocuments"
+            ></DocumentPicker>
           </div>
         </div>
         <div class="col-12 md:col-12">
@@ -149,7 +151,8 @@
                 this.bemerkung,
                 this.selectedChild.citizen_id,
                 this.userData.citizen_id,
-                this.betreuungsstunden
+                this.betreuungsstunden,
+                this.selectedDocuments
               )
             "
             >Antrag einreichen</Button
@@ -158,19 +161,15 @@
       </div>
     </div>
   </div>
-  <!--  <div>
-    <h5>Debug data (ApplicationForm)</h5>
-    {{ this.userData }}
-    <h5>Children</h5>
-    <div v-if="userChildrenData">{{ this.userChildrenData }}</div>
-  </div>-->
 </template>
 
 <script>
 import { useUserStore } from "../stores/user";
+import DocumentPicker from "./DocumentPicker.vue";
 
 export default {
   name: "ApplicationForm",
+  components: { DocumentPicker },
   props: ["kitaData"],
   inject: ["bbUrl", "apiUrl"],
   emits: ["applicationMode"],
@@ -181,12 +180,14 @@ export default {
   },
   data() {
     return {
+      uploadUrl: this.apiUrl + "documents",
       user: useUserStore(),
       userData: null,
       userChildrenData: null,
       selectedChild: null,
       betreuungsstunden: 20,
       bemerkung: "",
+      selectedDocuments: [],
     };
   },
   computed: {
@@ -229,7 +230,8 @@ export default {
       bemerkung,
       id_kind,
       id_ezb,
-      betreuungsstunden
+      betreuungsstunden,
+      dokumente
     ) {
       const requestOptions = {
         method: "POST",
@@ -240,6 +242,7 @@ export default {
           id_kind: id_kind,
           id_ezb: id_ezb,
           betreuungsstunden: betreuungsstunden,
+          dokumente: dokumente,
         }),
       };
       const response = await fetch(
@@ -248,6 +251,9 @@ export default {
       );
       const data = await response.json();
       console.log(data);
+    },
+    updateSelectedDocuments(selectedDocuments) {
+      this.selectedDocuments = selectedDocuments;
     },
   },
 };

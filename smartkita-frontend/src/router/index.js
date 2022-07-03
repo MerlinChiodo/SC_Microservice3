@@ -5,6 +5,7 @@ import ApplicationsView from "../views/ApplicationsView.vue";
 import SearchKitasView from "../views/SearchKitasView.vue";
 import KitaView from "../views/KitaView.vue";
 import ContractsView from "../views/ContractsView.vue";
+import DocumentsView from "../views/DocumentsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,12 +41,9 @@ const router = createRouter({
       component: ContractsView,
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
+      path: "/documents",
+      name: "documents",
+      component: DocumentsView,
     },
   ],
 });

@@ -5,7 +5,8 @@ exports.applicationsList = async (req, res) => {
     try {
         const allApplications = await prisma.antrag.findMany({
             include: {
-                einrichtung: true
+                einrichtung: true,
+                dokument: true
             }
         })
         return res.json(allApplications)
@@ -25,6 +26,10 @@ exports.getApplicationById = async (req, res) => {
         const application = await prisma.antrag.findFirst({
             where: {
                 id_antrag: Number(id)
+            },
+            include: {
+                einrichtung: true,
+                dokument: true
             }
         })
         return res.json(application)
@@ -43,11 +48,13 @@ exports.createApplication = async (req, res) => {
     const id_kind = req.body.id_kind
     const id_ezb = req.body.id_ezb
     const betreuungsstunden = req.body.betreuungsstunden
+    const dokumente = req.body.dokumente
 
     // PRISMA WRITE
     // using connect/connectOrCreate to ensure relational integrity
+    let createApplication;
     try {
-        const createApplication = await prisma.antrag.create({
+        createApplication = await prisma.antrag.create({
             data: {
                 einrichtung: {
                     connect: {
@@ -78,7 +85,7 @@ exports.createApplication = async (req, res) => {
                             }
                         }
                     },
-                    betreuungsstunden
+                    betreuungsstunden,
                 },
             include: {
                 kind: true,
@@ -86,10 +93,35 @@ exports.createApplication = async (req, res) => {
                 einrichtung: true
             },
         })
-        return res.status(200).json(createApplication);
     } catch (e) {
         console.log(e)
         return res.status(400).send({msg: "invalid application data"})
+    }
+    const connectedDocuments = []
+    if (dokumente && dokumente[0]) {
+        for (let i = 0; i < dokumente.length; i++) {
+            console.log(dokumente[i])
+            try {
+                connectedDoc = await prisma.antrag.update({
+                    where: {
+                        id_antrag: createApplication.id_antrag
+                    },
+                    data: {
+                        dokument: {
+                            connect: {id_dokument: dokumente[i]}
+                        }
+                    }
+
+                })
+                connectedDocuments.push(connectedDoc)
+            } catch (e) {
+                console.log(e)
+                return res.status(400).send({msg: "invalid document data"})
+            }
+        }
+        return res.status(200).json(createApplication);
+    } else {
+        return res.status(200).json(createApplication);
     }
 }
 

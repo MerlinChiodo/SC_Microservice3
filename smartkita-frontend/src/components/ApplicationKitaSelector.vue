@@ -4,6 +4,7 @@
     :options="kitasList"
     optionLabel="name"
     placeholder="Einer Kita zuweisen"
+    @change="this.$emit('assignKita', this.selectedKita)"
   >
   </Dropdown>
 </template>
@@ -13,9 +14,11 @@ export default {
   name: "ApplicationKitaSelector",
   beforeMount() {
     this.getKitasList();
+    console.log(this.selectedApplication);
   },
   emits: ["assignKita"],
   inject: ["apiUrl"],
+  props: ["selectedApplication"],
   data() {
     return {
       kitasList: null,

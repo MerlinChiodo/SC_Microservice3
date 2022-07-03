@@ -1,20 +1,49 @@
 const express = require('express');
 const router = express.Router();
 const documentsController = require('../controllers/documentsController');
+const multer  = require('multer')
+const path = require('path')
 
-// GET all applications' data
+// const upload = multer({ dest: 'uploads/', fileFilter: '' });
+
+let upload = multer({
+    errorHandling: 'manual',
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, path.join(__dirname, '../uploads/documents/'))
+        },
+        filename: (req, file, cb) => {
+            cb(null, file.originalname);
+        }
+    }),
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "application/pdf") {
+            cb(null, true);
+        } else {
+            return cb(new Error('Invalid mime type'));
+        }
+    }
+})
+
+// GET all documents' data
 router.get('/all', documentsController.documentsList);
 
-// GET an application by id
+// GET one citizen's documents' data
+router.get('/allById', documentsController.documentsListById);
+
+// GET a document by id
 router.get('/', documentsController.getDocumentById);
 
-// POST a new application
-router.post('/', documentsController.createDocument);
+// GET a document by Smartcity Id
+router.get('/byScId', documentsController.getDocumentByScId);
 
-// UPDATE an existing application's data
+// POST a new document
+router.post('/:id', upload.array('document'), documentsController.createDocument);
+
+// UPDATE an existing documents's data
 router.patch('/', documentsController.patchDocument);
 
-// DELETE an existing application
+// DELETE an existing document
 router.delete('/', documentsController.deleteDocument);
 
 module.exports = router;

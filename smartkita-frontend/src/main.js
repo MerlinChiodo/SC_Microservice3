@@ -28,6 +28,7 @@ import ContextMenu from "primevue/contextmenu";
 import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
 import FileUpload from "primevue/fileupload";
+import ToggleButton from "primevue/togglebutton";
 
 const app = createApp(App);
 
@@ -74,5 +75,6 @@ app.component("ContextMenu", ContextMenu);
 app.component("Divider", Divider);
 app.component("Dropdown", Dropdown);
 app.component("FileUpload", FileUpload);
+app.component("ToggleButton", ToggleButton);
 
 app.mount("#app");

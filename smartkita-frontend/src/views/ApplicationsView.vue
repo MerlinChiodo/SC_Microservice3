@@ -167,6 +167,7 @@ export default {
     },
     acceptApplication(application, duration, comment) {
       application.status = "ANGENOMMEN";
+
       // TODO: add toasts
       this.updateApplication(application);
       this.createContract(application, duration, comment);
