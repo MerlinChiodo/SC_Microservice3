@@ -8,9 +8,6 @@
           >{{ document.path_fileserver }}</a
         >
       </li>
-      <!--      <a :href="this.apiUrl + 'documents?id=' + this.documents[0].id_dokument"
-        >TEST PDF</a
-      >-->
     </ul>
   </div>
 </template>

@@ -102,26 +102,49 @@
           <div
             class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
           >
-            [ B I L D E R G A L E R I E]
+            <div class="grid p-fluid" style="margin: 4px">
+              <div
+                class="col-12 md:col-4"
+                v-for="image in imageList"
+                v-bind:key="image.id_bild"
+              >
+                <Image
+                  :src="this.apiUrl + 'images?id=' + image.id_bild"
+                  alt="KitaBild"
+                  preview
+                  height="150"
+                ></Image>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--        Bildergalerie-->
+        <div class="col-12 md:col-12">
+          <div
+            class="border-2 border-round-md surface-border flex align-items-center justify-content-center h-full"
+          >
+            <div v-if="this.user.isLoggedInEmployee">
+              <ImageUploadForm :kitaData="this.kitaData"></ImageUploadForm>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--  <div>
-    <h4>Debug data</h4>
-    $route.query.id = {{ this.$route.query.id }}
-    <h3>Daten</h3>
-    {{ this.kitaData }}<br /><br />
-  </div>-->
 </template>
 
 <script>
 import { useUserStore } from "../stores/user";
+import ImageUploadForm from "./ImageUploadForm.vue";
 export default {
   name: "KitaProfile",
+  components: { ImageUploadForm },
   props: ["kitaData"],
+  inject: ["apiUrl"],
   emits: ["applicationMode"],
+  async beforeMount() {
+    this.imageList = await this.getKitaImages();
+  },
   computed: {
     schwerpunktFormatted() {
       let schwerpunkt = this.kitaData.schwerpunkt.split("_");
@@ -136,11 +159,19 @@ export default {
   data() {
     return {
       user: useUserStore(),
+      imageList: [],
     };
   },
   methods: {
     toLowerCaseExceptFirstChar(str) {
       return str[0].toUpperCase() + str.substring(1).toLowerCase();
+    },
+    async getKitaImages() {
+      const response = await fetch(
+        this.apiUrl + "images/allById?id=" + this.kitaData.id_einrichtung
+      );
+      const data = await response.json();
+      return data;
     },
   },
 };

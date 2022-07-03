@@ -29,6 +29,7 @@ import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
 import FileUpload from "primevue/fileupload";
 import ToggleButton from "primevue/togglebutton";
+import Image from "primevue/image";
 
 const app = createApp(App);
 
@@ -40,12 +41,12 @@ app.use(VueCookies);
 
 // Internal Kita URLs
 // local development
-/*app.provide("apiUrl", "http://localhost:3001/api/");
-app.provide("homeUrl", "http://localhost:3000/");*/
+app.provide("apiUrl", "http://localhost:3001/api/");
+app.provide("homeUrl", "http://localhost:3000/");
 
 // deployment
-app.provide("apiUrl", "http://" + location.host + "/api/");
-app.provide("homeUrl", "http://supersmartcity.de:9730/");
+/*app.provide("apiUrl", "http://" + location.host + "/api/");
+app.provide("homeUrl", "http://supersmartcity.de:9730/");*/
 
 // local test environment
 /*app.provide("apiUrl", "http://" + location.host + "/api/");
@@ -76,5 +77,6 @@ app.component("Divider", Divider);
 app.component("Dropdown", Dropdown);
 app.component("FileUpload", FileUpload);
 app.component("ToggleButton", ToggleButton);
+app.component("Image", Image);
 
 app.mount("#app");
