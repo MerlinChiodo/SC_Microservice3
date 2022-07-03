@@ -52,6 +52,7 @@ export default {
   },
   inject: ["apiUrl"],
   props: [],
+  emits: ["updateSelectedDocuments"],
   data() {
     return {
       user: useUserStore(),
@@ -74,9 +75,11 @@ export default {
     },
     select(docId) {
       this.selectedDocuments.push(docId);
+      this.$emit("updateSelectedDocuments", this.selectedDocuments);
     },
     unselect(docId) {
       this.selectedDocuments.splice(this.selectedDocuments.indexOf(docId), 1);
+      this.$emit("updateSelectedDocuments", this.selectedDocuments);
     },
   },
 };

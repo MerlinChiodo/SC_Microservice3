@@ -136,7 +136,9 @@
             class="border-2 border-round-md border-dotted surface-border flex flex-column align-items-center justify-content-center h-full"
           >
             <h4>Dokumente anfügen</h4>
-            <DocumentPicker></DocumentPicker>
+            <DocumentPicker
+              @updateSelectedDocuments="this.updateSelectedDocuments"
+            ></DocumentPicker>
           </div>
         </div>
         <div class="col-12 md:col-12">
@@ -149,7 +151,8 @@
                 this.bemerkung,
                 this.selectedChild.citizen_id,
                 this.userData.citizen_id,
-                this.betreuungsstunden
+                this.betreuungsstunden,
+                this.selectedDocuments
               )
             "
             >Antrag einreichen</Button
@@ -184,6 +187,7 @@ export default {
       selectedChild: null,
       betreuungsstunden: 20,
       bemerkung: "",
+      selectedDocuments: [],
     };
   },
   computed: {
@@ -226,7 +230,8 @@ export default {
       bemerkung,
       id_kind,
       id_ezb,
-      betreuungsstunden
+      betreuungsstunden,
+      dokumente
     ) {
       const requestOptions = {
         method: "POST",
@@ -237,6 +242,7 @@ export default {
           id_kind: id_kind,
           id_ezb: id_ezb,
           betreuungsstunden: betreuungsstunden,
+          dokumente: dokumente,
         }),
       };
       const response = await fetch(
@@ -245,6 +251,9 @@ export default {
       );
       const data = await response.json();
       console.log(data);
+    },
+    updateSelectedDocuments(selectedDocuments) {
+      this.selectedDocuments = selectedDocuments;
     },
   },
 };
