@@ -81,11 +81,6 @@ export default {
           label: "Status",
           icon: "pi pi-align-justify",
           items: [
-            /*            {
-              label: "Annehmen",
-              icon: "pi pi-check-circle",
-              command: () => this.acceptApplication(this.selectedApplication),
-            },*/
             {
               label: "Unvollständig",
               icon: "pi pi-exclamation-circle",

@@ -233,6 +233,10 @@ export default {
     this.selectedApplicationData = await this.applicationsList.find(
       (appl) => appl.id_antrag === this.selectedApplication.id_antrag
     );
+    this.applicationAccepted = await Boolean(
+      this.selectedApplicationData.status === "ANGENOMMEN"
+    );
+
     this.parentData = await this.getPersonData(
       this.selectedApplicationData.id_ezb,
       "guardian"
