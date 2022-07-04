@@ -16,6 +16,8 @@
       contextMenu
       v-model:contextMenuSelection="selectedApplication"
       @rowContextmenu="onRowContextMenu"
+      sortField="id_antrag"
+      :sortOrder="Number(-1)"
     >
       <Column field="id_antrag" header="ID Antrag" :sortable="true"></Column>
       <Column
@@ -79,11 +81,6 @@ export default {
           label: "Status",
           icon: "pi pi-align-justify",
           items: [
-            /*            {
-              label: "Annehmen",
-              icon: "pi pi-check-circle",
-              command: () => this.acceptApplication(this.selectedApplication),
-            },*/
             {
               label: "Unvollständig",
               icon: "pi pi-exclamation-circle",

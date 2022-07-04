@@ -8,6 +8,9 @@ router.get('/all', contractsController.contractsList);
 // GET a contract by id
 router.get('/', contractsController.getContractById);
 
+// GET all contracts by userId
+router.get('/all/byInternalId', contractsController.contractsListByInternalId)
+
 // POST a new contract
 router.post('/', contractsController.createContract);
 

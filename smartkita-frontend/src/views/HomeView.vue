@@ -1,12 +1,44 @@
 <template>
-  <h1>Kita</h1>
-  <div>
-    <p>Willkommen im smarten Kita-Portal!</p>
-    <p>
-      Wir befinden uns noch im Aufbau, voraussichtlich bis Ende Juni/Anfang
-      Juli.
-    </p>
-    User ID: {{ user.smartCityId }}
+  <div class="homecontainer">
+    <h1>SmartKita</h1>
+    <div v-if="this.user.isLoggedIn">
+      <h2>
+        Willkommen im smarten Kita-Portal, {{ user.userData.firstname }}
+        {{ user.userData.lastname }}!
+      </h2>
+      <p>
+        Es gibt viele Kitas in M*nster. Über unsere
+        <router-link to="searchkitas">Kita-Suche</router-link> findest du die
+        Einrichtungen, die am besten zu dir und deiner Familie passen.
+      </p>
+      <p>
+        Du kannst nun Anträge auf einen Betreuungsplatz einreichen, am besten du
+        lädst vorher die nötigen
+        <router-link to="documents">Dokumente</router-link> (z.B. Impfpass,
+        Vorsorgeheft oder Beschäftigungsnachweis) hoch. Diese kannst du dann
+        deinen Anträgen anhängen, sodass unsere Mitarbeitenden direkt alles
+        haben, was sie brauchen.
+      </p>
+      <p>
+        Unter
+        <router-link to="memberships">Mitgliedschaften</router-link> kannst du
+        nachschauen, in welchen Kitas deine Kinder bereits Mitglied sind sowie
+        gestellte Anträge zurückziehen.
+      </p>
+    </div>
+    <div v-else-if="user.isLoggedInEmployee">
+      <h3>Hallo Admin</h3>
+      <h4>Frisch ans Werk</h4>
+    </div>
+    <div v-else>
+      <h3>Hallo!</h3>
+      <p>
+        Als Gast kannst du einen Blick auf unser
+        <router-link to="searchkitas">Kita-Angebot</router-link> werfen,
+        allerdings keine Anträge auf einen Betreuungsplatz stellen.
+      </p>
+      <p>Bitte logge dich ein, um auf alle Funktionen zuzugreifen.</p>
+    </div>
   </div>
 </template>
 
@@ -79,3 +111,21 @@ export default {
   inject: ["authUrl", "homeUrl", "apiUrl"],
 };
 </script>
+<style scoped>
+.homecontainer {
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 60rem;
+}
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--buttonDarkerColor);
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: var(--buttonHoverColor);
+}
+</style>

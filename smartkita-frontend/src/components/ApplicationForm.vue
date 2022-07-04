@@ -143,6 +143,8 @@
         </div>
         <div class="col-12 md:col-12">
           <Button
+            v-if="!this.applicationSent"
+            label="Antrag einreichen"
             style="width: auto"
             class="p-button-raised"
             @click="
@@ -155,8 +157,14 @@
                 this.selectedDocuments
               )
             "
-            >Antrag einreichen</Button
-          >
+          ></Button>
+          <Button
+            v-else
+            label="Antrag eingereicht"
+            style="width: auto"
+            class="p-button-raised"
+            id="successButton"
+          ></Button>
         </div>
       </div>
     </div>
@@ -188,6 +196,7 @@ export default {
       betreuungsstunden: 20,
       bemerkung: "",
       selectedDocuments: [],
+      applicationSent: false,
     };
   },
   computed: {
@@ -249,8 +258,13 @@ export default {
         this.apiUrl + "applications",
         requestOptions
       );
-      const data = await response.json();
-      console.log(data);
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log(data);
+        this.applicationSent = true;
+      } else {
+        console.log("could not create application");
+      }
     },
     updateSelectedDocuments(selectedDocuments) {
       this.selectedDocuments = selectedDocuments;
@@ -276,5 +290,16 @@ export default {
 .p-button:active,
 .p-button:focus {
   background-color: var(--buttonDarkerColor) !important;
+}
+
+#successButton {
+  background-color: var(--green-500) !important;
+}
+#successButton:hover {
+  background-color: var(--green-400) !important;
+}
+#successButton:active,
+#successButton:focus {
+  background-color: var(--green-600) !important;
 }
 </style>

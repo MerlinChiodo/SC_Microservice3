@@ -25,7 +25,13 @@ export default {
     }
   },
   inject: ["apiUrl"],
-  props: ["internalId", "smartCityId", "employeeMode", "applicationDocuments"],
+  props: [
+    "internalId",
+    "smartCityId",
+    "employeeMode",
+    "applicationDocuments",
+    "docListKey",
+  ],
   data() {
     return {
       documents: [],

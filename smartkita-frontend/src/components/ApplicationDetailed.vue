@@ -182,6 +182,7 @@
 
       <div class="p-buttonset" style="margin-top: 16px">
         <Button
+          v-if="!applicationAccepted"
           label="Annehmen"
           icon="pi pi-check-circle"
           iconPos="left"
@@ -191,10 +192,12 @@
               this.selectedApplication,
               this.contractDuration,
               this.contractComment
-            )
+            );
+            this.applicationAccepted = true;
           "
         ></Button>
         <Button
+          v-if="!applicationAccepted"
           label="Unvollständig"
           icon="pi pi-exclamation-circle"
           @click="
@@ -202,11 +205,13 @@
           "
         ></Button>
         <Button
+          v-if="!applicationAccepted"
           label="Ablehnen"
           icon="pi pi-times-circle"
           @click="$emit('changeStatus', this.selectedApplication, 'ABGELEHNT')"
         ></Button>
         <Button
+          v-if="!applicationAccepted"
           label="Eingegangen"
           icon="pi pi-undo"
           @click="
@@ -228,6 +233,10 @@ export default {
     this.selectedApplicationData = await this.applicationsList.find(
       (appl) => appl.id_antrag === this.selectedApplication.id_antrag
     );
+    this.applicationAccepted = await Boolean(
+      this.selectedApplicationData.status === "ANGENOMMEN"
+    );
+
     this.parentData = await this.getPersonData(
       this.selectedApplicationData.id_ezb,
       "guardian"
@@ -248,6 +257,7 @@ export default {
       childData: null,
       contractComment: null,
       contractDuration: 12,
+      applicationAccepted: false,
     };
   },
   methods: {
@@ -278,18 +288,6 @@ export default {
       console.log(updatedApplication);
       this.$emit("newKitaId", updatedApplication);
     },
-    /*    async updateApplication(newStatus) {
-      let updatedApplication = this.selectedApplicationData;
-      updatedApplication.status = newStatus;
-
-      const response = await fetch(this.apiUrl + "applications/", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedApplication),
-      });
-      const res = await response.json();
-      console.log(res);
-    },*/
   },
 };
 </script>

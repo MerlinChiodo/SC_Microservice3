@@ -5,6 +5,7 @@
     :url="this.apiUrl + 'images/' + this.kitaData.id_einrichtung"
     :multiple="true"
     accept="image/*"
+    @change="this.$emit('imagesUploaded')"
   ></FileUpload>
 </template>
 
@@ -13,6 +14,7 @@ export default {
   name: "ImageUploadForm",
   inject: ["apiUrl"],
   props: ["kitaData"],
+  emits: ["imagesUploaded"],
 };
 </script>
 
