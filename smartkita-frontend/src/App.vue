@@ -24,6 +24,9 @@ export default {
   --buttonHoverColor: var(--red-400);
   --buttonDarkerColor: var(--red-600);
 }
+body {
+  background-color: #fff9f6;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
