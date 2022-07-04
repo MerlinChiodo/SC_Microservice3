@@ -4,6 +4,7 @@
       <NavBar />
     </header>
   </div>
+
   <RouterView />
 </template>
 
@@ -42,5 +43,17 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #5b6679;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: var(--buttonDarkerColor);
 }
 </style>

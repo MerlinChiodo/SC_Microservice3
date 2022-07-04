@@ -5,6 +5,20 @@
         <!--        <img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">-->
       </template>
       <template #end>
+        <span>
+          <router-link to="legal" style="color: var(--red-800)"
+            >Impressum</router-link
+          >
+          <router-link
+            style="
+              margin-left: 0.5rem;
+              margin-right: 1.5rem;
+              color: var(--red-800);
+            "
+            to="privacy"
+            >Datenschutz</router-link
+          >
+        </span>
         <Button
           v-if="!this.user.isLoggedIn && !this.user.isLoggedInEmployee"
           @click="login"
