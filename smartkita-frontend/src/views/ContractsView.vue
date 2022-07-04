@@ -10,7 +10,7 @@
       :paginator="true"
       :rows="12"
       sortField="id_vertrag"
-      sortOrder="-1"
+      :sortOrder="Number(-1)"
     >
       <Column field="id_vertrag" header="ID Vertrag" :sortable="true"></Column>
       <Column

@@ -19,7 +19,12 @@
         deinen Anträgen anhängen, sodass unsere Mitarbeitenden direkt alles
         haben, was sie brauchen.
       </p>
-      <p></p>
+      <p>
+        Unter
+        <router-link to="memberships">Mitgliedschaften</router-link> kannst du
+        nachschauen, in welchen Kitas deine Kinder bereits Mitglied sind sowie
+        gestellte Anträge zurückziehen.
+      </p>
     </div>
     <div v-else-if="user.isLoggedInEmployee">
       <h3>Hallo Admin</h3>
